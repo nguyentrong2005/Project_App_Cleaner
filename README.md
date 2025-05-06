@@ -80,18 +80,18 @@ python test_cleaner.py
 
 ## 👨‍💻 Nhóm Phát Triển
 
-| Họ Tên         | Vai Trò                       |
-|----------------|-------------------------------|
-| [Tên Bạn]      | Trưởng nhóm, xử lý backend    |
-| [Tên Thành viên A] | Thiết kế giao diện GUI     |
-| [Tên Thành viên B] | Controller và xử lý logic  |
-| [Tên Thành viên C] | Kiểm thử và viết tiện ích  |
+| Họ Tên         | Vai Trò                             |
+|----------------|-------------------------------------|
+| [Nguyễn Hữu Trọng]      | Trưởng nhóm, xử lý backend |
+| [Tên Thành viên A]      | Thiết kế giao diện GUI     |
+| [Tên Thành viên B]      | Controller và xử lý logic  |
+| [Tên Thành viên C]      | Kiểm thử và viết tiện ích  |
 
 ---
 
 ## 📄 Giấy Phép
 
-Dự án được phát triển cho mục đích học tập, không dùng cho thương mại. Chi tiết xem file [LICENSE](LICENSE) (nếu có).
+Dự án được phát triển cho mục đích học tập, không dùng cho thương mại. Chi tiết xem file [LICENSE](LICENSE).
 
 ---
 
