@@ -91,7 +91,7 @@ python test_cleaner.py
 
 ## 📄 Giấy Phép
 
-Dự án được phát triển cho mục đích học tập, không dùng cho thương mại. Chi tiết xem file [LICENSE.md](LICENSE) (nếu có).
+Dự án được phát triển cho mục đích học tập, không dùng cho thương mại. Chi tiết xem file [LICENSE](LICENSE) (nếu có).
 
 ---
 
