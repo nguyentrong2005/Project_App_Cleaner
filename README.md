@@ -80,12 +80,12 @@ python test_cleaner.py
 
 ## 👨‍💻 Nhóm Phát Triển
 
-| Họ Tên         | Vai Trò                             |
-|----------------|-------------------------------------|
-| [Nguyễn Hữu Trọng]      | Trưởng nhóm, xử lý backend |
-| [Tên Thành viên A]      | Thiết kế giao diện GUI     |
-| [Tên Thành viên B]      | Controller và xử lý logic  |
-| [Tên Thành viên C]      | Kiểm thử và viết tiện ích  |
+| Họ Tên         | Vai Trò                               |
+|----------------|---------------------------------------|
+| [Nguyễn Hữu Trọng]        | Trưởng nhóm, xử lý backend |
+| [Cái Trần Đăng Khôi]      | Thiết kế giao diện GUI     |
+| [Nguyễn Huỳnh Tường]      | Controller và xử lý logic  |
+| [Huỳnh Thanh Trình]       | Kiểm thử và viết tiện ích  |
 
 ---
 

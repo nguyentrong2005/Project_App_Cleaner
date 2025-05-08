@@ -1,2 +1,2 @@
+# GUI
 tk
-send2trash
