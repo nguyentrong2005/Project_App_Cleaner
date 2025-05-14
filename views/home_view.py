@@ -1,54 +1,70 @@
 import customtkinter as ctk
 
+PRIMARY_COLOR = "#3b82f6"
+HOVER_BG = "#2a2e35"  # nền khi hover
+
 def build_home_view(main_content):
     home = ctk.CTkFrame(main_content)
 
+    # Tiêu đề chính
     ctk.CTkLabel(
         home,
-        text="📊 Tình trạng hệ thống",
-        font=("Segoe UI", 22, "bold"),
-        anchor="center"
-    ).pack(pady=(20, 10))
+        text="🧹 Chào mừng đến với App Cleaner",
+        font=("Segoe UI", 24, "bold"),
+        anchor="center",
+        justify="center"
+    ).pack(pady=(40, 10))
 
+    # Mô tả nhỏ
     ctk.CTkLabel(
         home,
-        text="Đã phát hiện 1015 tập tin không cần thiết (932 MB)\nHãy tối ưu hoá hệ thống của bạn!",
+        text="Loại bỏ rác hệ thống để giải phóng dung lượng và tăng hiệu suất máy.",
         font=("Segoe UI", 14),
         justify="center"
-    ).pack(pady=(0, 20))
+    ).pack(pady=(0, 30))
 
-    container = ctk.CTkFrame(home)
-    container.pack(padx=30, pady=10, fill="both", expand=True)
+    # Card dọn rác
+    card = ctk.CTkFrame(home, corner_radius=12, border_width=2, border_color=PRIMARY_COLOR, height=150)
+    card.pack(padx=80, pady=10, fill="x")
 
-    labels = [
-        ("🌐", "Dấu vết trình duyệt"),
-        ("🧾", "Registry lỗi"),
-        ("🔗", "Shortcut không hợp lệ"),
-        ("⚙️", "Dịch vụ đang chạy"),
-        ("🚀", "Tác vụ khởi động"),
-        ("🔧", "Tuỳ chỉnh hệ thống"),
-    ]
+    row = ctk.CTkFrame(card, fg_color="transparent")
+    row.pack(expand=True, fill="both", padx=20, pady=20)
 
-    for i, (icon, text) in enumerate(labels):
-        card = ctk.CTkFrame(container, corner_radius=12, border_width=1, height=80)
-        card.grid(row=i//2, column=i%2, padx=20, pady=15, sticky="nsew")
+    icon_label = ctk.CTkLabel(row, text="🧹", font=("Segoe UI", 48), width=80)
+    icon_label.pack(side="left")
 
-        row = ctk.CTkFrame(card, fg_color="transparent")
-        row.pack(fill="both", expand=True, padx=10, pady=10)
+    text_label = ctk.CTkLabel(row, text="Dọn rác hệ thống", font=("Segoe UI", 20, "bold"))
+    text_label.pack(side="left", padx=20)
 
-        icon_label = ctk.CTkLabel(row, text=icon, font=("Segoe UI", 24), width=40)
-        icon_label.pack(side="left")
+    # Hover effect
+    def on_enter(e):
+        card.configure(border_color="#60a5fa", fg_color=HOVER_BG)
 
-        text_label = ctk.CTkLabel(row, text=text, font=("Segoe UI", 14))
-        text_label.pack(side="left", padx=10)
+    def on_leave(e):
+        card.configure(border_color=PRIMARY_COLOR, fg_color="transparent")
 
-    container.grid_columnconfigure((0, 1), weight=1)
-    container.grid_rowconfigure((0, 1, 2), weight=1)
+    for widget in [card, row, icon_label, text_label]:
+        widget.bind("<Enter>", on_enter)
+        widget.bind("<Leave>", on_leave)
 
-    btn_frame = ctk.CTkFrame(home, fg_color="transparent")
-    btn_frame.pack(pady=20)
+    # Click để chuyển sang clean view
+    def open_clean_view(event=None):
+        for child in home.winfo_toplevel().winfo_children():
+            if isinstance(child, ctk.CTkFrame):
+                for btn in child.winfo_children():
+                    if isinstance(btn, ctk.CTkButton) and "Dọn" in btn.cget("text"):
+                        btn.invoke()
+                        return
 
-    ctk.CTkButton(btn_frame, text="🔄 Phân tích lại", width=140, fg_color="#3b82f6").pack(side="left", padx=10)
-    ctk.CTkButton(btn_frame, text="⚡ Tối ưu hoá", width=140, fg_color="#10b981").pack(side="left", padx=10)
+    for widget in [card, row, icon_label, text_label]:
+        widget.bind("<Button-1>", open_clean_view)
+
+    # Mẹo nhỏ
+    ctk.CTkLabel(
+        home,
+        text="💡 Mẹo: Dọn rác định kỳ giúp máy hoạt động ổn định và nhanh hơn.",
+        font=("Segoe UI", 12),
+        text_color="#aaa"
+    ).pack(pady=30)
 
     return home
