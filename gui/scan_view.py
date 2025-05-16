@@ -1,14 +1,20 @@
+# scan_view.py
 import customtkinter as ctk
+import tkinter as tk
 import threading
 import time
-
+from localization import tr, on_language_change
 
 def build_scan_view(main_content):
     f = ctk.CTkFrame(main_content)
 
-    ctk.CTkLabel(f, text="🔍 Quét hệ thống", font=(
+    title_var = tk.StringVar(value=tr("scan_title"))
+    desc_var = tk.StringVar(value=tr("scan_desc"))
+    start_btn_text = tk.StringVar(value=tr("scan_start"))
+
+    ctk.CTkLabel(f, textvariable=title_var, font=(
         "Segoe UI", 22, "bold")).pack(pady=(20, 10))
-    ctk.CTkLabel(f, text="Hệ thống sẽ tìm và liệt kê các tệp rác, shortcut hỏng và registry lỗi.", font=(
+    ctk.CTkLabel(f, textvariable=desc_var, font=(
         "Segoe UI", 14)).pack(pady=(0, 20))
 
     progress_label = ctk.CTkLabel(
@@ -26,7 +32,7 @@ def build_scan_view(main_content):
         dots = ["", ".", "..", "..."]
         for _ in range(20):
             for d in dots:
-                progress_label.configure(text=f"🔎 Đang quét{d}")
+                progress_label.configure(text=f" {tr('scan_title')}{d}")
                 time.sleep(0.15)
 
     def start_scan():
@@ -42,7 +48,14 @@ def build_scan_view(main_content):
                 text="Đã phát hiện 1015 tệp không cần thiết (932 MB)")
         threading.Thread(target=run, daemon=True).start()
 
-    ctk.CTkButton(f, text="▶ Bắt đầu quét", command=start_scan,
+    ctk.CTkButton(f, textvariable=start_btn_text, command=start_scan,
                   fg_color="#3b82f6").pack(pady=20)
+
+    def update_texts():
+        title_var.set(tr("scan_title"))
+        desc_var.set(tr("scan_desc"))
+        start_btn_text.set(tr("scan_start"))
+
+    on_language_change(update_texts)
 
     return f

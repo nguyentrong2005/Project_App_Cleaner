@@ -1,30 +1,34 @@
+# home_view.py
 import customtkinter as ctk
+import tkinter as tk
+from localization import tr, on_language_change
 
 PRIMARY_COLOR = "#3b82f6"
 HOVER_BG = "#2a2e35"  # nền khi hover
 
-
-def build_home_view(main_content):
+def build_home_view(main_content, on_switch_view):
     home = ctk.CTkFrame(main_content)
 
-    # Tiêu đề chính
+    # Dùng StringVar để thay đổi text linh hoạt
+    title_var = tk.StringVar(value=tr("home_title"))
+    desc_var = tk.StringVar(value=tr("home_desc"))
+    tip_var = tk.StringVar(value=tr("home_tip"))
+
     ctk.CTkLabel(
         home,
-        text="🧹 Chào mừng đến với App Cleaner",
+        textvariable=title_var,
         font=("Segoe UI", 24, "bold"),
         anchor="center",
         justify="center"
     ).pack(pady=(40, 10))
 
-    # Mô tả nhỏ
     ctk.CTkLabel(
         home,
-        text="Loại bỏ rác hệ thống để giải phóng dung lượng và tăng hiệu suất máy.",
+        textvariable=desc_var,
         font=("Segoe UI", 14),
         justify="center"
     ).pack(pady=(0, 30))
 
-    # Card dọn rác
     card = ctk.CTkFrame(home, corner_radius=12, border_width=2,
                         border_color=PRIMARY_COLOR, height=150)
     card.pack(padx=80, pady=10, fill="x")
@@ -35,11 +39,11 @@ def build_home_view(main_content):
     icon_label = ctk.CTkLabel(row, text="🧹", font=("Segoe UI", 48), width=80)
     icon_label.pack(side="left")
 
+    clean_text_var = tk.StringVar(value=tr("clean_title"))
     text_label = ctk.CTkLabel(
-        row, text="Dọn rác hệ thống", font=("Segoe UI", 20, "bold"))
+        row, textvariable=clean_text_var, font=("Segoe UI", 20, "bold"))
     text_label.pack(side="left", padx=20)
 
-    # Hover effect
     def on_enter(e):
         card.configure(border_color="#60a5fa", fg_color=HOVER_BG)
 
@@ -50,24 +54,25 @@ def build_home_view(main_content):
         widget.bind("<Enter>", on_enter)
         widget.bind("<Leave>", on_leave)
 
-    # Click để chuyển sang clean view
     def open_clean_view(event=None):
-        for child in home.winfo_toplevel().winfo_children():
-            if isinstance(child, ctk.CTkFrame):
-                for btn in child.winfo_children():
-                    if isinstance(btn, ctk.CTkButton) and "Dọn" in btn.cget("text"):
-                        btn.invoke()
-                        return
+        on_switch_view("clean")
 
     for widget in [card, row, icon_label, text_label]:
         widget.bind("<Button-1>", open_clean_view)
 
-    # Mẹo nhỏ
     ctk.CTkLabel(
         home,
-        text="💡 Mẹo: Dọn rác định kỳ giúp máy hoạt động ổn định và nhanh hơn.",
+        textvariable=tip_var,
         font=("Segoe UI", 12),
         text_color="#aaa"
     ).pack(pady=30)
+
+    def update_texts():
+        title_var.set(tr("home_title"))
+        desc_var.set(tr("home_desc"))
+        tip_var.set(tr("home_tip"))
+        clean_text_var.set(tr("clean_title"))
+
+    on_language_change(update_texts)
 
     return home
