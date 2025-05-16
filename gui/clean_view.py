@@ -29,6 +29,10 @@ def build_clean_view(main_content):
 
     status = ctk.CTkLabel(f, text="", font=("Segoe UI", 12))
     status.pack(pady=(10, 5))
+    progress_bar = ctk.CTkProgressBar(f, width=400)
+    progress_bar.pack(pady=5)
+    progress_bar.set(1.0)
+
 
     result_label = ctk.CTkLabel(f, text="", font=("Segoe UI", 13))
     result_label.pack(pady=5)
@@ -40,6 +44,10 @@ def build_clean_view(main_content):
                 status.configure(text=f"🧹 Đang dọn{'.' * i}")
                 time.sleep(0.5)
             time.sleep(1.5)
+            for percent in range(100, -1, -1):
+                progress_bar.set(percent / 100)
+                status.configure(text=f"🧹 Đang dọn: {percent}%")
+                time.sleep(0.03)
             status.configure(text="✅ Dọn dẹp hoàn tất")
             result_label.configure(text="Đã xoá thành công 932 MB rác hệ thống 🎉")
         threading.Thread(target=run, daemon=True).start()
