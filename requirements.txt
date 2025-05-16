@@ -1,2 +1,7 @@
 # GUI
 tk
+customtkinter
+psutil
+pillow
+
+
