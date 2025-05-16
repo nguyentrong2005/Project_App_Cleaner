@@ -57,6 +57,13 @@ if __name__ == "__main__":
     print(f"Đã tìm thấy {len(paths)} file/thư mục rác.")
     print(f"Tổng dung lượng: {size / 1024:.2f} KB")
 
-    # print("Danh sách file/thư mục rác:")
-    # for p in paths:
-    #     print("-", p)
+    # Ghi kết quả ra file
+    with open("docs/scan_log.txt", "w", encoding="utf-8") as f:
+        f.write(f"Đã tìm thấy {len(paths)} file/thư mục rác.\n")
+        f.write(f"Tổng dung lượng: {size / 1024:.2f} KB\n\n")
+        f.write("Danh sách:\n")
+        for p in paths:
+            size_kb = p.stat().st_size / 1024 if p.is_file() else 0
+            f.write(f"- {p} ({size_kb:.2f} KB)\n")
+
+    print("📄 Đã lưu danh sách vào: docs/scan_log.txt")
