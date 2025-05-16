@@ -1,12 +1,7 @@
-import tkinter as tk
-from gui.main_window import CleanerAppGUI
+from core import scan_and_log
 
-
-def main() -> None:
-    root = tk.Tk()
-    app = CleanerAppGUI(root)
-    root.mainloop()
-
+def main():
+    scan_and_log()
 
 if __name__ == "__main__":
     main()
