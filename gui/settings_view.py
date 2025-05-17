@@ -57,16 +57,7 @@ def build_settings_view(main_content):
                                   command=change_language, variable=lang_menu_var)
     lang_menu.grid(row=1, column=1, sticky="ew")
 
-    # === Âm thanh ===
-    sound_state = tk.BooleanVar(value=True)
-
-    def toggle_sound():
-        messagebox.showinfo(tr("sound"), f"{'Đã bật' if sound_state.get() else 'Đã tắt'} âm thanh")
-
-    ctk.CTkLabel(container, textvariable=sound_label_var, font=("Segoe UI", 14), anchor="w")\
-        .grid(row=2, column=0, sticky="w", pady=10, padx=(0, 20))
-    ctk.CTkSwitch(container, text="Bật/Tắt âm thanh", variable=sound_state,
-                  command=toggle_sound).grid(row=2, column=1, sticky="w")
+    
 
     # Cho cột 1 (bên phải) dãn ra đều
     container.grid_columnconfigure(1, weight=1)
