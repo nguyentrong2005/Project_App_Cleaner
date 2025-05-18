@@ -1,12 +1,17 @@
+# history_view.py
 import customtkinter as ctk
-
+import tkinter as tk
+from localization import tr, on_language_change
 
 def build_history_view(main_content):
     f = ctk.CTkFrame(main_content)
 
-    ctk.CTkLabel(f, text="📜 Lịch sử dọn dẹp", font=(
+    title_var = tk.StringVar(value=tr("history_title"))
+    desc_var = tk.StringVar(value=tr("history_desc"))
+
+    ctk.CTkLabel(f, textvariable=title_var, font=(
         "Segoe UI", 22, "bold")).pack(pady=(20, 10))
-    ctk.CTkLabel(f, text="Dưới đây là các lần dọn hệ thống gần nhất:",
+    ctk.CTkLabel(f, textvariable=desc_var,
                  font=("Segoe UI", 14)).pack(pady=(0, 10))
 
     table = ctk.CTkScrollableFrame(f, height=250)
@@ -15,7 +20,7 @@ def build_history_view(main_content):
     headers = ("🕒 Thời gian", "🧹 Số mục", "💾 Dung lượng")
     header_text = f"{headers[0]:<25}{headers[1]:<15}{headers[2]}"
     ctk.CTkLabel(table, text=header_text, font=("Segoe UI", 13, "bold"),
-                 text_color="#3b82f6").pack(anchor="w", padx=(10, 20), pady=(5, 8))
+                text_color="#3b82f6").pack(anchor="w", padx=(10, 20), pady=(5, 8))
 
     history = [
         ("2025-05-07 14:32", "5 mục", "420 MB"),
@@ -24,7 +29,12 @@ def build_history_view(main_content):
     ]
     for time_str, items, size in history:
         line = f"{time_str:<25}{items:<15}{size}"
-        ctk.CTkLabel(table, text=line, font=("Segoe UI", 13)
-                     ).pack(anchor="w", padx=20, pady=3)
+        ctk.CTkLabel(table, text=line, font=("Segoe UI", 13)).pack(anchor="w", padx=20, pady=3)
+
+    def update_texts():
+        title_var.set(tr("history_title"))
+        desc_var.set(tr("history_desc"))
+
+    on_language_change(update_texts)
 
     return f
