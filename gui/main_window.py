@@ -3,13 +3,16 @@ import tkinter as tk
 from PIL import Image
 import os
 
-from gui.home_view import build_home_view
-from gui.scan_view import build_scan_view
-from gui.clean_view import build_clean_view
-from gui.history_view import build_history_view
-from gui.settings_view import build_settings_view
-from gui.sidebar_labels import init_sidebar_labels
-from gui.localization import tr, on_language_change
+from gui import (
+    build_home_view,
+    build_scan_view,
+    build_clean_view,
+    build_history_view,
+    build_settings_view,
+    init_sidebar_labels,
+    tr,
+    on_language_change
+)
 
 PRIMARY_COLOR = "#3b82f6"
 
@@ -18,6 +21,13 @@ ctk.set_default_color_theme("blue")
 
 
 def main_app():
+    """
+    Khởi tạo và chạy giao diện chính của ứng dụng T3K Cleaner.
+
+    - Thiết lập cửa sổ chính, sidebar, nội dung và các nút điều hướng
+    - Xử lý chuyển đổi giữa các view: home, scan, clean, settings, history
+    - Tích hợp thay đổi ngôn ngữ và theme
+    """
     app = ctk.CTk()
     app.title("T3K Cleaner")
     app.geometry("1100x600")
@@ -27,12 +37,12 @@ def main_app():
     app.button_refs = {}
 
     labels = init_sidebar_labels()
+
     try:
         app.iconbitmap("resources/images/logo(ico).ico")
     except Exception as e:
         print("[Icon Error]", e)
 
-    # Logo
     logo_img = None
     try:
         logo_path = "resources/images/logo.png"
@@ -49,6 +59,7 @@ def main_app():
         app, width=220, corner_radius=0, fg_color=get_sidebar_color())
     app.sidebar.pack(side="left", fill="y")
 
+    # Logo và tên app
     logo_frame = ctk.CTkFrame(app.sidebar, fg_color="transparent")
     logo_frame.pack(pady=(15, 10))
     if logo_img:
@@ -65,6 +76,9 @@ def main_app():
     section_title(section_system_var).pack(anchor="w", padx=15, pady=(10, 0))
 
     def create_sidebar_button(label_var, key):
+        """
+        Tạo một nút điều hướng ở sidebar cho mỗi view.
+        """
         btn = ctk.CTkButton(
             app.sidebar, textvariable=label_var, font=("Segoe UI", 14), anchor="w",
             fg_color="transparent", hover_color=PRIMARY_COLOR, corner_radius=8,
@@ -93,22 +107,26 @@ def main_app():
     app.main_content = ctk.CTkFrame(main_wrapper, corner_radius=0)
     app.main_content.pack(side="left", fill="both", expand=True)
 
-    # ==== đặt switch_view và set_active ở đây ====
-
     def set_active(btn):
+        """
+        Cập nhật nút sidebar đang được chọn.
+        """
         if app.active_button:
             app.active_button.configure(fg_color="transparent")
         btn.configure(fg_color=PRIMARY_COLOR)
         app.active_button = btn
 
     def switch_view(name):
+        """
+        Chuyển đổi hiển thị giữa các view trong giao diện chính.
+        """
         for frame in views.values():
             frame.pack_forget()
         views[name].pack(fill="both", expand=True)
         set_active(app.button_refs[name])
         app.current_view = name
 
-    # ==== các view ====
+    # Danh sách các view
     views = {
         "home": build_home_view(app.main_content, switch_view),
         "scan": build_scan_view(app.main_content),
@@ -121,6 +139,9 @@ def main_app():
         section_system_var.set("— " + tr("section_system") + " —")
 
     def update_theme_colors():
+        """
+        Cập nhật màu sidebar khi thay đổi giao diện sáng/tối.
+        """
         color = "#1f2937" if ctk.get_appearance_mode() == "Dark" else "transparent"
         app.sidebar.configure(fg_color=color)
 
@@ -134,6 +155,10 @@ def main_app():
 
 
 def show_splash_screen():
+    """
+    Hiển thị splash screen khởi động với logo và hiệu ứng chấm.
+    Tự động gọi main_app() sau vài giây.
+    """
     splash = ctk.CTk()
     splash.geometry("300x200")
     splash.title("T3K Cleaner")
@@ -167,5 +192,9 @@ def show_splash_screen():
     splash.mainloop()
 
 
-if __name__ == "__main__":
+def run_main_window():
+    """
+    Hàm để gọi giao diện chính từ file main.py.
+    Gọi splash screen trước khi chạy ứng dụng.
+    """
     show_splash_screen()

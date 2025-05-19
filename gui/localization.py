@@ -1,4 +1,5 @@
 # localization.py
+
 lang_var = "vi"
 callbacks = []
 
@@ -21,7 +22,6 @@ TEXTS = {
         "language": "🌐 Ngôn ngữ:",
         "sound": "🔊 Âm thanh:",
         "section_system": "Hệ thống",
-       
         "home_label": "Trang chủ",
         "scan_label": "Quét",
         "clean_label": "Dọn",
@@ -31,8 +31,6 @@ TEXTS = {
         "yes": "Có",
         "no": "Không",
         "exit_label": "Thoát"
-        
-
     },
     "en": {
         "home_title": "🧹 Welcome to App Cleaner",
@@ -64,14 +62,44 @@ TEXTS = {
     }
 }
 
+
 def tr(key):
+    """
+    Lấy chuỗi đã dịch theo khóa `key`, tương ứng với ngôn ngữ hiện tại.
+
+    Args:
+        key (str): Tên khóa ngôn ngữ (vd: "home_title")
+
+    Returns:
+        str: Chuỗi đã dịch nếu có, hoặc chính key nếu không tìm thấy
+    """
     return TEXTS.get(lang_var, TEXTS["vi"]).get(key, key)
 
+
 def set_language(lang_code):
+    """
+    Đặt lại ngôn ngữ hiển thị cho toàn bộ ứng dụng.
+
+    Khi thay đổi ngôn ngữ:
+    - Biến `lang_var` sẽ được cập nhật
+    - Tất cả các callback đã đăng ký qua `on_language_change()` sẽ được gọi
+
+    Args:
+        lang_code (str): Mã ngôn ngữ ("vi" hoặc "en")
+    """
     global lang_var
     lang_var = lang_code
     for cb in callbacks:
         cb()
 
+
 def on_language_change(callback):
+    """
+    Đăng ký hàm callback để được gọi mỗi khi ngôn ngữ thay đổi.
+
+    Dùng trong UI để tự động cập nhật lại nội dung khi đổi ngôn ngữ.
+
+    Args:
+        callback (function): Hàm cần gọi lại khi ngôn ngữ thay đổi
+    """
     callbacks.append(callback)

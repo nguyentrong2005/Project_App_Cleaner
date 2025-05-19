@@ -5,15 +5,38 @@ import threading
 import time
 from gui.localization import tr, on_language_change
 
+
 def build_clean_view(main_content):
+    """
+    Xây dựng giao diện chức năng 'Dọn rác' cho ứng dụng Cleaner.
+
+    Giao diện bao gồm:
+    - Tiêu đề và mô tả (theo ngôn ngữ hiện tại)
+    - Danh sách rác mẫu (giả lập) hiển thị các loại dữ liệu cần dọn
+    - Thanh tiến trình hiển thị quá trình dọn dẹp
+    - Nút bắt đầu dọn, kèm hộp thoại xác nhận trước khi thực hiện
+
+    Logic dọn rác được mô phỏng:
+    - Hiển thị trạng thái theo từng giai đoạn
+    - Giảm dần thanh tiến trình từ 100% về 0%
+    - Hiển thị kết quả sau khi hoàn tất
+
+    Args:
+        main_content: Frame cha chứa toàn bộ giao diện của màn hình này
+
+    Returns:
+        CTkFrame: Giao diện đã xây dựng sẵn cho tab 'Clean'
+    """
     f = ctk.CTkFrame(main_content)
 
     title_var = tk.StringVar(value=tr("clean_title"))
     list_title_var = tk.StringVar(value=tr("clean_list_title"))
     btn_text_var = tk.StringVar(value=tr("clean_button"))
 
-    ctk.CTkLabel(f, textvariable=title_var, font=("Segoe UI", 22, "bold")).pack(pady=(20, 10))
-    ctk.CTkLabel(f, textvariable=list_title_var, font=("Segoe UI", 14)).pack(pady=(0, 10))
+    ctk.CTkLabel(f, textvariable=title_var, font=(
+        "Segoe UI", 22, "bold")).pack(pady=(20, 10))
+    ctk.CTkLabel(f, textvariable=list_title_var,
+                 font=("Segoe UI", 14)).pack(pady=(0, 10))
 
     listbox = ctk.CTkScrollableFrame(f, height=200)
     listbox.pack(padx=20, pady=10, fill="x")
@@ -24,7 +47,8 @@ def build_clean_view(main_content):
         "🧩 Registry lỗi - 50 mục",
     ]
     for item in items:
-        ctk.CTkLabel(listbox, text=item, font=("Segoe UI", 13)).pack(anchor="w", padx=10, pady=5)
+        ctk.CTkLabel(listbox, text=item, font=("Segoe UI", 13)
+                     ).pack(anchor="w", padx=10, pady=5)
 
     status = ctk.CTkLabel(f, text="", font=("Segoe UI", 12))
     status.pack(pady=(10, 5))
@@ -36,6 +60,12 @@ def build_clean_view(main_content):
     result_label.pack(pady=5)
 
     def do_cleanup():
+        """
+        Mô phỏng quá trình dọn rác hệ thống:
+        - Hiển thị tiến trình
+        - Giảm dần thanh tiến trình
+        - Hiện thông báo hoàn tất
+        """
         def run():
             status.configure(text="🧹 Đang dọn... Vui lòng chờ")
             for i in range(3):
@@ -47,16 +77,22 @@ def build_clean_view(main_content):
                 status.configure(text=f"🧹 Đang dọn: {percent}%")
                 time.sleep(0.03)
             status.configure(text="✅ Dọn dẹp hoàn tất")
-            result_label.configure(text="Đã xoá thành công 932 MB rác hệ thống 🎉")
+            result_label.configure(
+                text="Đã xoá thành công 932 MB rác hệ thống 🎉")
         threading.Thread(target=run, daemon=True).start()
 
     def confirm_and_cleanup():
+        """
+        Hiển thị hộp thoại xác nhận dọn rác.
+        Nếu người dùng đồng ý → gọi hàm do_cleanup().
+        """
         popup = ctk.CTkToplevel()
         popup.title(tr("clean_title"))
         popup.geometry("300x140")
         popup.resizable(False, False)
         popup.grab_set()
-         # Đặt ở giữa màn hình
+
+        # Đặt ở giữa màn hình
         popup.update_idletasks()
         screen_width = popup.winfo_screenwidth()
         screen_height = popup.winfo_screenheight()
