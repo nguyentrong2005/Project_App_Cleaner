@@ -1,7 +1,7 @@
 # history_view.py
 import customtkinter as ctk
 import tkinter as tk
-from localization import tr, on_language_change
+from gui.localization import tr, on_language_change
 
 def build_history_view(main_content):
     f = ctk.CTkFrame(main_content)

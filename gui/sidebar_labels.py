@@ -1,8 +1,9 @@
 # sidebar_labels.py
-from localization import tr, on_language_change
 import tkinter as tk
+from gui.localization import tr, on_language_change
 
 _labels = {}
+
 
 def init_sidebar_labels():
     global _labels

@@ -3,18 +3,19 @@ import tkinter as tk
 from PIL import Image
 import os
 
-from home_view import build_home_view
-from scan_view import build_scan_view
-from clean_view import build_clean_view
-from history_view import build_history_view
-from settings_view import build_settings_view
-from sidebar_labels import init_sidebar_labels
-from localization import tr, on_language_change
+from gui.home_view import build_home_view
+from gui.scan_view import build_scan_view
+from gui.clean_view import build_clean_view
+from gui.history_view import build_history_view
+from gui.settings_view import build_settings_view
+from gui.sidebar_labels import init_sidebar_labels
+from gui.localization import tr, on_language_change
 
 PRIMARY_COLOR = "#3b82f6"
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
+
 
 def main_app():
     app = ctk.CTk()
@@ -44,14 +45,17 @@ def main_app():
         return "#1f2937" if ctk.get_appearance_mode() == "Dark" else "transparent"
 
     # Sidebar trái
-    app.sidebar = ctk.CTkFrame(app, width=220, corner_radius=0, fg_color=get_sidebar_color())
+    app.sidebar = ctk.CTkFrame(
+        app, width=220, corner_radius=0, fg_color=get_sidebar_color())
     app.sidebar.pack(side="left", fill="y")
 
     logo_frame = ctk.CTkFrame(app.sidebar, fg_color="transparent")
     logo_frame.pack(pady=(15, 10))
     if logo_img:
-        ctk.CTkLabel(logo_frame, image=logo_img, text="").pack(side="left", padx=(5, 8))
-    ctk.CTkLabel(logo_frame, text="T3K Cleaner", font=("Segoe UI", 16, "bold")).pack(side="left")
+        ctk.CTkLabel(logo_frame, image=logo_img, text="").pack(
+            side="left", padx=(5, 8))
+    ctk.CTkLabel(logo_frame, text="T3K Cleaner", font=(
+        "Segoe UI", 16, "bold")).pack(side="left")
 
     section_system_var = tk.StringVar(value="— " + tr("section_system") + " —")
 
@@ -66,8 +70,10 @@ def main_app():
             fg_color="transparent", hover_color=PRIMARY_COLOR, corner_radius=8,
             command=lambda k=key: switch_view(k)
         )
-        btn.bind("<Enter>", lambda e, b=btn: b.configure(fg_color=PRIMARY_COLOR) if b != app.active_button else None)
-        btn.bind("<Leave>", lambda e, b=btn: b.configure(fg_color="transparent") if b != app.active_button else None)
+        btn.bind("<Enter>", lambda e, b=btn: b.configure(
+            fg_color=PRIMARY_COLOR) if b != app.active_button else None)
+        btn.bind("<Leave>", lambda e, b=btn: b.configure(
+            fg_color="transparent") if b != app.active_button else None)
         btn.pack(fill="x", padx=12, pady=4)
         app.button_refs[key] = btn
 
@@ -138,12 +144,14 @@ def show_splash_screen():
     frame.pack(expand=True, fill="both", padx=20, pady=20)
 
     try:
-        logo = ctk.CTkImage(Image.open("resources/images/logo.png"), size=(80, 80))
+        logo = ctk.CTkImage(Image.open(
+            "resources/images/logo.png"), size=(80, 80))
         ctk.CTkLabel(frame, image=logo, text="").pack(pady=(15, 10))
     except:
         pass
 
-    loading_label = ctk.CTkLabel(frame, text="Đang khởi động", font=("Segoe UI", 14))
+    loading_label = ctk.CTkLabel(
+        frame, text="Đang khởi động", font=("Segoe UI", 14))
     loading_label.pack(pady=(10, 5))
 
     def animate_dots(i=0):
@@ -157,6 +165,7 @@ def show_splash_screen():
 
     animate_dots()
     splash.mainloop()
+
 
 if __name__ == "__main__":
     show_splash_screen()

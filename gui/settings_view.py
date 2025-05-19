@@ -2,7 +2,7 @@
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import messagebox
-from localization import tr, set_language, on_language_change
+from gui.localization import tr, set_language, on_language_change
 
 def build_settings_view(main_content):
     f = ctk.CTkFrame(main_content)

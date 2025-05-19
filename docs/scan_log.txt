@@ -1,10 +1,12 @@
-Đã tìm thấy 34510 file/thư mục rác.
-Tổng dung lượng: 2128227.09 KB
+Đã tìm thấy 34513 file/thư mục rác.
+Tổng dung lượng: 2126264.20 KB
+Thời gian quét: 51.72 giây
+Hoàn thành lúc: 19/05/2025 14:19:35
 
 📂 Danh sách rác theo từng thư mục:
 
 📁 C:\Users\huutr\AppData\Local
-  - 4939 file/thư mục rác (300315.15 KB)
+  - 4939 file/thư mục rác (297583.00 KB)
     • HoYoverse (0.00 KB)
     • Microsoft SDKs (0.00 KB)
     • PeerDistRepub (0.00 KB)
@@ -85,7 +87,7 @@ Tổng dung lượng: 2128227.09 KB
     • LOG.old (0.31 KB)
     • 000003.log (1.47 KB)
     • LOG.old (0.32 KB)
-    • 000007.log (2680.92 KB)
+    • 000007.log (2707.29 KB)
     • LOG.old (0.31 KB)
     • LOG.old (0.00 KB)
     • LOG.old (0.00 KB)
@@ -144,15 +146,15 @@ Tổng dung lượng: 2128227.09 KB
     • db787c3c-476e-4813-8c4e-7cd6840adf5e.tmp (27.47 KB)
     • e847d889-8865-4456-b8eb-7d9ec8aadb1f.tmp (27.47 KB)
     • 41cfed03-004a-4301-becc-202b04341267.tmp (27.47 KB)
-    • 001016.log (3765.45 KB)
+    • 001021.log (1028.02 KB)
     • LOG.old (0.57 KB)
-    • 005371.log (1812.81 KB)
+    • 005384.log (1664.98 KB)
     • LOG.old (4.11 KB)
-    • 000003.log (65.55 KB)
+    • 000003.log (65.77 KB)
     • LOG.old (0.40 KB)
-    • 000003.log (1710.88 KB)
+    • 000003.log (1729.46 KB)
     • LOG.old (0.40 KB)
-    • 001271.log (36.47 KB)
+    • 001277.log (13.63 KB)
     • LOG.old (0.50 KB)
     • 5e6e5793-c6cd-4626-9b59-4ac5f6b9cc2b.tmp (24.64 KB)
     • LOG.old (0.00 KB)
@@ -163,11 +165,11 @@ Tổng dung lượng: 2128227.09 KB
     • LOG.old (0.00 KB)
     • LOG.old (0.00 KB)
     • LOG.old (0.00 KB)
-    • 000003.log (409.92 KB)
+    • 000003.log (413.13 KB)
     • LOG.old (0.33 KB)
-    • 000093.log (39.98 KB)
+    • 000097.log (5.49 KB)
     • LOG.old (0.32 KB)
-    • 000030.log (200.93 KB)
+    • 000030.log (204.23 KB)
     • LOG.old (0.32 KB)
     • 000003.log (7.39 KB)
     • LOG.old (0.33 KB)
@@ -184,6 +186,7 @@ Tổng dung lượng: 2128227.09 KB
     • LOG.old (0.33 KB)
     • 000004.log (147.33 KB)
     • LOG.old (0.58 KB)
+    • 000004.log (0.00 KB)
     • 000003.log (34.33 KB)
     • LOG.old (0.32 KB)
     • 0A247910B07E5C9F (0.00 KB)
@@ -310,16 +313,16 @@ Tổng dung lượng: 2128227.09 KB
     • attachments (0.00 KB)
     • ab08d18a-c4d9-439c-9ffd-1352c7e8fa21.dmp (9227.19 KB)
     • Bookmarks.bak (13.64 KB)
-    • favorites_diagnostic.log (86.15 KB)
+    • favorites_diagnostic.log (86.27 KB)
     • LOG.old (0.00 KB)
     • Feedback Reports (0.00 KB)
     • JumpListIconsRecentWorkspacesV2 (0.00 KB)
     • Sync App Settings (0.00 KB)
     • Sync Extension Settings (0.00 KB)
-    • 000130.log (412.29 KB)
+    • 000130.log (413.06 KB)
     • LOG.old (0.33 KB)
     • LOG.old (0.00 KB)
-    • a0012175-30d6-40ea-9ae2-8822035d3572 (0.00 KB)
+    • db69d787-6c66-4201-9fcc-b222bd8535c1 (0.00 KB)
     • LOG.old (0.00 KB)
     • LOG.old (0.00 KB)
     • the-real-index~RF1895f6e.TMP (115.97 KB)
@@ -328,8 +331,8 @@ Tổng dung lượng: 2128227.09 KB
     • LOG.old (0.00 KB)
     • Files (0.00 KB)
     • LOG.old (0.00 KB)
-    • 003909.log (0.29 KB)
-    • LOG.old (0.51 KB)
+    • 003912.log (0.14 KB)
+    • LOG.old (0.34 KB)
     • LOG.old (0.00 KB)
     • 000017.log (251.99 KB)
     • LOG.old (0.33 KB)
@@ -552,19 +555,19 @@ Tổng dung lượng: 2128227.09 KB
     • LOG.old (0.38 KB)
     • 000645.log (2409.68 KB)
     • LOG.old (0.39 KB)
-    • 0780902d-dd45-4029-abd0-428a6bd6d3bb.tmp (25.44 KB)
-    • 85a7bd8e-e573-41d4-8305-934267709a77.tmp (25.44 KB)
-    • 874463e8-3427-4f03-a0cc-2aa0de1d469b.tmp (25.44 KB)
-    • 919a3ef9-f5fe-4e9b-be4e-899d77527419.tmp (25.44 KB)
-    • a86bf64b-4a7f-4a68-804b-dbeb88618aa4.tmp (25.44 KB)
-    • c94e61de-0497-4408-a4a3-857950653313.tmp (25.44 KB)
-    • c9ab3c45-b808-4a93-8bb6-bd59ae41dbd6.tmp (25.44 KB)
+    • bc5b1625-755b-4aee-8f5d-88e47dcb7637.tmp (25.44 KB)
+    • fe34dc41-6cc3-4ee0-9e17-c51be4f0a2f9.tmp (25.44 KB)
+    • 0b7869c1-6e55-473f-815e-ce135a892400.tmp (25.44 KB)
+    • 58d54378-ba86-4c4a-a50e-18effe7646af.tmp (25.44 KB)
+    • 88952424-5bb0-4097-8681-f22ac4dc9889.tmp (25.44 KB)
+    • 93458839-adde-48b5-9756-61925b1282c5.tmp (25.44 KB)
+    • d0b59363-6da6-45c8-a41d-a4c5d7be2793.tmp (25.44 KB)
     • 000003.log (1.44 KB)
     • LOG.old (0.40 KB)
     • 000003.log (273.26 KB)
     • LOG.old (0.40 KB)
-    • 007762.log (0.02 KB)
-    • LOG.old (0.41 KB)
+    • 007762.log (96.12 KB)
+    • LOG.old (0.42 KB)
     • 000003.log (48.32 KB)
     • LOG.old (0.40 KB)
     • 07594009-3bc4-447e-9fe0-91d35472f708.tmp (151.11 KB)
@@ -593,28 +596,28 @@ Tổng dung lượng: 2128227.09 KB
     • LOG.old (0.00 KB)
     • 000025.log (3351.54 KB)
     • LOG.old (0.33 KB)
-    • 000003.log (426.09 KB)
+    • 000003.log (426.45 KB)
     • LOG.old (0.34 KB)
     • LOG.old (0.00 KB)
     • LOG.old (0.00 KB)
     • LOG.old (0.00 KB)
     • 000053.log (389.99 KB)
     • LOG.old (0.33 KB)
-    • 003343.log (35.88 KB)
+    • 003343.log (36.43 KB)
     • LOG.old (0.32 KB)
-    • 000077.log (390.86 KB)
+    • 000077.log (390.88 KB)
     • LOG.old (0.32 KB)
-    • 000003.log (312.92 KB)
+    • 000003.log (312.96 KB)
     • LOG.old (0.33 KB)
-    • 000003.log (525.59 KB)
+    • 000003.log (525.67 KB)
     • LOG.old (0.34 KB)
     • Cache_Data (0.00 KB)
     • 000003.log (0.00 KB)
     • 000003.log (0.06 KB)
-    • 005651.log (149.41 KB)
-    • LOG.old (0.49 KB)
-    • cv_debug.log (87.77 KB)
-    • sync_diagnostic.log (923.17 KB)
+    • 005651.log (184.37 KB)
+    • LOG.old (0.32 KB)
+    • cv_debug.log (90.67 KB)
+    • sync_diagnostic.log (928.11 KB)
     • LOG.old (0.00 KB)
     • Temp (0.00 KB)
     • Icons Maskable (0.00 KB)
@@ -3781,16 +3784,15 @@ Tổng dung lượng: 2128227.09 KB
     • LOG.old (0.41 KB)
     • LOG.old (0.00 KB)
     • LOG.old (0.00 KB)
-    • 000003.log (11.97 KB)
-    • 000003.log (4.48 KB)
-    • LOG.old (0.43 KB)
-    • 002158.log (20.15 KB)
+    • 000003.log (12.00 KB)
+    • 000004.log (0.00 KB)
+    • 002162.log (40.66 KB)
     • LOG.old (3.42 KB)
     • LOG.old (0.00 KB)
     • LOG.old (0.00 KB)
     • LOG.old (0.00 KB)
     • CacheStorage (0.00 KB)
-    • 000004.log (62.02 KB)
+    • 000004.log (63.68 KB)
     • LOG.old (0.42 KB)
     • 000003.log (15.49 KB)
     • LOG.old (0.41 KB)
@@ -3798,7 +3800,7 @@ Tổng dung lượng: 2128227.09 KB
     • LOG.old (0.41 KB)
     • 000003.log (4.66 KB)
     • LOG.old (0.42 KB)
-    • 000003.log (2.58 KB)
+    • 000003.log (2.88 KB)
     • LOG.old (0.43 KB)
     • 000003.log (0.04 KB)
     • LOG.old (0.41 KB)
@@ -3855,7 +3857,7 @@ Tổng dung lượng: 2128227.09 KB
     • LOG.old (0.00 KB)
     • 000015.log (422.83 KB)
     • LOG.old (0.50 KB)
-    • 014615.log (389.40 KB)
+    • 014619.log (378.05 KB)
     • LOG.old (0.59 KB)
     • 0f3db771-bbee-404d-bd05-8a5d33b7c148.tmp (0.00 KB)
     • 199259ed-6498-4074-8487-b00657471a61.tmp (0.00 KB)
@@ -3942,7 +3944,7 @@ Tổng dung lượng: 2128227.09 KB
     • LOG.old (0.00 KB)
     • 000513.log (50.42 KB)
     • LOG.old (0.43 KB)
-    • 000003.log (152.24 KB)
+    • 000003.log (152.30 KB)
     • LOG.old (0.43 KB)
     • 000003.log (47.65 KB)
     • LOG.old (0.44 KB)
@@ -4099,7 +4101,6 @@ Tổng dung lượng: 2128227.09 KB
     • Launcher_2025-05-19_08-11-07.00.log (0.38 KB)
     • Launcher_2025-05-19_12-40-34.00.log (1.05 KB)
     • Launcher_2025-05-19_12-40-37.00.log (0.38 KB)
-    • MSTeamsBackgroundEcs_2025-05-18_13-14-54.183.log (1.92 KB)
     • MSTeamsBackgroundEcs_2025-05-18_13-26-30.184.log (1.92 KB)
     • MSTeamsBackgroundEcs_2025-05-18_19-39-38.185.log (1.92 KB)
     • MSTeamsBackgroundEcs_2025-05-18_20-41-48.186.log (1.92 KB)
@@ -4109,6 +4110,7 @@ Tổng dung lượng: 2128227.09 KB
     • MSTeamsBackgroundEcs_2025-05-19_11-37-37.190.log (1.92 KB)
     • MSTeamsBackgroundEcs_2025-05-19_12-42-20.191.log (1.92 KB)
     • MSTeamsBackgroundEcs_2025-05-19_13-15-42.192.log (1.92 KB)
+    • MSTeamsBackgroundEcs_2025-05-19_14-12-31.193.log (1.92 KB)
     • MSTeamsBackgroundUpdate_2025-05-02_22-29-55.00.log (2.51 KB)
     • MSTeamsBackgroundUpdate_2025-05-05_16-22-42.01.log (2.47 KB)
     • MSTeamsBackgroundUpdate_2025-05-06_20-50-02.02.log (2.75 KB)
@@ -4184,7 +4186,7 @@ Tổng dung lượng: 2128227.09 KB
     • MSTeams_2025-05-18_17-48-59.00.log (156.98 KB)
     • MSTeams_2025-05-18_19-34-53.00.log (209.48 KB)
     • MSTeams_2025-05-19_08-11-05.00.log (221.56 KB)
-    • MSTeams_2025-05-19_12-40-34.00.log (140.86 KB)
+    • MSTeams_2025-05-19_12-40-34.00.log (152.97 KB)
     • Media_MediaStackETW-2-U-xr-U.etl.bak (3584.00 KB)
     • tmp (0.00 KB)
     • Windows (0.00 KB)
@@ -4946,7 +4948,7 @@ Tổng dung lượng: 2128227.09 KB
     • 8165685004566365650_group (0.00 KB)
 
 📁 C:\Users\huutr\AppData\Local\Temp
-  - 26133 file/thư mục rác (1252301.09 KB)
+  - 26136 file/thư mục rác (1252301.45 KB)
     • 027928ad-c986-4d2e-8d6e-8944c8088212.tmp (264.53 KB)
     • 063a2961-534e-4d09-9184-b44a30dc5afa.tmp (1625.33 KB)
     • 06445cde-d15c-4f1f-8f9c-7e3b54e788e3.tmp (262.39 KB)
@@ -5024,7 +5026,7 @@ Tổng dung lượng: 2128227.09 KB
     • cb1785f6-62aa-46c7-a022-13e99fe3c1a2.tmp (264.53 KB)
     • cbc7b1ee-4444-4182-ac0f-d32722a55b15.tmp (141.96 KB)
     • cec16dff-9330-4b62-accd-2b5e2eb1e58a.tmp (66.51 KB)
-    • cv_debug.log (81.97 KB)
+    • cv_debug.log (82.09 KB)
     • d19b6342-8330-44ad-90e1-ba2b4279d1f9.tmp (141.96 KB)
     • d33122be-4d75-448a-b309-642fa8ff877c.tmp (264.53 KB)
     • d6ac7076-c4f1-4c73-976e-c5f216bc7121.tmp (264.53 KB)
@@ -5220,6 +5222,7 @@ Tổng dung lượng: 2128227.09 KB
     • mat-debug-8108.log (0.00 KB)
     • mat-debug-8132.log (0.00 KB)
     • mat-debug-8568.log (0.00 KB)
+    • mat-debug-8768.log (0.00 KB)
     • mat-debug-9116.log (0.00 KB)
     • mat-debug-9424.log (0.00 KB)
     • mat-debug-9496.log (0.00 KB)
@@ -13735,7 +13738,7 @@ Tổng dung lượng: 2128227.09 KB
     • cb1785f6-62aa-46c7-a022-13e99fe3c1a2.tmp (264.53 KB)
     • cbc7b1ee-4444-4182-ac0f-d32722a55b15.tmp (141.96 KB)
     • cec16dff-9330-4b62-accd-2b5e2eb1e58a.tmp (66.51 KB)
-    • cv_debug.log (81.97 KB)
+    • cv_debug.log (82.09 KB)
     • d19b6342-8330-44ad-90e1-ba2b4279d1f9.tmp (141.96 KB)
     • d33122be-4d75-448a-b309-642fa8ff877c.tmp (264.53 KB)
     • d6ac7076-c4f1-4c73-976e-c5f216bc7121.tmp (264.53 KB)
@@ -13931,6 +13934,7 @@ Tổng dung lượng: 2128227.09 KB
     • mat-debug-8108.log (0.00 KB)
     • mat-debug-8132.log (0.00 KB)
     • mat-debug-8568.log (0.00 KB)
+    • mat-debug-8768.log (0.00 KB)
     • mat-debug-9116.log (0.00 KB)
     • mat-debug-9424.log (0.00 KB)
     • mat-debug-9496.log (0.00 KB)
@@ -22446,7 +22450,7 @@ Tổng dung lượng: 2128227.09 KB
     • cb1785f6-62aa-46c7-a022-13e99fe3c1a2.tmp (264.53 KB)
     • cbc7b1ee-4444-4182-ac0f-d32722a55b15.tmp (141.96 KB)
     • cec16dff-9330-4b62-accd-2b5e2eb1e58a.tmp (66.51 KB)
-    • cv_debug.log (81.97 KB)
+    • cv_debug.log (82.09 KB)
     • d19b6342-8330-44ad-90e1-ba2b4279d1f9.tmp (141.96 KB)
     • d33122be-4d75-448a-b309-642fa8ff877c.tmp (264.53 KB)
     • d6ac7076-c4f1-4c73-976e-c5f216bc7121.tmp (264.53 KB)
@@ -22642,6 +22646,7 @@ Tổng dung lượng: 2128227.09 KB
     • mat-debug-8108.log (0.00 KB)
     • mat-debug-8132.log (0.00 KB)
     • mat-debug-8568.log (0.00 KB)
+    • mat-debug-8768.log (0.00 KB)
     • mat-debug-9116.log (0.00 KB)
     • mat-debug-9424.log (0.00 KB)
     • mat-debug-9496.log (0.00 KB)
@@ -31082,7 +31087,7 @@ Tổng dung lượng: 2128227.09 KB
     • {F8ECC2FD-CE2B-4ED4-BDCC-90D0D34206FD} (0.00 KB)
 
 📁 C:\Users\huutr\AppData\Roaming
-  - 3438 file/thư mục rác (576710.49 KB)
+  - 3438 file/thư mục rác (576837.17 KB)
     • defaultconfigs (0.00 KB)
     • resourcepacks (0.00 KB)
     • server-resource-packs (0.00 KB)
@@ -31525,31 +31530,31 @@ Tổng dung lượng: 2128227.09 KB
     • JSON Language Server.log (3.36 KB)
     • tasks.log (0.00 KB)
     • editSessions.log (0.13 KB)
-    • main.log (0.17 KB)
+    • main.log (0.29 KB)
     • network-shared.log (0.00 KB)
-    • ptyhost.log (0.26 KB)
+    • ptyhost.log (0.51 KB)
     • remoteTunnelService.log (0.05 KB)
     • sharedprocess.log (0.13 KB)
     • telemetry.log (0.00 KB)
-    • terminal.log (0.37 KB)
-    • userDataSync.log (56.84 KB)
+    • terminal.log (0.74 KB)
+    • userDataSync.log (92.09 KB)
     • network.log (0.00 KB)
     • notebook.rendering.log (0.00 KB)
-    • renderer.log (4.89 KB)
+    • renderer.log (4.99 KB)
     • views.log (3.32 KB)
-    • exthost.log (7.71 KB)
+    • exthost.log (12.36 KB)
     • extHostTelemetry.log (0.00 KB)
     • ms-dotnettools.vscode-dotnet-runtime (0.00 KB)
-    • GitLens (Git).log (3.89 KB)
-    • GitLens.log (3.11 KB)
-    • GitHub Copilot.log (26.22 KB)
-    • GitHub Copilot Chat.log (1.94 KB)
+    • GitLens (Git).log (4.13 KB)
+    • GitLens.log (3.54 KB)
+    • GitHub Copilot.log (36.38 KB)
+    • GitHub Copilot Chat.log (2.35 KB)
     • MongoDB Extension.log (2.16 KB)
     • MongoDB Language Server.log (0.28 KB)
-    • autopep8.log (27.32 KB)
+    • autopep8.log (39.89 KB)
     • Python Debugger.log (0.00 KB)
-    • Python Language Server.log (4.62 KB)
-    • Python.log (14.18 KB)
+    • Python Language Server.log (4.71 KB)
+    • Python.log (22.61 KB)
     • 1-IntelliCode API Examples.log (0.07 KB)
     • 10-Code.log (0.00 KB)
     • 11-.NET Install Tool.log (0.00 KB)
@@ -31560,13 +31565,13 @@ Tổng dung lượng: 2128227.09 KB
     • 4-autoDocstring.log (0.05 KB)
     • 5-Auto Rename Tag.log (0.04 KB)
     • 6-Git Graph.log (0.55 KB)
-    • 7-API Usage Examples LSP.log (0.98 KB)
-    • 8-Tabnine.log (17.93 KB)
+    • 7-API Usage Examples LSP.log (1.75 KB)
+    • 8-Tabnine.log (28.67 KB)
     • 9-Prettier.log (0.11 KB)
     • Code Spell Checker.log (0.00 KB)
-    • Git.log (54.90 KB)
+    • Git.log (92.04 KB)
     • GitHub.log (0.24 KB)
-    • GitHub Authentication.log (15.75 KB)
+    • GitHub Authentication.log (19.60 KB)
     • JSON Language Server.log (0.00 KB)
     • Markdown.log (0.00 KB)
     • tasks.log (0.00 KB)
@@ -34498,21 +34503,21 @@ Tổng dung lượng: 2128227.09 KB
     • vdb_rCURRENT.log (96.95 KB)
     • profiles (0.00 KB)
     • call.log (9.43 KB)
-    • log.log (79.18 KB)
-    • startup.log (15.87 KB)
+    • log.log (79.31 KB)
+    • startup.log (15.90 KB)
     • update.log (507.82 KB)
     • voip.log (58.24 KB)
-    • 672fc046-2b70-4aa9-a640-19f03e12ca0f (0.00 KB)
-    • voip.log (122.43 KB)
+    • 6b27742b-2b0a-4b34-86de-57f96f388791 (0.00 KB)
+    • voip.log (122.65 KB)
     • 000003.log (0.00 KB)
     • LOG.old (0.28 KB)
-    • 72636f31-2635-4afd-a60b-732bcff9634e (0.00 KB)
+    • 539c0448-b05c-4135-9cea-d8208e1f7aa6 (0.00 KB)
     • zidb_bu (0.00 KB)
-    • 001248.log (0.04 KB)
+    • 001248.log (0.07 KB)
     • LOG.old (0.34 KB)
-    • 026297.log (0.09 KB)
-    • LOG.old (3.88 KB)
-    • 000022.log (4.52 KB)
+    • 026328.log (0.22 KB)
+    • LOG.old (1.51 KB)
+    • 000022.log (5.66 KB)
     • LOG.old (0.30 KB)
     • 000003.log (1.41 KB)
     • LOG.old (0.30 KB)
@@ -34523,51 +34528,99 @@ Tổng dung lượng: 2128227.09 KB
     • LOG.old (0.27 KB)
 
 ⚠️ Các file/thư mục KHÔNG được thêm do thiếu quyền hoặc bị khóa:
+- C:\Users\huutr\AppData\Local\Temp\1ffbfb8b-7241-4468-846d-7469dceff654.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\2f9880c3-cadd-431d-9fb6-0641c7138776.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\3f75f39b-7cad-477d-965b-ee04b19b6324.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\40d9bfd7-c1d8-4ef8-a805-e7e595fe57ea.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\423ac341-f2be-4b73-a9f6-8822b2ebfef0.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\4966dc10-f107-4627-9dfb-1b88076a20d5.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\4b1726d4-b464-48e7-8245-4e1098e19304.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\535301c2-18b3-44b0-990e-d58dc048cbc1.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
-- C:\Users\huutr\AppData\Local\Temp\621611b6-ddad-469c-87ae-042c0a6c3f61.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\55a82bad-6bde-4620-a36f-18d3c4c3beaf.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\67284b59-e10c-4c94-a1ea-488c7b73e280.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\738f729b-a1b5-4920-bcac-78b93703382a.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\7b746024-58b9-4233-b707-bb325df30378.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\7e9df2e2-6791-42a1-9ed8-809b53398023.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
-- C:\Users\huutr\AppData\Local\Temp\7eba16f8-5879-40e4-bda8-a485d8380a5e.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\7f1c959b-285d-4a70-9a8e-266b8afe0994.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\94c99a6b-83fa-474b-9158-70fc91bae6cc.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\967d7129-3d1b-439a-a119-807d26fad707.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\a2d0a6f1-7bcf-4da2-ab72-7c14e203e1a5.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\a2edad88-1260-4fc4-a662-6edb8bf837fc.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\a93c6a86-e520-4077-84a7-0d478e443a25.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\b494fa7c-0c34-4248-8f5f-e0fb82d0a819.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\bfd4842e-f757-4b82-a339-7d14cd4db6c6.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\c0a30479-5c1d-4298-ac10-f92271189e77.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\c681a64e-4608-4e3d-b14a-75944be8a7f7.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\d1d67444-3d1d-42a8-b9f7-a0763fdfa367.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\d368ef76-cc96-4203-8ecd-fc9fef96c694.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\d4364e25-165b-49e9-8253-89ea85eb19fd.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\dd3dd713-8af5-4bcc-afdd-aa7806971350.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\f50607c1-5393-4620-b194-50635b0abb52.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\wct3070.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\wct6494.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\1ffbfb8b-7241-4468-846d-7469dceff654.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\2f9880c3-cadd-431d-9fb6-0641c7138776.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\3f75f39b-7cad-477d-965b-ee04b19b6324.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\40d9bfd7-c1d8-4ef8-a805-e7e595fe57ea.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\423ac341-f2be-4b73-a9f6-8822b2ebfef0.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\4966dc10-f107-4627-9dfb-1b88076a20d5.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\4b1726d4-b464-48e7-8245-4e1098e19304.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\535301c2-18b3-44b0-990e-d58dc048cbc1.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
-- C:\Users\huutr\AppData\Local\Temp\621611b6-ddad-469c-87ae-042c0a6c3f61.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\55a82bad-6bde-4620-a36f-18d3c4c3beaf.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\67284b59-e10c-4c94-a1ea-488c7b73e280.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\738f729b-a1b5-4920-bcac-78b93703382a.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\7b746024-58b9-4233-b707-bb325df30378.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\7e9df2e2-6791-42a1-9ed8-809b53398023.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
-- C:\Users\huutr\AppData\Local\Temp\7eba16f8-5879-40e4-bda8-a485d8380a5e.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\7f1c959b-285d-4a70-9a8e-266b8afe0994.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\94c99a6b-83fa-474b-9158-70fc91bae6cc.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\967d7129-3d1b-439a-a119-807d26fad707.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\a2d0a6f1-7bcf-4da2-ab72-7c14e203e1a5.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\a2edad88-1260-4fc4-a662-6edb8bf837fc.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\a93c6a86-e520-4077-84a7-0d478e443a25.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\b494fa7c-0c34-4248-8f5f-e0fb82d0a819.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\bfd4842e-f757-4b82-a339-7d14cd4db6c6.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\c0a30479-5c1d-4298-ac10-f92271189e77.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\c681a64e-4608-4e3d-b14a-75944be8a7f7.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\d1d67444-3d1d-42a8-b9f7-a0763fdfa367.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\d368ef76-cc96-4203-8ecd-fc9fef96c694.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\d4364e25-165b-49e9-8253-89ea85eb19fd.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\dd3dd713-8af5-4bcc-afdd-aa7806971350.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\f50607c1-5393-4620-b194-50635b0abb52.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\wct3070.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\wct6494.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Microsoft\OneDrive\setup\logs\Update_2025-05-19_054011_23752-17264.log → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Microsoft\Windows\Notifications\WPNPRMRY.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Microsoft\Windows\WebCache\V01.log → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Microsoft\Windows\WebCache\V01tmp.log → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
-- C:\Users\huutr\AppData\Local\Packages\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\AC\Temp\5a832ea6-d2ae-4cb8-8057-41e565ebe924.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Packages\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\AC\Temp\9bfb8c93-8afa-42db-b5c6-22f914c078c4.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Packages\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\AC\Temp\e7d5fd89-0aeb-481c-bed9-5a0daaaebcad.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\1ffbfb8b-7241-4468-846d-7469dceff654.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\2f9880c3-cadd-431d-9fb6-0641c7138776.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\3f75f39b-7cad-477d-965b-ee04b19b6324.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\40d9bfd7-c1d8-4ef8-a805-e7e595fe57ea.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\423ac341-f2be-4b73-a9f6-8822b2ebfef0.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\4966dc10-f107-4627-9dfb-1b88076a20d5.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\4b1726d4-b464-48e7-8245-4e1098e19304.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\535301c2-18b3-44b0-990e-d58dc048cbc1.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
-- C:\Users\huutr\AppData\Local\Temp\621611b6-ddad-469c-87ae-042c0a6c3f61.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\55a82bad-6bde-4620-a36f-18d3c4c3beaf.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\67284b59-e10c-4c94-a1ea-488c7b73e280.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\738f729b-a1b5-4920-bcac-78b93703382a.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\7b746024-58b9-4233-b707-bb325df30378.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\7e9df2e2-6791-42a1-9ed8-809b53398023.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
-- C:\Users\huutr\AppData\Local\Temp\7eba16f8-5879-40e4-bda8-a485d8380a5e.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\7f1c959b-285d-4a70-9a8e-266b8afe0994.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\94c99a6b-83fa-474b-9158-70fc91bae6cc.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\967d7129-3d1b-439a-a119-807d26fad707.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\a2d0a6f1-7bcf-4da2-ab72-7c14e203e1a5.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\a2edad88-1260-4fc4-a662-6edb8bf837fc.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\a93c6a86-e520-4077-84a7-0d478e443a25.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\b494fa7c-0c34-4248-8f5f-e0fb82d0a819.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\bfd4842e-f757-4b82-a339-7d14cd4db6c6.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\c0a30479-5c1d-4298-ac10-f92271189e77.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\c681a64e-4608-4e3d-b14a-75944be8a7f7.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\d1d67444-3d1d-42a8-b9f7-a0763fdfa367.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\d368ef76-cc96-4203-8ecd-fc9fef96c694.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\d4364e25-165b-49e9-8253-89ea85eb19fd.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\dd3dd713-8af5-4bcc-afdd-aa7806971350.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
+- C:\Users\huutr\AppData\Local\Temp\f50607c1-5393-4620-b194-50635b0abb52.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\wct3070.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}
 - C:\Users\huutr\AppData\Local\Temp\wct6494.tmp → Quyền: {'read': True, 'write': True, 'execute': True, 'delete': True}

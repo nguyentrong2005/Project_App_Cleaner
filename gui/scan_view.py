@@ -3,7 +3,7 @@ import customtkinter as ctk
 import tkinter as tk
 import threading
 import time
-from localization import tr, on_language_change
+from gui.localization import tr, on_language_change
 
 def build_scan_view(main_content):
     f = ctk.CTkFrame(main_content)

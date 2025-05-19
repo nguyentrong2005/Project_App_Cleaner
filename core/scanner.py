@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from typing import List, Tuple
 from collections import defaultdict
+from time import time
+from datetime import datetime
 
 from core.rules import (
     GARBAGE_EXTENSIONS,
@@ -111,15 +113,18 @@ def scan_and_log() -> None:
     - Quét rác hệ thống bằng TrashScanner
     - Gom nhóm kết quả theo thư mục gốc cấp cao (dựa vào rules.get_grouping_root)
     - Ghi log chi tiết vào file 'docs/scan_log.txt'
-    - In tổng kết số lượng và dung lượng rác ra console
+    - In tổng kết số lượng, dung lượng rác và thời gian hoàn thành ra console
     """
     os.makedirs("docs", exist_ok=True)
     log_path = Path("docs/scan_log.txt")
     if log_path.exists():
         log_path.unlink()
 
+    start_time = time()
     scanner = TrashScanner()
     paths, total_size = scanner.scan_garbage()
+    duration = time() - start_time
+    completed_at = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
     grouped: dict[Path, List[Path]] = defaultdict(list)
     for path in paths:
@@ -128,10 +133,14 @@ def scan_and_log() -> None:
 
     print(f"🧹 Đã tìm thấy {len(paths)} file/thư mục rác.")
     print(f"📦 Tổng dung lượng: {total_size / 1024:.2f} KB")
+    print(f"⏱️ Thời gian quét: {duration:.2f} giây")
+    print(f"✅ Hoàn thành lúc: {completed_at}")
 
     with open(log_path, "w", encoding="utf-8") as f:
         f.write(f"Đã tìm thấy {len(paths)} file/thư mục rác.\n")
-        f.write(f"Tổng dung lượng: {total_size / 1024:.2f} KB\n\n")
+        f.write(f"Tổng dung lượng: {total_size / 1024:.2f} KB\n")
+        f.write(f"Thời gian quét: {duration:.2f} giây\n")
+        f.write(f"Hoàn thành lúc: {completed_at}\n\n")
         f.write("📂 Danh sách rác theo từng thư mục:\n\n")
 
         for folder, items in sorted(grouped.items()):
