@@ -2,7 +2,6 @@ import customtkinter as ctk
 import tkinter as tk
 from datetime import datetime
 from gui.localization import tr, on_language_change
-from core import get_system_info
 
 PRIMARY_COLOR = "#3b82f6"
 HOVER_BG = "#2a2e35"
@@ -97,7 +96,13 @@ def build_home_view(main_content, on_switch_view):
         if sysinfo_frame.winfo_ismapped():
             sysinfo_frame.pack_forget()
         else:
-            sysinfo_label.configure(text=get_system_info())
+            sysinfo_label.configure(text=(
+                "💻 Hệ điều hành: Windows 10\n"
+                "🧠 CPU: Intel Core i5\n"
+                "💾 RAM: 8 GB\n"
+                "📂 Ổ đĩa: 256 GB SSD\n"
+                "🔋 Pin: 95%"
+            ))
             sysinfo_frame.pack(pady=(10, 30))
 
     ctk.CTkButton(home, textvariable=btn_sysinfo_text,
