@@ -1,106 +1,193 @@
+# scanner.py
+"""
+Module quét hệ thống tìm rác cho CleanerApp.
+
+Bao gồm:
+- TrashScanner: quét file/thư mục rác
+- Phân loại rác theo 12 nhóm
+- Ghi kết quả ra file và lịch sử quét
+"""
+
 import os
-import tempfile
 from pathlib import Path
+from collections import defaultdict
+from datetime import datetime
+from time import time
 from typing import List, Tuple
+from core.rules import (
+    get_scan_directories,
+    is_empty_directory,
+    is_garbage_file,
+    can_delete,
+    check_permissions,
+    get_grouping_root,
+    get_garbage_type,
+    detect_installed_browsers,
+    GARBAGE_TYPES
+)
+from utils import is_file_locked
 
 
 class TrashScanner:
     """
-    Quét các file/thư mục rác trong TEMP an toàn:
-    - File .tmp, .log, .bak
-    - File rỗng
-    - Thư mục rỗng
+    Lớp quét hệ thống và phân loại file/thư mục rác thành 12 nhóm cụ thể.
+
+    Các kết quả được gom vào:
+    - self.trash_paths: Danh sách path có thể xóa
+    - self.classified_paths: Dict chứa danh sách path theo từng loại rác
+    - self.rejected_paths: Danh sách path không thể xóa (bị khóa/thiếu quyền)
     """
 
-    EXTENSIONS = ['.tmp', '.log', '.bak']
-
     def __init__(self):
+        """
+        Khởi tạo scanner và khởi tạo danh sách kết quả.
+        Tự động phát hiện trình duyệt để phân tích loại rác chính xác hơn.
+        """
         self.trash_paths: List[Path] = []
         self.total_size: int = 0
-
-        # Dùng để phân loại file rác
-        self.tmp_files: List[Path] = []
-        self.log_files: List[Path] = []
-        self.bak_files: List[Path] = []
-        self.empty_files: List[Path] = []
-        self.empty_dirs: List[Path] = []
+        self.rejected_paths: List[Tuple[Path, dict]] = []
+        self.classified_paths: dict[str, List[Path]] = defaultdict(list)
+        self.installed_browsers = detect_installed_browsers()
+        self.scan_duration = 0
 
     def scan_garbage(self) -> Tuple[List[Path], int]:
-        safe_paths = [
-            Path(tempfile.gettempdir()),
-            Path("C:/Windows/Temp")
-        ]
+        """
+        Thực hiện quét tất cả thư mục đã cấu hình để tìm file/thư mục rác.
 
-        for path in safe_paths:
-            self._scan_directory(path)
-
-        self.trash_paths = (
-            self.tmp_files +
-            self.log_files +
-            self.bak_files +
-            self.empty_files +
-            self.empty_dirs
-        )
+        Returns:
+            Tuple[List[Path], int]: Danh sách path rác và tổng dung lượng đã quét được.
+        """
+        start = time()
+        scan_dirs = get_scan_directories()
+        for folder in scan_dirs:
+            self._scan_directory(folder)
+        self.scan_duration = time() - start
         return self.trash_paths, self.total_size
 
-    def _scan_directory(self, folder: Path) -> None:
-        if not folder.exists():
+    def _scan_directory(self, root: Path) -> None:
+        """
+        Quét đệ quy một thư mục, kiểm tra và phân loại rác bên trong.
+
+        Args:
+            root (Path): Đường dẫn thư mục cần quét
+        """
+        if not root.exists():
             return
 
-        for root, dirs, files in os.walk(folder):
-            for file in files:
-                file_path = Path(root) / file
-                if not os.access(file_path, os.W_OK):
-                    continue
+        try:
+            for dirpath, dirnames, filenames in os.walk(root):
+                current = Path(dirpath)
 
-                if file_path.suffix.lower() == '.tmp':
-                    self.tmp_files.append(file_path)
-                    self.total_size += file_path.stat().st_size
-                elif file_path.suffix.lower() == '.log':
-                    self.log_files.append(file_path)
-                    self.total_size += file_path.stat().st_size
-                elif file_path.suffix.lower() == '.bak':
-                    self.bak_files.append(file_path)
-                    self.total_size += file_path.stat().st_size
-                elif file_path.stat().st_size == 0:
-                    self.empty_files.append(file_path)
+                # Quét file rác
+                for fname in filenames:
+                    fpath = current / fname
+                    if not is_garbage_file(fpath):
+                        continue
+                    if not can_delete(fpath) or is_file_locked(fpath):
+                        self.rejected_paths.append(
+                            (fpath, check_permissions(fpath)))
+                        continue
+                    self.trash_paths.append(fpath)
+                    self.total_size += fpath.stat().st_size
+                    gtype = get_garbage_type(fpath, self.installed_browsers)
+                    self.classified_paths[gtype].append(fpath)
 
-            for dir_name in dirs:
-                dir_path = Path(root) / dir_name
-                if dir_path.exists() and dir_path.is_dir() and not any(dir_path.iterdir()):
-                    if os.access(dir_path, os.W_OK):
-                        self.empty_dirs.append(dir_path)
+                # Quét thư mục rỗng
+                for dname in dirnames:
+                    dpath = current / dname
+                    if is_empty_directory(dpath):
+                        if can_delete(dpath):
+                            self.trash_paths.append(dpath)
+                            gtype = get_garbage_type(
+                                dpath, self.installed_browsers)
+                            self.classified_paths[gtype].append(dpath)
+                        else:
+                            self.rejected_paths.append(
+                                (dpath, check_permissions(dpath)))
+        except Exception:
+            pass
 
-    def get_summary_text(self) -> str:
-        lines = ["\n🔍 KẾT QUẢ PHÂN LOẠI RÁC:"]
+    def get_classified_summary(self) -> dict:
+        """
+        Tạo bảng tổng hợp số lượng và dung lượng theo từng loại rác.
 
-        def _group(label: str, paths: List[Path]):
-            lines.append(f"\n{label} ({len(paths)} mục):")
+        Returns:
+            dict: {loại_rác: (số lượng, tổng_dung_lượng_byte)}
+        """
+        summary = {}
+        for rtype, paths in self.classified_paths.items():
+            total = 0
             for p in paths:
-                size = p.stat().st_size if p.is_file() else 0
-                size_kb = size / 1024
-                lines.append(f" - {p} ({size_kb:.2f} KB)")
+                try:
+                    if p.is_file():
+                        total += p.stat().st_size
+                except:
+                    pass
+            summary[rtype] = (len(paths), total)
+        return summary
 
-        _group("📄 File .tmp", self.tmp_files)
-        _group("📄 File .log", self.log_files)
-        _group("📄 File .bak", self.bak_files)
-        _group("⚪ File rỗng", self.empty_files)
-        _group("📂 Thư mục rỗng", self.empty_dirs)
+    def export_scan_result(self) -> None:
+        """
+        Lưu kết quả quét rác vào thư mục docs/scanner.
+        - Xóa thư mục cũ nếu có
+        - Tạo file `scan_summary.txt` với tổng kết
+        - Tạo thư mục `chi_tiet_rac/` chứa file chi tiết từng loại
+        - Lưu lịch sử lần quét vào docs/history.txt
+        """
+        # Xóa dữ liệu cũ
+        scanner_dir = Path("docs/scanner")
+        if scanner_dir.exists():
+            for file in scanner_dir.glob("**/*"):
+                try:
+                    file.unlink()
+                except:
+                    pass
 
-        return "\n".join(lines)
+        now = datetime.now()
+        time_str = now.strftime("%Y-%m-%d %H:%M:%S")
+        summary = self.get_classified_summary()
+        os.makedirs("docs/scanner/chi_tiet_rac", exist_ok=True)
+
+        main_log = scanner_dir / "scan_summary.txt"
+        with open(main_log, "w", encoding="utf-8") as f:
+            f.write(f"Thời gian hoàn tất: {time_str}\n")
+            f.write(f"Tổng số file rác: {len(self.trash_paths)}\n")
+            f.write(f"Tổng dung lượng: {self.total_size / 1024:.2f} KB\n")
+            f.write(f"Thời gian quét: {self.scan_duration:.2f} giây\n\n")
+
+            for rtype in GARBAGE_TYPES:
+                count, size = summary.get(rtype, (0, 0))
+                f.write(f"- {rtype}: {count} mục, {size / 1024:.2f} KB\n")
+
+                filename = rtype.lower().replace(" ", "_") + ".txt"
+                detail_path = scanner_dir / "chi_tiet_rac" / filename
+                with open(detail_path, "w", encoding="utf-8") as df:
+                    for path in self.classified_paths.get(rtype, []):
+                        try:
+                            size_kb = path.stat().st_size / 1024 if path.is_file() else 0
+                            df.write(f"{path} ({size_kb:.2f} KB)\n")
+                        except:
+                            df.write(f"{path} (Không lấy được dung lượng)\n")
+
+        # Lưu lịch sử
+        history_path = Path("docs/history_scan.txt")
+        with open(history_path, "a", encoding="utf-8") as hf:
+            hf.write(
+                f"{time_str} | {len(self.trash_paths)} file | {self.total_size / 1024:.2f} KB\n")
 
 
-if __name__ == "__main__":
+def run_scan():
+    """
+    Hàm dùng trong main.py để chạy quét rác:
+    - Quét hệ thống
+    - Lưu kết quả vào thư mục docs/scanner/
+    - In thông tin cơ bản ra console
+    """
     scanner = TrashScanner()
-    paths, size = scanner.scan_garbage()
+    scanner.scan_garbage()
+    scanner.export_scan_result()
 
-    print(f"\n🔍 Đã tìm thấy {len(paths)} file/thư mục rác.")
-    print(f"📦 Tổng dung lượng: {size / 1024:.2f} KB")
-
-    # Ghi kết quả ra file text
-    with open("scan_result.txt", "w", encoding="utf-8") as f:
-        f.write(f"Đã tìm thấy {len(paths)} file/thư mục rác.\n")
-        f.write(f"Tổng dung lượng: {size / 1024:.2f} KB\n")
-        f.write(scanner.get_summary_text())
-
-    print("\n📄 Kết quả đã được lưu vào: scan_result.txt")
+    print(f"🔍 Đã quét {len(scanner.trash_paths)} file/thư mục rác.")
+    print(f"📦 Tổng dung lượng: {scanner.total_size / 1024:.2f} KB")
+    print(f"🕒 Thời gian quét: {scanner.scan_duration:.2f} giây")
+    print("📄 Chi tiết đã lưu trong: docs/scanner/")

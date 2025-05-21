@@ -1,4 +1,3 @@
-
 # 🧹 CleanApp - Ứng dụng dọn rác máy tính bằng Python
 
 CleanApp là một ứng dụng đơn giản giúp người dùng quét và xóa các tập tin rác, tập tin tạm trên hệ thống Windows để giải phóng dung lượng và tăng hiệu suất hoạt động. Ứng dụng được viết bằng Python và sử dụng thư viện `tkinter` cho giao diện đồ họa (GUI).
