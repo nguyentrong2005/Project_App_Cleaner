@@ -6,7 +6,6 @@ import os
 from gui import (
     build_home_view,
     build_scan_view,
-    build_clean_view,
     build_history_view,
     build_settings_view,
     init_sidebar_labels,
@@ -91,7 +90,7 @@ def main_app():
         btn.pack(fill="x", padx=12, pady=4)
         app.button_refs[key] = btn
 
-    for key in ["home", "scan", "clean", "settings", "history"]:
+    for key in ["home", "scan",  "settings", "history"]:
         create_sidebar_button(labels[key], key)
 
     ctk.CTkButton(
@@ -130,7 +129,6 @@ def main_app():
     views = {
         "home": build_home_view(app.main_content, switch_view),
         "scan": build_scan_view(app.main_content),
-        "clean": build_clean_view(app.main_content),
         "history": build_history_view(app.main_content),
         "settings": build_settings_view(app.main_content),
     }

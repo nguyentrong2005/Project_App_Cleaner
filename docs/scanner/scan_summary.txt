@@ -1,0 +1,17 @@
+Thời gian hoàn tất: 2025-05-21 14:48:35
+Tổng số file rác: 11572
+Tổng dung lượng: 898865.90 KB
+Thời gian quét: 134.90 giây
+
+- Internet cache: 61 mục, 2632.39 KB
+- Cookies: 2 mục, 0.00 KB
+- Internet history: 2 mục, 0.00 KB
+- Metrics temp file: 90 mục, 2159.63 KB
+- Temporary internet files: 176 mục, 99.91 KB
+- Thumbnail cache: 0 mục, 0.00 KB
+- Empty recycle bin: 0 mục, 0.00 KB
+- Temporary files: 166 mục, 79605.21 KB
+- Memory dumps: 24 mục, 535263.79 KB
+- Windows log files: 208 mục, 4656.90 KB
+- Windows web cache: 14 mục, 46.09 KB
+- Microsoft OneDrive: 146 mục, 43.62 KB

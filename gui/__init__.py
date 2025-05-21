@@ -14,7 +14,7 @@ Chứa toàn bộ thành phần giao diện người dùng, xây dựng bằng C
 
 from .home_view import build_home_view
 from .scan_view import build_scan_view
-from .clean_view import build_clean_view
+
 from .history_view import build_history_view
 from .settings_view import build_settings_view
 from .sidebar_labels import init_sidebar_labels
