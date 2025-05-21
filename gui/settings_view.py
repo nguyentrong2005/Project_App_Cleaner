@@ -73,6 +73,7 @@ def build_settings_view(main_content):
         lang_code = "vi" if value == "Tiếng Việt" else "en"
         lang_menu_var.set(value)
         set_language(lang_code)
+        messagebox.showinfo("Ngôn ngữ", f"Đã chuyển sang {value}")
 
         # Gọi reload nếu app hỗ trợ
         top = main_content.winfo_toplevel()

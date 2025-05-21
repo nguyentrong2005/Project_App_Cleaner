@@ -31,7 +31,7 @@ def build_home_view(main_content, on_switch_view):
     desc_var = tk.StringVar(value=tr("home_desc"))
     tip_var = tk.StringVar(value=tr("home_tip"))
     clean_text_var = tk.StringVar(value=tr("clean_title"))
-    btn_sysinfo_text = tk.StringVar(value="🖥 Xem hệ thống")
+    btn_sysinfo_text = tk.StringVar(value=tr("home_system"))
 
     # Đồng hồ (hiển thị ở góc trên phải)
     clock_var = tk.StringVar()
@@ -73,13 +73,13 @@ def build_home_view(main_content, on_switch_view):
     def on_leave(e):
         card.configure(border_color=PRIMARY_COLOR, fg_color="transparent")
 
-    def open_clean_view(event=None):
-        on_switch_view("clean")
+    def open_scan_view(event=None):
+        on_switch_view("scan")
 
     for widget in [card, row, icon_label, text_label]:
         widget.bind("<Enter>", on_enter)
         widget.bind("<Leave>", on_leave)
-        widget.bind("<Button-1>", open_clean_view)
+        widget.bind("<Button-1>", open_scan_view)
 
     # Mẹo nhỏ
     ctk.CTkLabel(home, textvariable=tip_var, font=(
@@ -97,12 +97,13 @@ def build_home_view(main_content, on_switch_view):
             sysinfo_frame.pack_forget()
         else:
             sysinfo_label.configure(text=(
-                "💻 Hệ điều hành: Windows 10\n"
+                f"{tr('home_os')}: Windows 10\n"
                 "🧠 CPU: Intel Core i5\n"
                 "💾 RAM: 8 GB\n"
-                "📂 Ổ đĩa: 256 GB SSD\n"
-                "🔋 Pin: 95%"
-            ))
+                f"{tr('home_disk')}: 256 GB SSD\n"
+                f"{tr('home_battery')}: 95%"
+))
+
             sysinfo_frame.pack(pady=(10, 30))
 
     ctk.CTkButton(home, textvariable=btn_sysinfo_text,
@@ -114,7 +115,7 @@ def build_home_view(main_content, on_switch_view):
         desc_var.set(tr("home_desc"))
         tip_var.set(tr("home_tip"))
         clean_text_var.set(tr("clean_title"))
-        btn_sysinfo_text.set("🖥 Xem hệ thống")
+        btn_sysinfo_text.set(tr("home_system"))
 
     on_language_change(update_texts)
 
