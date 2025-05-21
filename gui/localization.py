@@ -12,6 +12,8 @@ TEXTS = {
         "home_os": "💻 Hệ điều hành",
         "home_disk": "📂 Ổ đĩa",
         "home_battery": "🔋 Pin",
+        "home_cpu": "CPU",
+        "home_ram": "Ram",
         # SCAN
         "scan_label": "Quét",
         "scan_title": "Quét hệ thống",
@@ -51,7 +53,9 @@ TEXTS = {
         "home_os": "💻 Operating System",
         "home_disk": "📂 Disk",
         "home_battery": "🔋 Battery",
-         # SCAN
+        "home_cpu": "CPU",
+        "home_ram": "Ram",
+        # SCAN
         "scan_label": "Scan",
         "scan_title": "System Scan",
         "scan_desc": "The system will scan and list removable junk files.",

@@ -1,24 +1,24 @@
 from core.system_info import get_system_info as get_real_system_info
 from core.scanner import TrashScanner
-from core.scanner import scan_and_log
 
-
-def get_system_info() -> str:
+def get_system_info():
+    """
+    Hàm trung gian gọi thông tin hệ thống từ core.
+    Trả về chuỗi mô tả hệ thống thật.
+    """
     return get_real_system_info()
 
-
-def scan_garbage_real():
+def scan_and_return_summary():
     """
-    Gọi lớp TrashScanner để quét file/thư mục rác thực sự.
-    Trả về danh sách path và tổng dung lượng (byte)
+    Thực hiện quét rác thật và trả về:
+    - summary: dict loại_rác → (số lượng, dung lượng)
+    - chi_tiet: dict loại_rác → danh sách file path
+    - tổng dung lượng
+    - thời gian quét
     """
     scanner = TrashScanner()
-    paths, total_size = scanner.scan_garbage()
-    return paths, total_size
+    scanner.scan_garbage()
+    summary = scanner.get_classified_summary()
+    scanner.export_scan_result()
 
-
-def scan_and_save_log():
-    scan_and_log()
-
-def scan_and_log_and_return():
-    return scan_and_log()
+    return summary, scanner.classified_paths, scanner.total_size, scanner.scan_duration
