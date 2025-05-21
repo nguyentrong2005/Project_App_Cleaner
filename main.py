@@ -1,7 +1,7 @@
 # main.py
-from core import scan_and_log
+from core import run_scan
 from gui import run_main_window
 
 if __name__ == "__main__":
-    # scan_and_log()
-    run_main_window()
+    # run_main_window()
+    run_scan()
