@@ -3,5 +3,8 @@ tk
 customtkinter
 psutil
 pillow
-
-
+time
+threading
+os
+messagebox
+datetime
