@@ -159,11 +159,6 @@ class TrashScanner:
                 count, size = summary.get(rtype, (0, 0))
                 f.write(f"- {rtype}: {count} mục, {size / 1024:.2f} KB\n")
 
-<<<<<<< HEAD
-    print("📄 Đã lưu danh sách vào: docs/scan_log.txt")
-    return grouped, total_size
-
-=======
                 filename = rtype.lower().replace(" ", "_") + ".txt"
                 detail_path = scanner_dir / "chi_tiet_rac" / filename
                 with open(detail_path, "w", encoding="utf-8") as df:
@@ -196,4 +191,3 @@ def run_scan():
     print(f"📦 Tổng dung lượng: {scanner.total_size / 1024:.2f} KB")
     print(f"🕒 Thời gian quét: {scanner.scan_duration:.2f} giây")
     print("📄 Chi tiết đã lưu trong: docs/scanner/")
->>>>>>> trongdepzai
