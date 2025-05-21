@@ -2,7 +2,6 @@ import customtkinter as ctk
 import tkinter as tk
 from datetime import datetime
 from gui.localization import tr, on_language_change
-from controller.app_controller import get_system_info
 
 PRIMARY_COLOR = "#3b82f6"
 HOVER_BG = "#2a2e35"
@@ -39,7 +38,7 @@ def build_home_view(main_content, on_switch_view):
 
     def update_clock():
         now = datetime.now()
-        clock_var.set(now.strftime(" %d/%m/%Y -  %H:%M:%S"))
+        clock_var.set(now.strftime("🗓 %d/%m/%Y - 🕒 %H:%M:%S"))
         home.after(1000, update_clock)
 
     clock_label = ctk.CTkLabel(home, textvariable=clock_var, font=(
@@ -97,10 +96,6 @@ def build_home_view(main_content, on_switch_view):
         if sysinfo_frame.winfo_ismapped():
             sysinfo_frame.pack_forget()
         else:
-<<<<<<< HEAD
-            info = get_system_info()
-            sysinfo_label.configure(text=info)
-=======
             sysinfo_label.configure(text=(
                 f"{tr('home_os')}: Windows 10\n"
                 "🧠 CPU: Intel Core i5\n"
@@ -109,7 +104,6 @@ def build_home_view(main_content, on_switch_view):
                 f"{tr('home_battery')}: 95%"
 ))
 
->>>>>>> trongdepzai
             sysinfo_frame.pack(pady=(10, 30))
 
     ctk.CTkButton(home, textvariable=btn_sysinfo_text,
