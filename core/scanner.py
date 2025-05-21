@@ -170,3 +170,5 @@ def scan_and_log() -> None:
                 f.write(f"- {p} → Quyền: {perms}\n")
 
     print("📄 Đã lưu danh sách vào: docs/scan_log.txt")
+    return grouped, total_size
+

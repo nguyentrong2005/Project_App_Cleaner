@@ -4,6 +4,8 @@ import tkinter as tk
 import threading
 import time
 from gui.localization import tr, on_language_change
+from controller.app_controller import scan_and_log_and_return
+import os
 
 
 def build_scan_view(main_content):
@@ -49,65 +51,56 @@ def build_scan_view(main_content):
     table_frame.pack(padx=20, pady=(5, 20), fill="x")
     table_frame.pack_forget()
 
-    def show_file_classification():
-        """
-        Hiển thị bảng thống kê các loại file rác sau khi quét xong.
-        Dữ liệu hiện tại là giả lập.
-        """
+    def show_file_classification(grouped):
         for widget in table_frame.winfo_children():
             widget.destroy()
 
-        headers = ["Loại file", "Số lượng", "Dung lượng"]
+        headers = ["Thư mục", "Số lượng", "Dung lượng"]
         for i, h in enumerate(headers):
             ctk.CTkLabel(table_frame, text=h, font=("Segoe UI", 13, "bold"), text_color="#3b82f6")\
                 .grid(row=0, column=i, padx=(10, 20), pady=(5, 8), sticky="w")
 
-        data = [
-            ("📁 Thư mục tạm thời", "310", "250 MB"),
-            ("🔗 Shortcut hỏng", "48", "20 MB"),
-            ("🧩 Registry lỗi", "112", "5 MB"),
-            ("🧹 Cache trình duyệt", "206", "180 MB"),
-            ("📄 File log", "94", "35 MB"),
-        ]
-        for row, (name, count, size) in enumerate(data, start=1):
-            ctk.CTkLabel(table_frame, text=name, font=("Segoe UI", 13))\
+        for row, (folder, items) in enumerate(grouped.items(), start=1):
+            size = 0
+            for p in items:
+                try:
+                    size += p.stat().st_size
+                except Exception:
+                    pass
+
+            ctk.CTkLabel(table_frame, text=str(folder), font=("Segoe UI", 12))\
                 .grid(row=row, column=0, sticky="w", padx=10, pady=3)
-            ctk.CTkLabel(table_frame, text=count, font=("Segoe UI", 13))\
+            ctk.CTkLabel(table_frame, text=str(len(items)), font=("Segoe UI", 12))\
                 .grid(row=row, column=1, sticky="w", padx=20)
-            ctk.CTkLabel(table_frame, text=size, font=("Segoe UI", 13))\
+            ctk.CTkLabel(table_frame, text=f"{size / 1024:.1f} KB", font=("Segoe UI", 12))\
                 .grid(row=row, column=2, sticky="w", padx=20)
 
         table_frame.pack(padx=20, pady=(5, 20), fill="x")
 
     def start_scan():
         """
-        Mô phỏng quá trình quét hệ thống:
-        - Hiển thị từng bước quét với hiệu ứng chấm
-        - Cập nhật thanh tiến trình
-        - Hiện kết quả và gọi hiển thị bảng phân loại file
+        Gọi quét rác thật từ backend và hiển thị kết quả
         """
         def run():
+            # Reset UI trước khi quét
             result_label.configure(text="")
+            progress_label.configure(text="🔍 Đang quét rác...")
+            progress_bar.set(0.2)
             table_frame.pack_forget()
 
-            steps = [
-                "Đang kiểm tra thư mục tạm thời",
-                "Đang quét shortcut hỏng",
-                "Đang quét registry lỗi",
-                "Đang phân tích file hệ thống",
-                "Đang tính toán dung lượng rác"
-            ]
+            # Gọi hàm quét và log thực
+            grouped, total_size = scan_and_log_and_return()
+            file_count = sum(len(lst) for lst in grouped.values())
+            mb_size = total_size / (1024 * 1024)
 
-            for idx, text in enumerate(steps):
-                for dot in ["", ".", "..", "..."]:
-                    progress_label.configure(text=f"🔍 {text}{dot}")
-                    time.sleep(0.2)
-                progress_bar.set((idx + 1) / len(steps))
-
+            # Cập nhật giao diện
+            time.sleep(0.5)
             progress_label.configure(text="✅ Quét hoàn tất")
+            progress_bar.set(1.0)
             result_label.configure(
-                text="Đã phát hiện 1015 tệp không cần thiết (932 MB)")
-            show_file_classification()
+                text=f"Đã phát hiện {file_count} file/thư mục rác ({mb_size:.1f} MB)"
+            )
+            show_file_classification(grouped)
 
         threading.Thread(target=run, daemon=True).start()
 
