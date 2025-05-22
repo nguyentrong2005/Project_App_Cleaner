@@ -34,10 +34,17 @@ def build_history_view(main_content):
     table.pack(padx=20, pady=10, fill="x")
 
     # Tiêu đề cột
-    headers = ("🕒 Thời gian", "🧹 Số mục", "💾 Dung lượng")
-    header_text = f"{headers[0]:<25}{headers[1]:<15}{headers[2]}"
-    ctk.CTkLabel(table, text=header_text, font=("Segoe UI", 13, "bold"),
-                 text_color="#3b82f6").pack(anchor="w", padx=(10, 20), pady=(5, 8))
+    col_time_var = tk.StringVar(value=tr("history_col_time"))
+    col_items_var = tk.StringVar(value=tr("history_col_items"))
+    col_size_var = tk.StringVar(value=tr("history_col_size"))
+
+    header_row = ctk.CTkFrame(table, fg_color="transparent")
+    header_row.pack(fill="x", padx=10, pady=(5, 8))
+
+    ctk.CTkLabel(header_row, textvariable=col_time_var, font=("Segoe UI", 13, "bold"), anchor="w").pack(side="left", fill="x", expand=True)
+    ctk.CTkLabel(header_row, textvariable=col_items_var, font=("Segoe UI", 13, "bold"), width=80, anchor="e").pack(side="left", padx=10)
+    ctk.CTkLabel(header_row, textvariable=col_size_var, font=("Segoe UI", 13, "bold"), width=100, anchor="e").pack(side="left")
+
 
     # Dữ liệu lịch sử mẫu (giả lập)
     history = [
@@ -46,13 +53,20 @@ def build_history_view(main_content):
         ("2025-05-01 09:02", "6 mục", "750 MB"),
     ]
     for time_str, items, size in history:
-        line = f"{time_str:<25}{items:<15}{size}"
-        ctk.CTkLabel(table, text=line, font=("Segoe UI", 13)
-                     ).pack(anchor="w", padx=20, pady=3)
+        row = ctk.CTkFrame(table)
+        row.pack(fill="x", padx=10, pady=2)
+
+        ctk.CTkLabel(row, text=time_str, anchor="w").pack(side="left", fill="x", expand=True)
+        ctk.CTkLabel(row, text=items, width=80, anchor="e").pack(side="left", padx=10)
+        ctk.CTkLabel(row, text=size, width=100, anchor="e").pack(side="left")
+
 
     def update_texts():
         title_var.set(tr("history_title"))
         desc_var.set(tr("history_desc"))
+        col_time_var.set(tr("history_col_time"))
+        col_items_var.set(tr("history_col_items"))
+        col_size_var.set(tr("history_col_size"))
 
     on_language_change(update_texts)
 
