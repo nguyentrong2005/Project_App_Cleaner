@@ -119,6 +119,7 @@ C:\Users\tungt\AppData\Local\Packages\MicrosoftWindows.CrossDevice_cw5n1h2txyewy
 C:\Users\tungt\AppData\Local\Packages\MicrosoftWindows.UndockedDevKit_cw5n1h2txyewy\AC\INetCache (0.00 KB)
 C:\Users\tungt\AppData\Local\Packages\MSTeams_8wekyb3d8bbwe\AC\#!sb.odm\INetCache (0.00 KB)
 C:\Users\tungt\AppData\Local\Packages\MSTeams_8wekyb3d8bbwe\AC\INetCache\container.dat (0.00 KB)
+C:\Users\tungt\AppData\Local\Packages\MSTeams_8wekyb3d8bbwe\AC\INetCache\AX4VPHJP (0.00 KB)
 C:\Users\tungt\AppData\Local\Packages\NcsiUwpApp_8wekyb3d8bbwe\AC\INetCache (0.00 KB)
 C:\Users\tungt\AppData\Local\Packages\SpotifyAB.SpotifyMusic_zpdnekdrzrea0\AC\INetCache\container.dat (0.00 KB)
 C:\Users\tungt\AppData\Local\Packages\Windows.CBSPreview_cw5n1h2txyewy\AC\INetCache (0.00 KB)

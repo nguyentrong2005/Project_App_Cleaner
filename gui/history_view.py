@@ -2,6 +2,8 @@
 import customtkinter as ctk
 import tkinter as tk
 from gui.localization import tr, on_language_change
+from controller.app_controller import get_scan_history
+
 
 
 def build_history_view(main_content):
@@ -47,11 +49,8 @@ def build_history_view(main_content):
 
 
     # Dữ liệu lịch sử mẫu (giả lập)
-    history = [
-        ("2025-05-07 14:32", "5 mục", "420 MB"),
-        ("2025-05-06 11:20", "8 mục", "932 MB"),
-        ("2025-05-01 09:02", "6 mục", "750 MB"),
-    ]
+    history = get_scan_history()
+    
     for time_str, items, size in history:
         row = ctk.CTkFrame(table)
         row.pack(fill="x", padx=10, pady=2)
