@@ -42,7 +42,7 @@ def build_settings_view(main_content):
         Args:
             value (str): "Tối" hoặc "Sáng"
         """
-        theme = "dark" if value == "Tối" else "light"
+        theme = "dark" if value == tr("dark") else "light"
         ctk.set_appearance_mode(theme)
 
         # Cập nhật sidebar/panel nếu hàm có sẵn
@@ -55,9 +55,10 @@ def build_settings_view(main_content):
     # Dòng: Chế độ giao diện
     ctk.CTkLabel(container, textvariable=theme_label_var, font=("Segoe UI", 14), anchor="w")\
         .grid(row=0, column=0, sticky="w", pady=10, padx=(0, 20))
-    theme_menu = ctk.CTkOptionMenu(
-        container, values=["Tối", "Sáng"], command=change_theme)
-    theme_menu.set("Tối")
+    theme_options = [tr("dark"), tr("light")]
+    theme_menu = ctk.CTkOptionMenu(container, values=theme_options, command=change_theme)
+    theme_menu.set(tr("dark"))
+    
     theme_menu.grid(row=0, column=1, sticky="ew")
 
     # Ngôn ngữ
@@ -70,10 +71,12 @@ def build_settings_view(main_content):
         Args:
             value (str): "Tiếng Việt" hoặc "Tiếng Anh"
         """
-        lang_code = "vi" if value == "Tiếng Việt" else "en"
+        lang_code = "vi" if value == tr("lang_vi") else "en"
         lang_menu_var.set(value)
         set_language(lang_code)
-        messagebox.showinfo("Ngôn ngữ", f"Đã chuyển sang {value}")
+        lang_name = tr("lang_vi") if lang_code == "vi" else tr("lang_en")
+        messagebox.showinfo(tr("lang_changed_title"), tr("lang_changed_msg").format(lang=lang_name))
+
 
         # Gọi reload nếu app hỗ trợ
         top = main_content.winfo_toplevel()
@@ -83,8 +86,10 @@ def build_settings_view(main_content):
     # Dòng: Ngôn ngữ
     ctk.CTkLabel(container, textvariable=language_label_var, font=("Segoe UI", 14), anchor="w")\
         .grid(row=1, column=0, sticky="w", pady=10, padx=(0, 20))
-    lang_menu = ctk.CTkOptionMenu(container, values=["Tiếng Việt", "Tiếng Anh"],
-                                  command=change_language, variable=lang_menu_var)
+    lang_options = [tr("lang_vi"), tr("lang_en")]
+    lang_menu = ctk.CTkOptionMenu(container, values=lang_options, command=change_language, variable=lang_menu_var)
+    lang_menu.set(tr("lang_vi"))
+
     lang_menu.grid(row=1, column=1, sticky="ew")
 
     # Cho cột bên phải dãn đều
@@ -99,6 +104,17 @@ def build_settings_view(main_content):
         theme_label_var.set(tr("theme"))
         language_label_var.set(tr("language"))
         sound_label_var.set(tr("sound"))
+         # Cập nhật lại danh sách + giá trị đang chọn
+        theme_menu.configure(values=[tr("dark"), tr("light")])
+        lang_menu.configure(values=[tr("lang_vi"), tr("lang_en")])
+
+        # Cập nhật lại lựa chọn đang chọn (nếu không sẽ giữ tiếng cũ)
+        current_theme = ctk.get_appearance_mode()
+        theme_menu.set(tr("dark") if current_theme == "Dark" else tr("light"))
+
+        current_lang = lang_menu_var.get()
+        lang_menu.set(tr("lang_vi") if current_lang in ["Tiếng Việt", "Vietnamese"] else tr("lang_en"))
+
 
     on_language_change(update_texts)
 
