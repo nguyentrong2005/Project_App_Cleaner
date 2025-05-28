@@ -117,6 +117,8 @@ def build_scan_view(main_content):
             progress_text.set(tr("scan_done"))
             time_var.set(f"⏱ {duration:.1f}s")
             show_main_view(summary, classified_paths, total_size, duration)
+            history = get_scan_history()
+            render_history_data()
 
         threading.Thread(target=run_scan, daemon=True).start()
         update_timer()  # ✅ gọi hàm cập nhật thời gian thật
@@ -269,4 +271,5 @@ def build_scan_view(main_content):
         col_size_var.set(tr("detail_col_size"))
 
     on_language_change(update_texts)
+
     return f

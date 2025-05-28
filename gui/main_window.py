@@ -132,6 +132,8 @@ def main_app():
         "history": build_history_view(app.main_content),
         "settings": build_settings_view(app.main_content),
     }
+    
+    views["history"], render_history_data = build_history_view(app.main_content)
 
     def update_sidebar_texts():
         section_system_var.set("— " + tr("section_system") + " —")
