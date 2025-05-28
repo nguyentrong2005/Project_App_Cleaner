@@ -8,6 +8,11 @@ from .localization import tr, on_language_change
 from controller.app_controller import scan_and_return_summary
 from controller.app_controller import delete_selected_files
 from core.rules import GARBAGE_TYPES
+from utils.gui_helpers import show_detail_popup
+from core.cleaner import save_clean_summary_log, save_clean_per_type_detail
+from pathlib import Path
+from utils.safe_after import safe_after
+from gui import history_view
 
 
 def build_scan_view(main_content):
@@ -87,19 +92,22 @@ def build_scan_view(main_content):
         state["view"] = "scanning"
 
         def update_timer():
-            if state["view"] == "scanning":
-                elapsed = time.time() - start_time
-                time_var.set(f"⏱ {elapsed:.1f}s")
-                f.after(100, update_timer)
+            try:
+                if state["view"] == "scanning" and f.winfo_exists():
+                    elapsed = time.time() - start_time
+                    time_var.set(f"⏱ {elapsed:.1f}s")
+                    safe_after(f, 100, update_timer)
+            except Exception as e:
+                print("Timer error:", e)
 
         def run():
             # Chạy quét và cập nhật tiến trình dần
             progress_bar.set(0.1)
-            time.sleep(5)
+            time.sleep(10)
             progress_bar.set(0.3)
-            time.sleep(5)
+            time.sleep(10)
             progress_bar.set(0.6)
-            time.sleep(5)
+            time.sleep(10)
             progress_bar.set(0.75)  # Chỉ đến 75% khi chưa xong
 
             summary, classified_paths, total_size, duration = scan_and_return_summary()
@@ -107,7 +115,8 @@ def build_scan_view(main_content):
             # Quét xong thì set 100%
             progress_bar.set(1.0)
             progress_text.set(tr("scan_done"))
-            time_var.set(f"⏱ {duration:.1f}s")
+            elapsed = time.time() - start_time
+            time_var.set(f"⏱ {elapsed:.1f}s")
             state["view"] = "main"
 
             show_main_view(summary, classified_paths, total_size, duration)
@@ -190,67 +199,11 @@ def build_scan_view(main_content):
                 side="left", padx=5)
 
             def open_detail(e, c=cat):
-                show_detail_popup(c, all_data[c]["files"])
+                show_detail_popup(f"📂 {c}", all_data[c]["files"])
 
             detail_frame.bind("<Double-Button-1>", open_detail)
             for w in detail_frame.winfo_children():
                 w.bind("<Double-Button-1>", open_detail)
-
-    def show_detail_popup(category, files):
-        popup = ctk.CTkToplevel()
-        popup.title(f"📂 {category}")
-        popup.geometry("600x400")
-        popup.attributes("-topmost", True)
-
-        # Căn giữa popup trên màn hình
-        popup.update_idletasks()
-        screen_width = popup.winfo_screenwidth()
-        screen_height = popup.winfo_screenheight()
-        x = int((screen_width - 600) / 2)
-        y = int((screen_height - 400) / 2)
-        popup.geometry(f"+{x}+{y}")
-
-        ctk.CTkLabel(popup, text=f"📂 {category}", font=(
-            "Segoe UI", 16, "bold")).pack(pady=10)
-
-        header = ctk.CTkFrame(popup, fg_color="transparent")
-        header.pack(fill="x", padx=10, pady=(0, 5))
-        ctk.CTkLabel(header, text=tr("detail_col_path"), anchor="w").pack(
-            side="left", fill="x", expand=True)
-        ctk.CTkLabel(header, text=tr("detail_col_size"),
-                     width=100, anchor="e").pack(side="right")
-
-        list_frame = ctk.CTkScrollableFrame(popup)
-        list_frame.pack(fill="both", expand=True, padx=10, pady=5)
-        # Nút xem thêm
-        show_more_btn = ctk.CTkButton(popup, text=tr("show_more"))
-
-        # Biến theo dõi số lượng đã hiển thị
-        displayed_count = tk.IntVar(value=0)
-        total_files = len(files)
-        step = 100
-
-        def render_more():
-            start = displayed_count.get()
-            end = min(start + step, total_files)
-            for fpath in files[start:end]:
-                size = round(random.uniform(10, 500), 2)
-                row = ctk.CTkFrame(list_frame, fg_color="transparent")
-                row.pack(fill="x", pady=1)
-                ctk.CTkLabel(row, text=fpath, anchor="w").pack(
-                    side="left", fill="x", expand=True)
-                ctk.CTkLabel(row, text=f"{size} KB", width=100, anchor="e").pack(
-                    side="right")
-
-            displayed_count.set(end)
-
-            if displayed_count.get() >= total_files:
-                show_more_btn.pack_forget()
-            else:
-                show_more_btn.pack(pady=(0, 10))
-
-        show_more_btn.configure(command=render_more)
-        render_more()
 
     def start_cleanup():
         selected = {}
@@ -276,17 +229,33 @@ def build_scan_view(main_content):
             for files in selected.values():
                 all_paths.extend(files)
 
-            deleted, failed = delete_selected_files(all_paths)
+            # Trước khi xóa: lưu size từng file
+            type_summary = {}
+            for cat in selected:
+                paths = [Path(p) for p in selected[cat]]
+                path_with_size = []
+                for p in paths:
+                    if p.exists():
+                        path_with_size.append((p, p.stat().st_size))
+                type_summary[cat] = path_with_size
 
-            # Ghi lịch sử theo loại rác
-            from core.cleaner import save_clean_type_history
-            from pathlib import Path
-            type_summary = {
-                cat: [Path(p) for p in selected[cat] if p in deleted]
-                for cat in selected
-            }
-            save_clean_type_history(type_summary)
+            # Thực hiện xóa
+            deleted, failed = delete_selected_files(
+                [str(p) for cat in type_summary.values() for (p, _) in cat])
 
+            # Lọc lại danh sách đã xóa để ghi log
+            deleted_set = set(Path(p) for p in deleted)
+            final_summary = {}
+            for cat, plist in type_summary.items():
+                filtered = [(p, sz) for (p, sz) in plist if p in deleted_set]
+                if filtered:
+                    final_summary[cat] = filtered
+
+            # Ghi log
+            save_clean_summary_log(final_summary)
+            save_clean_per_type_detail(final_summary)
+
+            # Tiến trình hiển thị ngược lại
             for i in range(100, -1, -2):
                 progress_text.set(f"🧹 {tr('scan_clean')}: {i}%")
                 progress_bar.set(i / 100)
@@ -297,6 +266,11 @@ def build_scan_view(main_content):
                 message += f"\n⚠️ {len(failed)} mục không xóa được."
 
             progress_text.set(message)
+
+            # 🚀 Quét lại sau khi dọn
+            time.sleep(1)
+            # safe_after(f, 100, start_scan)
+            safe_after(f, 100, history_view.refresh_history_view)
 
         threading.Thread(target=run, daemon=True).start()
 

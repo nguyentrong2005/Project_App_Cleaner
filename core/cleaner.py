@@ -75,51 +75,48 @@ class TrashCleaner:
         """
         return self.deleted, self.failed
 
-
-def save_clean_history(deleted_paths: list[Path]) -> None:
+def save_clean_summary_log(type_summary):
     """
-    Ghi lịch sử xóa rác vào file docs/history_clean.txt
+    Ghi vào history_cleaner.txt với số lượng, dung lượng, loại rác đã xóa.
+    type_summary: dict[str, list[Tuple[Path, int]]] – mỗi phần tử là (đường dẫn, size)
     """
-    if not deleted_paths:
-        return
+    from datetime import datetime
 
-    os.makedirs("docs", exist_ok=True)
-    with open("docs/history_clean.txt", "a", encoding="utf-8") as f:
-        timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-        f.write(f"\n🧹 Dọn rác lúc {timestamp} ({len(deleted_paths)} mục):\n")
-        for p in deleted_paths:
-            f.write(f"- {str(p)}\n")
+    os.makedirs("docs/cleaner", exist_ok=True)
+    with open("docs/cleaner/history_cleaner.txt", "a", encoding="utf-8") as f:
+        now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+
+        total_count = sum(len(l) for l in type_summary.values())
+        total_size = sum(sz for l in type_summary.values() for _, sz in l)
+        total_size_mb = round(total_size / (1024 * 1024), 1)
+
+        f.write(f"🧹 Dọn rác lúc {now} — Tổng: {total_count} mục, {total_size_mb} MB\n")
+        for trash_type, path_tuples in type_summary.items():
+            count = len(path_tuples)
+            size = sum(sz for _, sz in path_tuples)
+            size_mb = round(size / (1024 * 1024), 1)
+            f.write(f"- {trash_type}: {count} mục, {size_mb} MB\n")
 
 
-def save_clean_type_history(type_summary: dict[str, list[Path]]) -> None:
+def save_clean_per_type_detail(type_summary: dict[str, list[Path]]):
     """
-    Lưu lịch sử xóa rác theo từng loại vào file docs/history_clean_type.txt.
+    Ghi chi tiết các file đã xóa vào file duy nhất:
+    docs/cleaner/chi_tiet_xoa/{timestamp}.txt
     """
     if not type_summary:
         return
 
-    os.makedirs("docs", exist_ok=True)
-    with open("docs/history_clean_type.txt", "a", encoding="utf-8") as f:
-        timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-        f.write(f"\n🧹 Dọn rác lúc {timestamp}:\n")
-        for trash_type, paths in type_summary.items():
-            if paths:
-                f.write(f"- {trash_type} (xóa {len(paths)} file)\n")
-
-
-def save_clean_detailed_log(deleted_paths: list[Path]) -> None:
-    """
-    Ghi danh sách các file đã xóa vào file riêng trong thư mục cleaner/.
-    Tên file là thời gian xóa (theo định dạng yyyy-mm-dd_HH-MM-SS.txt).
-    """
-    if not deleted_paths:
-        return
-
-    os.makedirs("docs/cleaner", exist_ok=True)
+    folder = Path("docs/cleaner/chi_tiet_xoa")
+    folder.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    file_path = Path(f"docs/cleaner/{timestamp}.txt")
+    file_path = folder / f"{timestamp}.txt"
 
     with open(file_path, "w", encoding="utf-8") as f:
-        f.write(f"🧹 Dọn rác lúc {timestamp.replace('_', ' ')}:\n")
-        for p in deleted_paths:
-            f.write(f"- {str(p)}\n")
+        f.write(f"🧹 Dọn rác lúc {timestamp.replace('_', ' ')}\n\n")
+        for trash_type, paths in type_summary.items():
+            if not paths:
+                continue
+            f.write(f"📂 {trash_type} ({len(paths)} mục):\n")
+            for p in paths:
+                f.write(f"- {str(p)}\n")
+            f.write("\n")

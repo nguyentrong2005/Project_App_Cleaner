@@ -1,0 +1,13 @@
+
+🧹 Dọn rác lúc 28/05/2025 22:11:11 — Tổng: 257 mục, 0.0 MB
+  - Temporary internet files: 257 mục, 0.0 MB
+🧹 Dọn rác lúc 28/05/2025 22:21:01 — Tổng: 576 mục, 0.0 MB
+  - Temporary files: 576 mục, 0.0 MB
+🧹 Dọn rác lúc 28/05/2025 22:34:30 — Tổng: 23 mục, 520.1 MB
+- Memory dumps: 23 mục, 520.1 MB
+🧹 Dọn rác lúc 28/05/2025 22:53:29 — Tổng: 17 mục, 2.0 MB
+- Windows log files: 17 mục, 2.0 MB
+🧹 Dọn rác lúc 28/05/2025 22:59:19 — Tổng: 38 mục, 0.1 MB
+- Temporary internet files: 38 mục, 0.1 MB
+🧹 Dọn rác lúc 28/05/2025 23:03:11 — Tổng: 23 mục, 0.1 MB
+- Microsoft OneDrive: 23 mục, 0.1 MB

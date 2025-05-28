@@ -2,7 +2,7 @@ from core.system_info import get_system_info as get_real_system_info
 from core.scanner import TrashScanner
 from core.cleaner import TrashCleaner
 from pathlib import Path
-from core.cleaner import TrashCleaner, save_clean_detailed_log
+from core.cleaner import TrashCleaner
 
 
 def get_system_info():
@@ -61,8 +61,40 @@ def delete_selected_files(file_paths):
     cleaner.clean()
     deleted, failed = cleaner.get_result()
 
-    # ✅ Ghi file log chi tiết các file đã xóa
-    save_clean_detailed_log(deleted)
-
     # Trả lại ở dạng str cho dễ xử lý trên giao diện
     return [str(p) for p in deleted], [(str(p), reason) for p, reason in failed]
+
+def get_clean_history():
+    """
+    Đọc lịch sử dọn rác từ file docs/cleaner/history_cleaner.txt.
+    Trả về danh sách dòng thời gian xóa: thời gian, tổng số file, tổng dung lượng, các loại rác.
+    """
+    history_path = Path("docs/cleaner/history_cleaner.txt")
+    if not history_path.exists():
+        return []
+
+    history = []
+    current_time = ""
+    summary = []
+
+    with open(history_path, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line.startswith("🧹 Dọn rác lúc"):
+                # Nếu có dòng trước đó, lưu lại trước
+                if current_time:
+                    history.append((current_time, summary))
+                    summary = []
+
+                parts = line.split("— Tổng:")
+                current_time = parts[0].replace("🧹 Dọn rác lúc", "").strip()
+                summary.append(parts[1].strip() if len(parts) > 1 else "")
+            elif line.startswith("-") or line.startswith("  -"):
+                summary.append(line.strip())
+
+        # Lưu dòng cuối
+        if current_time:
+            history.append((current_time, summary))
+
+    return history
+

@@ -175,11 +175,6 @@ class TrashScanner:
                         except:
                             df.write(f"{path} (Không lấy được dung lượng)\n")
 
-        history_path = Path("docs/history.txt")
-        with open(history_path, "a", encoding="utf-8") as hf:
-            hf.write(
-                f"{time_str} | {len(self.trash_paths)} file | {self.total_size / 1024:.2f} KB\n")
-
 
 def run_scan():
     """

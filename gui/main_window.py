@@ -2,6 +2,7 @@ import customtkinter as ctk
 import tkinter as tk
 from PIL import Image
 import os
+from utils.safe_after import safe_after
 
 from gui import (
     build_home_view,
@@ -119,9 +120,17 @@ def main_app():
         """
         Chuyển đổi hiển thị giữa các view trong giao diện chính.
         """
+        # Ẩn tất cả frame hiện tại
         for frame in views.values():
             frame.pack_forget()
-        views[name].pack(fill="both", expand=True)
+
+        if name == "history":
+            from gui.history_view import build_history_view
+            views["history"] = build_history_view(app.main_content)  # tạo lại frame mới
+            views["history"].pack(fill="both", expand=True)
+        else:
+            views[name].pack(fill="both", expand=True)
+
         set_active(app.button_refs[name])
         app.current_view = name
 
@@ -129,7 +138,7 @@ def main_app():
     views = {
         "home": build_home_view(app.main_content, switch_view),
         "scan": build_scan_view(app.main_content),
-        "history": build_history_view(app.main_content),
+        # "history": build_history_view(app.main_content),
         "settings": build_settings_view(app.main_content),
     }
 
@@ -184,12 +193,17 @@ def show_splash_screen():
     loading_label.pack(pady=(10, 5))
 
     def animate_dots(i=0):
+        if not splash.winfo_exists():
+            return
+
         dots = ["", ".", "..", "..."]
         loading_label.configure(text=f"Đang khởi động{dots[i % 4]}")
+
         if i < 6:
-            splash.after(500, animate_dots, i + 1)
+            safe_after(splash, 500, animate_dots, i + 1)
         else:
-            splash.destroy()
+            if splash.winfo_exists():
+                splash.destroy()
             main_app()
 
     animate_dots()
