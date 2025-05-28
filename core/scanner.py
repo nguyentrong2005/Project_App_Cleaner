@@ -191,7 +191,8 @@ def run_scan():
     scanner = TrashScanner()
     scanner.scan_garbage()
     scanner.export_scan_result()
-    print(f"🔍 Đã quét {len(scanner.trash_paths)} file/thư mục rác.")
+    # print(f"🔍 Đã quét {len(scanner.trash_paths)} file/thư mục rác.")
     print(f"📦 Tổng dung lượng: {scanner.total_size / 1024:.2f} KB")
     print(f"🕒 Thời gian quét: {scanner.scan_duration:.2f} giây")
     print("📄 Chi tiết đã lưu trong: docs/scanner/")
+  
