@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\huutr\AppData\Local\Microsoft\Windows\WebCache\V01.chk (8.00 KB)
 C:\Users\huutr\AppData\Local\Microsoft\Windows\WebCache\V01.chk (8.00 KB)
 C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\000003.log (0.00 KB)
@@ -17,3 +18,5 @@ C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Session Storage\LOG.old (0.
 C:\Users\khoi\AppData\Local\Microsoft\Windows\WebCache\V01.chk (8.00 KB)
 C:\Users\khoi\AppData\Local\Microsoft\Windows\WebCache\V01.chk (8.00 KB)
 >>>>>>> Khoi
+=======
+>>>>>>> Tuong

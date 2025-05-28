@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\huutr\AppData\Local\Temp\00e7fe31-7000-431f-bed6-82d84dd20d30.tmp (265.07 KB)
 C:\Users\huutr\AppData\Local\Temp\015387da-711b-429e-8508-dab98f307110.tmp (45.51 KB)
 C:\Users\huutr\AppData\Local\Temp\06f98547-0af8-40e6-ab2d-00b4b53f68bb.tmp (1606.96 KB)
@@ -1015,3 +1016,5 @@ C:\Users\khoi\AppData\Local\Temp\wctF65.tmp (92.19 KB)
 C:\Users\khoi\AppData\Local\Temp\wctFD8A.tmp (0.88 KB)
 C:\Users\khoi\AppData\Local\Temp\is-4M84R.tmp (0.00 KB)
 >>>>>>> Khoi
+=======
+>>>>>>> Tuong

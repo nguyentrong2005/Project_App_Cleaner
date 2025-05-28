@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\khoi\AppData\Roaming\Code\Crashpad\reports\13dc2a34-f6d7-428d-8497-a93e2342cd18.dmp (33307.19 KB)
 C:\Users\khoi\AppData\Roaming\Code\Crashpad\reports\2afb66b9-8cc1-490e-967b-ba23b70206d1.dmp (33289.91 KB)
 C:\Users\khoi\AppData\Roaming\Code\Crashpad\reports\615ec01e-432f-413d-8a1c-3d2d9959a455.dmp (45769.62 KB)
@@ -13,3 +14,5 @@ C:\Users\khoi\AppData\Local\CrashDumps\wpscenter.exe.15804.dmp (1742.79 KB)
 C:\Users\khoi\AppData\Local\CrashDumps\wpscenter.exe.16716.dmp (1723.61 KB)
 C:\Users\khoi\AppData\Local\CrashDumps\wpscenter.exe.9644.dmp (1721.52 KB)
 C:\Users\khoi\AppData\Roaming\discord\module_data\discord_utils\live_minidump.dmp (343.18 KB)
+=======
+>>>>>>> Tuong

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store\LOCK (0.00 KB)
 C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store\LOG (0.00 KB)
 C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store\LOG.old (0.00 KB)
@@ -65,3 +66,7 @@ C:\Users\khoi\AppData\Local\Packages\Microsoft.MicrosoftEdge.Stable_8wekyb3d8bbw
 C:\Users\khoi\AppData\Local\Packages\Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe\LocalCache (0.00 KB)
 C:\Users\khoi\AppData\Local\Packages\Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe\AC\INetCache (0.00 KB)
 >>>>>>> Khoi
+=======
+C:\Users\tungt\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store (0.00 KB)
+C:\Users\tungt\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store (0.00 KB)
+>>>>>>> Tuong

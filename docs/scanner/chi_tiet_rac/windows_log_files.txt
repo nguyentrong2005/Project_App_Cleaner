@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\huutr\AppData\Local\Microsoft\Windows\WebCache\V0100784.log (512.00 KB)
 C:\Users\huutr\AppData\Local\Microsoft\Windows\WebCache\V0100784.log (512.00 KB)
 C:\Users\huutr\AppData\Local\Packages\22858LISAppStudio.SpeedTestforWindows_jph5be7mh3xc4\LocalState\EBWebView\Default\favorites_diagnostic.log (0.73 KB)
@@ -245,3 +246,5 @@ C:\Users\khoi\AppData\Local\Packages\windows.immersivecontrolpanel_cw5n1h2txyewy
 C:\Users\khoi\AppData\Local\Packages\windows.immersivecontrolpanel_cw5n1h2txyewy\LocalState\EBWebView\Default\shared_proto_db\000003.log (0.20 KB)
 C:\Users\khoi\AppData\Local\Packages\windows.immersivecontrolpanel_cw5n1h2txyewy\LocalState\EBWebView\Default\Site Characteristics Database\000003.log (0.17 KB)
 >>>>>>> Khoi
+=======
+>>>>>>> Tuong
