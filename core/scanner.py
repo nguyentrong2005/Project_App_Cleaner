@@ -1,11 +1,7 @@
 # scanner.py
 """
 Module quét hệ thống tìm rác cho CleanerApp.
-
-Bao gồm:
-- TrashScanner: quét file/thư mục rác
-- Phân loại rác theo 12 nhóm
-- Ghi kết quả ra file và lịch sử quét
+Tối ưu hóa hiệu suất bằng đa luồng và giới hạn độ sâu quét.
 """
 
 import os
@@ -14,6 +10,8 @@ from collections import defaultdict
 from datetime import datetime
 from time import time
 from typing import List, Tuple
+from concurrent.futures import ThreadPoolExecutor
+
 from core.rules import (
     get_scan_directories,
     is_empty_directory,
@@ -30,18 +28,24 @@ from utils import is_file_locked
 
 class TrashScanner:
     """
-    Lớp quét hệ thống và phân loại file/thư mục rác thành 12 nhóm cụ thể.
+    Lớp chịu trách nhiệm quét hệ thống để phát hiện file/thư mục rác.
 
-    Các kết quả được gom vào:
-    - self.trash_paths: Danh sách path có thể xóa
-    - self.classified_paths: Dict chứa danh sách path theo từng loại rác
-    - self.rejected_paths: Danh sách path không thể xóa (bị khóa/thiếu quyền)
+    Tính năng:
+    - Duyệt thư mục bằng đa luồng
+    - Phân loại thành 12 nhóm rác chuẩn
+    - Giới hạn độ sâu để tránh quét sâu gây chậm
+    - Ghi log và thống kê chi tiết sau khi quét
     """
 
     def __init__(self):
         """
-        Khởi tạo scanner và khởi tạo danh sách kết quả.
-        Tự động phát hiện trình duyệt để phân tích loại rác chính xác hơn.
+        Khởi tạo các biến lưu kết quả:
+        - trash_paths: Danh sách path rác đã xác định
+        - total_size: Tổng dung lượng rác
+        - rejected_paths: Danh sách không thể xóa
+        - classified_paths: Gom rác theo loại
+        - installed_browsers: Trình duyệt được cài
+        - scan_duration: Thời gian quét thực tế
         """
         self.trash_paths: List[Path] = []
         self.total_size: int = 0
@@ -52,33 +56,39 @@ class TrashScanner:
 
     def scan_garbage(self) -> Tuple[List[Path], int]:
         """
-        Thực hiện quét tất cả thư mục đã cấu hình để tìm file/thư mục rác.
+        Tiến hành quét hệ thống sử dụng đa luồng để tăng tốc độ.
 
         Returns:
-            Tuple[List[Path], int]: Danh sách path rác và tổng dung lượng đã quét được.
+            Tuple[List[Path], int]: Danh sách file/thư mục rác và tổng dung lượng.
         """
         start = time()
         scan_dirs = get_scan_directories()
-        for folder in scan_dirs:
-            self._scan_directory(folder)
+        with ThreadPoolExecutor(max_workers=8) as executor:
+            executor.map(self._scan_directory, scan_dirs)
         self.scan_duration = time() - start
         return self.trash_paths, self.total_size
 
-    def _scan_directory(self, root: Path) -> None:
+    def _scan_directory(self, root: Path, max_depth: int = 6) -> None:
         """
-        Quét đệ quy một thư mục, kiểm tra và phân loại rác bên trong.
+        Đệ quy duyệt thư mục để kiểm tra file/thư mục rác trong thư mục `root`.
 
         Args:
-            root (Path): Đường dẫn thư mục cần quét
+            root (Path): Thư mục gốc cần quét
+            max_depth (int): Giới hạn chiều sâu đệ quy để tránh quá sâu
         """
-        if not root.exists():
+        if not root.exists() or not root.is_dir():
             return
 
         try:
             for dirpath, dirnames, filenames in os.walk(root):
+                rel = Path(dirpath).relative_to(root)
+                if len(rel.parts) > max_depth:
+                    dirnames[:] = []  # không đi sâu hơn
+                    continue
+
+                print(f"📁 Đang quét: {dirpath}")
                 current = Path(dirpath)
 
-                # Quét file rác
                 for fname in filenames:
                     fpath = current / fname
                     if not is_garbage_file(fpath):
@@ -92,7 +102,6 @@ class TrashScanner:
                     gtype = get_garbage_type(fpath, self.installed_browsers)
                     self.classified_paths[gtype].append(fpath)
 
-                # Quét thư mục rỗng
                 for dname in dirnames:
                     dpath = current / dname
                     if is_empty_directory(dpath):
@@ -109,10 +118,10 @@ class TrashScanner:
 
     def get_classified_summary(self) -> dict:
         """
-        Tạo bảng tổng hợp số lượng và dung lượng theo từng loại rác.
+        Trả về thống kê số lượng và dung lượng của từng loại rác.
 
         Returns:
-            dict: {loại_rác: (số lượng, tổng_dung_lượng_byte)}
+            dict: {loại_rác: (số lượng, tổng_dung_lượng)}
         """
         summary = {}
         for rtype, paths in self.classified_paths.items():
@@ -128,13 +137,11 @@ class TrashScanner:
 
     def export_scan_result(self) -> None:
         """
-        Lưu kết quả quét rác vào thư mục docs/scanner.
-        - Xóa thư mục cũ nếu có
-        - Tạo file `scan_summary.txt` với tổng kết
-        - Tạo thư mục `chi_tiet_rac/` chứa file chi tiết từng loại
-        - Lưu lịch sử lần quét vào docs/history.txt
+        Ghi kết quả quét rác ra file:
+        - scan_summary.txt: tổng kết
+        - chi_tiet_rac/<loai>.txt: chi tiết từng loại
+        - history.txt: dòng ghi lịch sử quét
         """
-        # Xóa dữ liệu cũ
         scanner_dir = Path("docs/scanner")
         if scanner_dir.exists():
             for file in scanner_dir.glob("**/*"):
@@ -158,7 +165,6 @@ class TrashScanner:
             for rtype in GARBAGE_TYPES:
                 count, size = summary.get(rtype, (0, 0))
                 f.write(f"- {rtype}: {count} mục, {size / 1024:.2f} KB\n")
-
                 filename = rtype.lower().replace(" ", "_") + ".txt"
                 detail_path = scanner_dir / "chi_tiet_rac" / filename
                 with open(detail_path, "w", encoding="utf-8") as df:
@@ -169,8 +175,7 @@ class TrashScanner:
                         except:
                             df.write(f"{path} (Không lấy được dung lượng)\n")
 
-        # Lưu lịch sử
-        history_path = Path("docs/history_scan.txt")
+        history_path = Path("docs/history.txt")
         with open(history_path, "a", encoding="utf-8") as hf:
             hf.write(
                 f"{time_str} | {len(self.trash_paths)} file | {self.total_size / 1024:.2f} KB\n")
@@ -178,16 +183,16 @@ class TrashScanner:
 
 def run_scan():
     """
-    Hàm dùng trong main.py để chạy quét rác:
-    - Quét hệ thống
-    - Lưu kết quả vào thư mục docs/scanner/
-    - In thông tin cơ bản ra console
+    Hàm dùng để chạy thử quá trình quét:
+    - Gọi TrashScanner
+    - Xuất kết quả
+    - In thống kê ra console
     """
     scanner = TrashScanner()
     scanner.scan_garbage()
     scanner.export_scan_result()
-
-    print(f"🔍 Đã quét {len(scanner.trash_paths)} file/thư mục rác.")
+    # print(f"🔍 Đã quét {len(scanner.trash_paths)} file/thư mục rác.")
     print(f"📦 Tổng dung lượng: {scanner.total_size / 1024:.2f} KB")
     print(f"🕒 Thời gian quét: {scanner.scan_duration:.2f} giây")
     print("📄 Chi tiết đã lưu trong: docs/scanner/")
+  
