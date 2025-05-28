@@ -1,2 +1,19 @@
+<<<<<<< HEAD
+C:\Users\huutr\AppData\Local\Microsoft\Windows\WebCache\V01.chk (8.00 KB)
+C:\Users\huutr\AppData\Local\Microsoft\Windows\WebCache\V01.chk (8.00 KB)
+C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\000003.log (0.00 KB)
+C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Cookies-journal (0.00 KB)
+C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\LOCK (0.00 KB)
+C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\LOG.old (0.27 KB)
+C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Reporting and NEL-journal (0.00 KB)
+C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\blob_storage\47207be0-0fff-4c66-9e7a-cf9fa6cfc30e (0.00 KB)
+C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Local Storage\leveldb\000003.log (26.21 KB)
+C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Local Storage\leveldb\LOCK (0.00 KB)
+C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Local Storage\leveldb\LOG.old (0.31 KB)
+C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Session Storage\000004.log (3.01 KB)
+C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Session Storage\LOCK (0.00 KB)
+C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Session Storage\LOG.old (0.30 KB)
+=======
 C:\Users\khoi\AppData\Local\Microsoft\Windows\WebCache\V01.chk (8.00 KB)
 C:\Users\khoi\AppData\Local\Microsoft\Windows\WebCache\V01.chk (8.00 KB)
+>>>>>>> Khoi
