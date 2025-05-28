@@ -14,23 +14,8 @@ TRASH_TYPES = [
     "Windows Web Cache", "Microsoft OneDrive"
 ]
 
-<<<<<<< HEAD
 
-def generate_fake_data():
-    data = {}
-    for cat in TRASH_TYPES:
-        count = random.randint(5, 50)
-        size = round(random.uniform(1, 100), 2)
-        files = [
-            f"C:/Fake/{cat.replace(' ', '_')}/file_{i}.tmp" for i in range(count)]
-        data[cat] = {"count": count, "size": size, "files": files}
-    return data
-
-
-def build_scan_view(main_content, refresh_history=None):
-=======
 def build_scan_view(main_content):
->>>>>>> Khoi
     f = ctk.CTkFrame(main_content)
     file_vars = {}
     selected_files = []
@@ -52,13 +37,17 @@ def build_scan_view(main_content):
     time_var = tk.StringVar(value="⏱ 0.0s")
 
     # Tiêu đề
-    ctk.CTkLabel(f, textvariable=title_var, font=("Segoe UI", 22, "bold")).pack(pady=(20, 10))
-    ctk.CTkLabel(f, textvariable=desc_var, font=("Segoe UI", 14)).pack(pady=(0, 20))
+    ctk.CTkLabel(f, textvariable=title_var, font=(
+        "Segoe UI", 22, "bold")).pack(pady=(20, 10))
+    ctk.CTkLabel(f, textvariable=desc_var, font=(
+        "Segoe UI", 14)).pack(pady=(0, 20))
 
     # Tiến trình và thời gian
-    progress_label = ctk.CTkLabel(f, textvariable=progress_text, font=("Segoe UI", 13))
+    progress_label = ctk.CTkLabel(
+        f, textvariable=progress_text, font=("Segoe UI", 13))
     progress_label.pack()
-    ctk.CTkLabel(f, textvariable=time_var, font=("Segoe UI", 12), text_color="#aaa").pack()
+    ctk.CTkLabel(f, textvariable=time_var, font=(
+        "Segoe UI", 12), text_color="#aaa").pack()
     progress_bar = ctk.CTkProgressBar(f, width=500)
     progress_bar.set(0)
     progress_bar.pack(pady=(10, 20))
@@ -88,50 +77,28 @@ def build_scan_view(main_content):
         time_var.set("⏱ 0.0s")
 
         start_time = time.time()
-        state["view"] = "scanning"
 
         def update_timer():
-            if state["view"] != "scanning":
-                return
-            elapsed = time.time() - start_time
-            time_var.set(f"⏱ {elapsed:.1f}s")
+            if state["view"] == "scanning":
+                elapsed = time.time() - start_time
+                time_var.set(f"⏱ {elapsed:.1f}s")
+                f.after(100, update_timer)
 
-            # Tiến trình ước lượng dựa trên thời gian scan thực tế
-            # Để tránh bị đầy quá sớm, bạn có thể dùng công thức mềm hơn:
-            estimated_max_duration = 20  # bạn có thể điều chỉnh (ví dụ 10s)
-            progress = min(elapsed / estimated_max_duration, 0.99)
-            progress_bar.set(progress)
+        def run():
+            state["view"] = "scanning"
+            progress_bar.set(0.1)
 
-<<<<<<< HEAD
-            f.after(100, update_timer)
-
-        def run_scan():
-=======
->>>>>>> Khoi
             summary, classified_paths, total_size, duration = scan_and_return_summary()
-            state["view"] = "main"
-            f.after(0, lambda: on_scan_complete(
-                summary, classified_paths, total_size, duration))
 
-<<<<<<< HEAD
-        def on_scan_complete(summary, classified_paths, total_size, duration):
-=======
->>>>>>> Khoi
             state["view"] = "main"
             progress_bar.set(1.0)
             progress_text.set(tr("scan_done"))
             time_var.set(f"⏱ {duration:.1f}s")
-            show_main_view(summary, classified_paths, total_size, duration)
-            if refresh_history:
-                refresh_history()
 
-<<<<<<< HEAD
-        threading.Thread(target=run_scan, daemon=True).start()
-        update_timer()  # ✅ gọi hàm cập nhật thời gian thật
-=======
+            show_main_view(summary, classified_paths, total_size, duration)
+
         update_timer()
         threading.Thread(target=run, daemon=True).start()
->>>>>>> Khoi
 
     scan_btn = ctk.CTkButton(f, textvariable=scan_btn_text, command=start_scan)
     scan_btn.pack(pady=10)
@@ -164,9 +131,11 @@ def build_scan_view(main_content):
                 var.set(select_all_var.get())
 
         ctk.CTkCheckBox(header, textvariable=scan_select_all, variable=select_all_var,
-                command=toggle_all).pack(side="left", padx=(5, 5), fill="x", expand=True)
-        ctk.CTkLabel(header, textvariable=col_size_var, width=120, anchor="e").pack(side="left", padx=5)
-        ctk.CTkLabel(header, textvariable=col_count_var, width=100, anchor="e").pack(side="left", padx=5)
+                        command=toggle_all).pack(side="left", padx=(5, 5), fill="x", expand=True)
+        ctk.CTkLabel(header, textvariable=col_size_var, width=120,
+                     anchor="e").pack(side="left", padx=5)
+        ctk.CTkLabel(header, textvariable=col_count_var,
+                     width=100, anchor="e").pack(side="left", padx=5)
 
         for cat, data in all_data.items():
             row = ctk.CTkFrame(table_frame)
@@ -180,9 +149,12 @@ def build_scan_view(main_content):
             detail_frame = ctk.CTkFrame(row, fg_color="transparent")
             detail_frame.pack(side="left", fill="x", expand=True)
 
-            ctk.CTkLabel(detail_frame, text=cat, anchor="w").pack(side="left", padx=5, fill="x", expand=True)
-            ctk.CTkLabel(detail_frame, text=f"{data['size']} MB", width=120, anchor="e").pack(side="left", padx=5)
-            ctk.CTkLabel(detail_frame, text=f"{data['count']} files", width=100, anchor="e").pack(side="left", padx=5)
+            ctk.CTkLabel(detail_frame, text=cat, anchor="w").pack(
+                side="left", padx=5, fill="x", expand=True)
+            ctk.CTkLabel(detail_frame, text=f"{data['size']} MB", width=120, anchor="e").pack(
+                side="left", padx=5)
+            ctk.CTkLabel(detail_frame, text=f"{data['count']} files", width=100, anchor="e").pack(
+                side="left", padx=5)
 
             def open_detail(e, c=cat):
                 show_detail_popup(c, all_data[c]["files"])
@@ -197,20 +169,23 @@ def build_scan_view(main_content):
         popup.geometry("600x400")
         popup.attributes("-topmost", True)
 
-         # Căn giữa popup trên màn hình
+        # Căn giữa popup trên màn hình
         popup.update_idletasks()
         screen_width = popup.winfo_screenwidth()
         screen_height = popup.winfo_screenheight()
         x = int((screen_width - 600) / 2)
         y = int((screen_height - 400) / 2)
-        popup.geometry(f"+{x}+{y}") 
+        popup.geometry(f"+{x}+{y}")
 
-        ctk.CTkLabel(popup, text=f"📂 {category}", font=("Segoe UI", 16, "bold")).pack(pady=10)
+        ctk.CTkLabel(popup, text=f"📂 {category}", font=(
+            "Segoe UI", 16, "bold")).pack(pady=10)
 
         header = ctk.CTkFrame(popup, fg_color="transparent")
         header.pack(fill="x", padx=10, pady=(0, 5))
-        ctk.CTkLabel(header, text=tr("detail_col_path"), anchor="w").pack(side="left", fill="x", expand=True)
-        ctk.CTkLabel(header, text=tr("detail_col_size"), width=100, anchor="e").pack(side="right")
+        ctk.CTkLabel(header, text=tr("detail_col_path"), anchor="w").pack(
+            side="left", fill="x", expand=True)
+        ctk.CTkLabel(header, text=tr("detail_col_size"),
+                     width=100, anchor="e").pack(side="right")
 
         list_frame = ctk.CTkScrollableFrame(popup)
         list_frame.pack(fill="both", expand=True, padx=10, pady=5)
@@ -219,8 +194,10 @@ def build_scan_view(main_content):
             size = round(random.uniform(10, 500), 2)
             row = ctk.CTkFrame(list_frame, fg_color="transparent")
             row.pack(fill="x", pady=1)
-            ctk.CTkLabel(row, text=fpath, anchor="w").pack(side="left", fill="x", expand=True)
-            ctk.CTkLabel(row, text=f"{size} KB", width=100, anchor="e").pack(side="right")
+            ctk.CTkLabel(row, text=fpath, anchor="w").pack(
+                side="left", fill="x", expand=True)
+            ctk.CTkLabel(row, text=f"{size} KB",
+                         width=100, anchor="e").pack(side="right")
 
     def start_cleanup():
         selected = []
@@ -232,7 +209,8 @@ def build_scan_view(main_content):
             messagebox.showwarning("⚠️", tr("scan_no_selection"))
             return
 
-        confirm = messagebox.askyesno("Xác nhận", tr("scan_confirm_delete").format(n=len(selected)))
+        confirm = messagebox.askyesno("Xác nhận", tr(
+            "scan_confirm_delete").format(n=len(selected)))
         if not confirm:
             return
 
@@ -261,5 +239,4 @@ def build_scan_view(main_content):
         scan_select_all.set(tr("scan_select_all"))
 
     on_language_change(update_texts)
-
     return f
