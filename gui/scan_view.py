@@ -7,7 +7,6 @@ import random
 from .localization import tr, on_language_change
 from controller.app_controller import scan_and_return_summary
 
-
 TRASH_TYPES = [
     "Internet Cache", "Cookies", "Internet History", "Metrics Temp File",
     "Temporary Internet Files", "Thumbnail Cache", "Empty Recycle Bin",
@@ -15,6 +14,7 @@ TRASH_TYPES = [
     "Windows Web Cache", "Microsoft OneDrive"
 ]
 
+<<<<<<< HEAD
 
 def generate_fake_data():
     data = {}
@@ -28,6 +28,9 @@ def generate_fake_data():
 
 
 def build_scan_view(main_content, refresh_history=None):
+=======
+def build_scan_view(main_content):
+>>>>>>> Khoi
     f = ctk.CTkFrame(main_content)
     file_vars = {}
     selected_files = []
@@ -43,23 +46,19 @@ def build_scan_view(main_content, refresh_history=None):
     desc_var = tk.StringVar(value=tr("scan_desc"))
     col_size_var = tk.StringVar(value=tr("scan_col_size"))
     col_count_var = tk.StringVar(value=tr("scan_col_count"))
+    scan_select_all = tk.StringVar(value=tr("scan_select_all"))
     col_path_var = tk.StringVar(value=tr("detail_col_path"))
-    col_size_var = tk.StringVar(value=tr("detail_col_size"))
+    col_size_detail_var = tk.StringVar(value=tr("detail_col_size"))
     time_var = tk.StringVar(value="⏱ 0.0s")
 
     # Tiêu đề
-    ctk.CTkLabel(f, textvariable=title_var, font=(
-        "Segoe UI", 22, "bold")).pack(pady=(20, 10))
-    ctk.CTkLabel(f, textvariable=desc_var, font=(
-        "Segoe UI", 14)).pack(pady=(0, 20))
+    ctk.CTkLabel(f, textvariable=title_var, font=("Segoe UI", 22, "bold")).pack(pady=(20, 10))
+    ctk.CTkLabel(f, textvariable=desc_var, font=("Segoe UI", 14)).pack(pady=(0, 20))
 
     # Tiến trình và thời gian
-    progress_label = ctk.CTkLabel(
-        f, textvariable=progress_text, font=("Segoe UI", 13))
+    progress_label = ctk.CTkLabel(f, textvariable=progress_text, font=("Segoe UI", 13))
     progress_label.pack()
-
-    ctk.CTkLabel(f, textvariable=time_var, font=(
-        "Segoe UI", 12), text_color="#aaa").pack()
+    ctk.CTkLabel(f, textvariable=time_var, font=("Segoe UI", 12), text_color="#aaa").pack()
     progress_bar = ctk.CTkProgressBar(f, width=500)
     progress_bar.set(0)
     progress_bar.pack(pady=(10, 20))
@@ -103,15 +102,21 @@ def build_scan_view(main_content, refresh_history=None):
             progress = min(elapsed / estimated_max_duration, 0.99)
             progress_bar.set(progress)
 
+<<<<<<< HEAD
             f.after(100, update_timer)
 
         def run_scan():
+=======
+>>>>>>> Khoi
             summary, classified_paths, total_size, duration = scan_and_return_summary()
             state["view"] = "main"
             f.after(0, lambda: on_scan_complete(
                 summary, classified_paths, total_size, duration))
 
+<<<<<<< HEAD
         def on_scan_complete(summary, classified_paths, total_size, duration):
+=======
+>>>>>>> Khoi
             state["view"] = "main"
             progress_bar.set(1.0)
             progress_text.set(tr("scan_done"))
@@ -120,8 +125,13 @@ def build_scan_view(main_content, refresh_history=None):
             if refresh_history:
                 refresh_history()
 
+<<<<<<< HEAD
         threading.Thread(target=run_scan, daemon=True).start()
         update_timer()  # ✅ gọi hàm cập nhật thời gian thật
+=======
+        update_timer()
+        threading.Thread(target=run, daemon=True).start()
+>>>>>>> Khoi
 
     scan_btn = ctk.CTkButton(f, textvariable=scan_btn_text, command=start_scan)
     scan_btn.pack(pady=10)
@@ -135,102 +145,82 @@ def build_scan_view(main_content, refresh_history=None):
         scan_btn.configure(state="normal")
 
         nonlocal all_data
-        if summary is None:
-            summary, classified_paths, total_size, duration = scan_and_return_summary()
-        all_data.clear()
-        for rtype, (count, size) in summary.items():
-            files = [str(p) for p in classified_paths[rtype]]
-            all_data[rtype] = {
-                "count": count,
-                "size": round(size / 1024 / 1024, 2),  # MB
-                "files": files
-            }
+        if summary is not None:
+            all_data.clear()
+            for rtype, (count, size) in summary.items():
+                files = [str(p) for p in classified_paths[rtype]]
+                all_data[rtype] = {
+                    "count": count,
+                    "size": round(size / 1024 / 1024, 2),  # MB
+                    "files": files
+                }
 
-       # ===== Header =====
         header = ctk.CTkFrame(table_frame, fg_color="transparent")
         header.pack(fill="x", pady=(0, 5))
-
         select_all_var = tk.BooleanVar()
 
         def toggle_all():
             for var in file_vars.values():
                 var.set(select_all_var.get())
 
-        col_size_var = tk.StringVar(value=tr("scan_col_size"))
-        col_count_var = tk.StringVar(value=tr("scan_col_count"))
+        ctk.CTkCheckBox(header, textvariable=scan_select_all, variable=select_all_var,
+                command=toggle_all).pack(side="left", padx=(5, 5), fill="x", expand=True)
+        ctk.CTkLabel(header, textvariable=col_size_var, width=120, anchor="e").pack(side="left", padx=5)
+        ctk.CTkLabel(header, textvariable=col_count_var, width=100, anchor="e").pack(side="left", padx=5)
 
-        # Checkbox + tiêu đề “Loại rác”
-        cb = ctk.CTkCheckBox(header, text=tr("scan_select_all"), variable=select_all_var,
-                             command=toggle_all)
-        cb.pack(side="left", padx=(5, 5), fill="x", expand=True)
-
-        # Dung lượng + Số lượng
-        ctk.CTkLabel(header, textvariable=col_size_var, width=120,
-                     anchor="e").pack(side="left", padx=5)
-        ctk.CTkLabel(header, textvariable=col_count_var,
-                     width=100, anchor="e").pack(side="left", padx=5)
-
-        # ===== Các dòng loại file =====
         for cat, data in all_data.items():
             row = ctk.CTkFrame(table_frame)
             row.pack(fill="x", pady=2)
 
             var = tk.BooleanVar()
             file_vars[cat] = var
-
-        # CheckBox (không bind click)
             cb = ctk.CTkCheckBox(row, variable=var, text="", width=30)
             cb.pack(side="left", padx=(5, 0))
 
-        # Khung để gom phần còn lại và bind double-click
             detail_frame = ctk.CTkFrame(row, fg_color="transparent")
             detail_frame.pack(side="left", fill="x", expand=True)
 
-            ctk.CTkLabel(detail_frame, text=cat, anchor="w").pack(
-                side="left", padx=5, fill="x", expand=True)
-            ctk.CTkLabel(detail_frame, text=f"{data['size']} MB", width=120, anchor="e").pack(
-                side="left", padx=5)
-            ctk.CTkLabel(detail_frame, text=f"{data['count']} files", width=100, anchor="e").pack(
-                side="left", padx=5)
+            ctk.CTkLabel(detail_frame, text=cat, anchor="w").pack(side="left", padx=5, fill="x", expand=True)
+            ctk.CTkLabel(detail_frame, text=f"{data['size']} MB", width=120, anchor="e").pack(side="left", padx=5)
+            ctk.CTkLabel(detail_frame, text=f"{data['count']} files", width=100, anchor="e").pack(side="left", padx=5)
 
             def open_detail(e, c=cat):
-                show_detail_view(c, all_data[c]["files"])
+                show_detail_popup(c, all_data[c]["files"])
 
             detail_frame.bind("<Double-Button-1>", open_detail)
             for w in detail_frame.winfo_children():
                 w.bind("<Double-Button-1>", open_detail)
 
-    def show_detail_view(category, files):
-        state["view"] = "detail"
-        back_btn.pack(pady=5)
-        clean_btn.pack_forget()
-        for widget in table_frame.winfo_children():
-            widget.destroy()
+    def show_detail_popup(category, files):
+        popup = ctk.CTkToplevel()
+        popup.title(f"📂 {category}")
+        popup.geometry("600x400")
+        popup.attributes("-topmost", True)
 
-        # Tiêu đề loại rác
-        title = ctk.CTkLabel(
-            table_frame, text=f"📂 {category}", font=("Segoe UI", 16, "bold"))
-        title.pack(anchor="w", padx=10, pady=(5, 0))
+         # Căn giữa popup trên màn hình
+        popup.update_idletasks()
+        screen_width = popup.winfo_screenwidth()
+        screen_height = popup.winfo_screenheight()
+        x = int((screen_width - 600) / 2)
+        y = int((screen_height - 400) / 2)
+        popup.geometry(f"+{x}+{y}") 
 
-        # Header cho danh sách file
-        header = ctk.CTkFrame(table_frame, fg_color="transparent")
-        header.pack(fill="x", padx=10, pady=(10, 2))
-        ctk.CTkLabel(header, textvariable=col_path_var, anchor="w").pack(
-            side="left", fill="x", expand=True)
-        ctk.CTkLabel(header, textvariable=col_size_var,
-                     width=100, anchor="e").pack(side="right")
+        ctk.CTkLabel(popup, text=f"📂 {category}", font=("Segoe UI", 16, "bold")).pack(pady=10)
 
-        # Dữ liệu giả lập kích thước file
+        header = ctk.CTkFrame(popup, fg_color="transparent")
+        header.pack(fill="x", padx=10, pady=(0, 5))
+        ctk.CTkLabel(header, text=tr("detail_col_path"), anchor="w").pack(side="left", fill="x", expand=True)
+        ctk.CTkLabel(header, text=tr("detail_col_size"), width=100, anchor="e").pack(side="right")
+
+        list_frame = ctk.CTkScrollableFrame(popup)
+        list_frame.pack(fill="both", expand=True, padx=10, pady=5)
+
         for fpath in files:
-            size = round(random.uniform(10, 500), 2)  # Kích thước giả lập (KB)
-
-            row = ctk.CTkFrame(table_frame, fg_color="transparent")
-            row.pack(fill="x", padx=10, pady=1)
-
-            ctk.CTkLabel(row, text=fpath, anchor="w").pack(
-                side="left", fill="x", expand=True)
-            ctk.CTkLabel(row, text=f"{size} KB",
-                         width=100, anchor="e").pack(side="right")
+            size = round(random.uniform(10, 500), 2)
+            row = ctk.CTkFrame(list_frame, fg_color="transparent")
+            row.pack(fill="x", pady=1)
+            ctk.CTkLabel(row, text=fpath, anchor="w").pack(side="left", fill="x", expand=True)
+            ctk.CTkLabel(row, text=f"{size} KB", width=100, anchor="e").pack(side="right")
 
     def start_cleanup():
         selected = []
@@ -242,8 +232,7 @@ def build_scan_view(main_content, refresh_history=None):
             messagebox.showwarning("⚠️", tr("scan_no_selection"))
             return
 
-        confirm = messagebox.askyesno("Xác nhận", tr(
-            "scan_confirm_delete").format(n=len(selected)))
+        confirm = messagebox.askyesno("Xác nhận", tr("scan_confirm_delete").format(n=len(selected)))
         if not confirm:
             return
 
@@ -268,7 +257,8 @@ def build_scan_view(main_content, refresh_history=None):
         col_size_var.set(tr("scan_col_size"))
         col_count_var.set(tr("scan_col_count"))
         col_path_var.set(tr("detail_col_path"))
-        col_size_var.set(tr("detail_col_size"))
+        col_size_detail_var.set(tr("detail_col_size"))
+        scan_select_all.set(tr("scan_select_all"))
 
     on_language_change(update_texts)
 

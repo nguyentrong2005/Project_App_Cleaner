@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Thời gian hoàn tất: 2025-05-28 09:54:13
 Tổng số file rác: 9160
 Tổng dung lượng: 1473484.35 KB
@@ -15,3 +16,22 @@ Thời gian quét: 73.22 giây
 - Windows log files: 208 mục, 2947.60 KB
 - Windows web cache: 14 mục, 46.09 KB
 - Microsoft OneDrive: 204 mục, 841.65 KB
+=======
+Thời gian hoàn tất: 2025-05-28 11:11:30
+Tổng số file rác: 11690
+Tổng dung lượng: 1113129.15 KB
+Thời gian quét: 28.01 giây
+
+- Internet cache: 33 mục, 0.00 KB
+- Cookies: 20 mục, 0.00 KB
+- Internet history: 11 mục, 0.00 KB
+- Metrics temp file: 30 mục, 0.00 KB
+- Temporary internet files: 164 mục, 99.91 KB
+- Thumbnail cache: 0 mục, 0.00 KB
+- Empty recycle bin: 0 mục, 0.00 KB
+- Temporary files: 438 mục, 633249.78 KB
+- Memory dumps: 15 mục, 342830.46 KB
+- Windows log files: 36 mục, 4776.04 KB
+- Windows web cache: 2 mục, 16.00 KB
+- Microsoft OneDrive: 290 mục, 2846.24 KB
+>>>>>>> Khoi

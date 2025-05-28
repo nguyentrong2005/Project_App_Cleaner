@@ -38,13 +38,13 @@ def main_app():
     labels = init_sidebar_labels()
 
     try:
-        app.iconbitmap("resources/images/logo(ico).ico")
+        app.iconbitmap("assets/images/logo(ico).ico")
     except Exception as e:
         print("[Icon Error]", e)
 
     logo_img = None
     try:
-        logo_path = "resources/images/logo.png"
+        logo_path = "assets/images/logo.png"
         if os.path.exists(logo_path):
             logo_img = ctk.CTkImage(Image.open(logo_path), size=(32, 32))
     except Exception as e:
@@ -170,7 +170,7 @@ def show_splash_screen():
 
     try:
         logo = ctk.CTkImage(Image.open(
-            "resources/images/logo.png"), size=(80, 80))
+            "assets/images/logo.png"), size=(80, 80))
         ctk.CTkLabel(frame, image=logo, text="").pack(pady=(15, 10))
     except:
         pass
