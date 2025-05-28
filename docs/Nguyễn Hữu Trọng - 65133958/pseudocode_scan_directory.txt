@@ -1,0 +1,24 @@
+Hàm _scan_directory(thư_mục):
+
+    Nếu thư_mục không tồn tại hoặc không phải thư mục → return
+
+    Duyệt qua tất cả các phần tử con trong thư_mục
+    Với mỗi phần_tử trong thư_mục.iterdir():
+
+        Nếu phần_tử là file:
+            Nếu is_garbage_file(phần_tử) == False → tiếp tục vòng lặp
+            Nếu không có quyền xóa hoặc file đang bị khóa:
+                → đưa vào danh sách rejected_paths
+            Ngược lại:
+                → thêm vào trash_paths
+                → cập nhật total_size
+                → phân loại bằng get_garbage_type(...) và đưa vào classified_paths
+
+        Nếu phần_tử là thư mục:
+            Nếu is_empty_directory(phần_tử):
+                Nếu có quyền xóa:
+                    → thêm vào trash_paths và classified_paths
+                Ngược lại:
+                    → đưa vào rejected_paths
+            Ngược lại:
+                → GỌI ĐỆ QUY _scan_directory(phần_tử)
