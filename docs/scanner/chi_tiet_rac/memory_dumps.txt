@@ -1,6 +1,6 @@
 C:\Users\khoi\AppData\Roaming\Code\Crashpad\reports\13dc2a34-f6d7-428d-8497-a93e2342cd18.dmp (33307.19 KB)
+C:\Users\khoi\AppData\Roaming\Code\Crashpad\reports\195b201a-482d-4c66-8e81-b06a6b0168dd.dmp (33309.05 KB)
 C:\Users\khoi\AppData\Roaming\Code\Crashpad\reports\2afb66b9-8cc1-490e-967b-ba23b70206d1.dmp (33289.91 KB)
-C:\Users\khoi\AppData\Roaming\Code\Crashpad\reports\615ec01e-432f-413d-8a1c-3d2d9959a455.dmp (45769.62 KB)
 C:\Users\khoi\AppData\Roaming\Code\Crashpad\reports\88a70ab1-27cd-490e-aa22-52355b5a5ba7.dmp (33140.25 KB)
 C:\Users\khoi\AppData\Roaming\Code\Crashpad\reports\bd4fd017-d3bd-491b-9e00-264f1536607e.dmp (33455.44 KB)
 C:\Users\khoi\AppData\Local\CrashDumps\CapCut.exe.2132.dmp (140954.35 KB)

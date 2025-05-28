@@ -55,7 +55,7 @@ def main_app():
 
     # Sidebar trái
     app.sidebar = ctk.CTkFrame(
-        app, width=220, corner_radius=0, fg_color=get_sidebar_color())
+        app, width=220, corner_radius=0)
     app.sidebar.pack(side="left", fill="y")
 
     # Logo và tên app
@@ -140,15 +140,20 @@ def main_app():
         """
         Cập nhật màu sidebar khi thay đổi giao diện sáng/tối.
         """
-        color = "#1f2937" if ctk.get_appearance_mode() == "Dark" else "transparent"
-        app.sidebar.configure(fg_color=color)
+        is_dark = ctk.get_appearance_mode() == "Dark"
+        sidebar_color = "#1f2937" if is_dark else "#ffffff"
+        text_color = "#ffffff" if is_dark else "#000000"
+        section_color = "#aaaaaa" if is_dark else "#555555"
+
+        app.sidebar.configure(fg_color=sidebar_color)
+
+        for btn in app.button_refs.values():
+            btn.configure(text_color=text_color)
 
     app.update_theme_colors = update_theme_colors
     on_language_change(update_sidebar_texts)
-
     switch_view("home")
     set_active(app.button_refs["home"])
-
     app.mainloop()
 
 

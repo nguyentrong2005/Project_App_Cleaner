@@ -34,6 +34,7 @@ def build_scan_view(main_content):
     col_path_var = tk.StringVar(value=tr("detail_col_path"))
     col_size_detail_var = tk.StringVar(value=tr("detail_col_size"))
     time_var = tk.StringVar(value="⏱ 0.0s")
+    show_more_text = tk.StringVar(value=tr("show_more"))
 
     # Tiêu đề
     ctk.CTkLabel(f, textvariable=title_var, font=("Segoe UI", 22, "bold")).pack(pady=(20, 10))
@@ -48,8 +49,20 @@ def build_scan_view(main_content):
     progress_bar.pack(pady=(10, 20))
 
     # Bảng chính
-    table_frame = ctk.CTkScrollableFrame(f, height=260)
-    table_frame.pack(padx=20, pady=10, fill="x")
+    # Container có viền, bo góc và màu nền
+    table_wrapper = ctk.CTkFrame(
+    f,
+    fg_color="#2c2f36",          # nền đậm cho dark mode, có thể thay đổi theo theme
+    border_color="#3b82f6",      # màu viền (xanh như PRIMARY_COLOR)
+    border_width=2,
+    corner_radius=12
+)
+    table_wrapper.pack(padx=20, pady=10, fill="both", expand=True)
+
+    # Bảng scroll bên trong
+    table_frame = ctk.CTkScrollableFrame(table_wrapper)
+    table_frame.pack(fill="both", expand=True, padx=10, pady=10)
+
 
     back_btn = ctk.CTkButton(f, textvariable=back_btn_text,
                              command=lambda: show_main_view(), fg_color="#6b7280")
@@ -176,13 +189,34 @@ def build_scan_view(main_content):
 
         list_frame = ctk.CTkScrollableFrame(popup)
         list_frame.pack(fill="both", expand=True, padx=10, pady=5)
+         # Nút xem thêm
+        show_more_btn = ctk.CTkButton(popup, text=tr("show_more"))
 
-        for fpath in files:
-            size = round(random.uniform(10, 500), 2)
-            row = ctk.CTkFrame(list_frame, fg_color="transparent")
-            row.pack(fill="x", pady=1)
-            ctk.CTkLabel(row, text=fpath, anchor="w").pack(side="left", fill="x", expand=True)
-            ctk.CTkLabel(row, text=f"{size} KB", width=100, anchor="e").pack(side="right")
+
+         # Biến theo dõi số lượng đã hiển thị
+        displayed_count = tk.IntVar(value=0)
+        total_files = len(files)
+        step = 100
+
+        def render_more():
+            start = displayed_count.get()
+            end = min(start + step, total_files)
+            for fpath in files[start:end]:
+                size = round(random.uniform(10, 500), 2)
+                row = ctk.CTkFrame(list_frame, fg_color="transparent")
+                row.pack(fill="x", pady=1)
+                ctk.CTkLabel(row, text=fpath, anchor="w").pack(side="left", fill="x", expand=True)
+                ctk.CTkLabel(row, text=f"{size} KB", width=100, anchor="e").pack(side="right")
+
+            displayed_count.set(end)
+
+            if displayed_count.get() >= total_files:
+                show_more_btn.pack_forget()
+            else:
+                show_more_btn.pack(pady=(0, 10))
+
+        show_more_btn.configure(command=render_more)
+        render_more()
 
     def start_cleanup():
         selected = []
@@ -221,6 +255,7 @@ def build_scan_view(main_content):
         col_path_var.set(tr("detail_col_path"))
         col_size_detail_var.set(tr("detail_col_size"))
         scan_select_all.set(tr("scan_select_all"))
+        show_more_text.set(tr("show_more"))
 
     on_language_change(update_texts)
     return f
