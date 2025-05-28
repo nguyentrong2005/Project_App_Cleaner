@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store\LOCK (0.00 KB)
 C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store\LOG (0.00 KB)
 C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store\LOG.old (0.00 KB)
@@ -29,3 +30,17 @@ C:\Users\huutr\AppData\Local\Packages\SpotifyAB.SpotifyMusic_zpdnekdrzrea0\Local
 C:\Users\huutr\AppData\Local\Packages\SpotifyAB.SpotifyMusic_zpdnekdrzrea0\LocalCache\Spotify\Default\chrome_cart_db\LOCK (0.00 KB)
 C:\Users\huutr\AppData\Local\Packages\SpotifyAB.SpotifyMusic_zpdnekdrzrea0\LocalCache\Spotify\Default\chrome_cart_db\LOG (0.00 KB)
 C:\Users\huutr\AppData\Local\Packages\SpotifyAB.SpotifyMusic_zpdnekdrzrea0\LocalCache\Spotify\Default\chrome_cart_db\LOG.old (0.00 KB)
+=======
+C:\Users\tungt\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store\LOCK (0.00 KB)
+C:\Users\tungt\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store\LOG (0.00 KB)
+C:\Users\tungt\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store\LOG.old (0.00 KB)
+C:\Users\tungt\AppData\Local\Microsoft\Edge\User Data\Default\Storage\ext\ihmafllikibpmigkcoadcmckbfhibefp\def\Cache (0.00 KB)
+C:\Users\tungt\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store\LOCK (0.00 KB)
+C:\Users\tungt\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store\LOG (0.00 KB)
+C:\Users\tungt\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store\LOG.old (0.00 KB)
+C:\Users\tungt\AppData\Local\Microsoft\VisualStudio\WebView2Cache\0000\EBWebView\Default\ExtensionActivityEdge-journal (0.00 KB)
+C:\Users\tungt\AppData\Local\Packages\Microsoft.MicrosoftEdge.Stable_8wekyb3d8bbwe\LocalCache (0.00 KB)
+C:\Users\tungt\AppData\Local\Packages\Microsoft.MicrosoftEdge.Stable_8wekyb3d8bbwe\AC\INetCache (0.00 KB)
+C:\Users\tungt\AppData\Local\Packages\Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe\LocalCache (0.00 KB)
+C:\Users\tungt\AppData\Local\Packages\Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe\AC\INetCache (0.00 KB)
+>>>>>>> Tuong

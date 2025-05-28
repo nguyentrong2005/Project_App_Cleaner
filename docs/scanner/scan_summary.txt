@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Thời gian hoàn tất: 2025-05-28 09:47:15
 Tổng số file rác: 9155
 Tổng dung lượng: 1455350.49 KB
@@ -15,3 +16,22 @@ Thời gian quét: 76.42 giây
 - Windows log files: 208 mục, 2947.60 KB
 - Windows web cache: 14 mục, 46.09 KB
 - Microsoft OneDrive: 204 mục, 841.65 KB
+=======
+Thời gian hoàn tất: 2025-05-28 09:40:45
+Tổng số file rác: 7361
+Tổng dung lượng: 930884.08 KB
+Thời gian quét: 48.26 giây
+
+- Internet cache: 12 mục, 0.00 KB
+- Cookies: 10 mục, 0.00 KB
+- Internet history: 13 mục, 0.00 KB
+- Metrics temp file: 29 mục, 8.99 KB
+- Temporary internet files: 118 mục, 0.00 KB
+- Thumbnail cache: 0 mục, 0.00 KB
+- Empty recycle bin: 8 mục, 0.00 KB
+- Temporary files: 1074 mục, 331710.27 KB
+- Memory dumps: 60 mục, 440644.47 KB
+- Windows log files: 60 mục, 10337.36 KB
+- Windows web cache: 2 mục, 16.00 KB
+- Microsoft OneDrive: 209 mục, 3047.04 KB
+>>>>>>> Tuong

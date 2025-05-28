@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\huutr\AppData\Local\Microsoft\Windows\WebCache\V01.chk (8.00 KB)
 C:\Users\huutr\AppData\Local\Microsoft\Windows\WebCache\V01.chk (8.00 KB)
 C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\000003.log (0.00 KB)
@@ -12,3 +13,7 @@ C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Local Storage\leveldb\LOG.o
 C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Session Storage\000004.log (3.01 KB)
 C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Session Storage\LOCK (0.00 KB)
 C:\Users\huutr\AppData\Local\VALORANT\Saved\webcache\Session Storage\LOG.old (0.30 KB)
+=======
+C:\Users\tungt\AppData\Local\Microsoft\Windows\WebCache\V01.chk (8.00 KB)
+C:\Users\tungt\AppData\Local\Microsoft\Windows\WebCache\V01.chk (8.00 KB)
+>>>>>>> Tuong

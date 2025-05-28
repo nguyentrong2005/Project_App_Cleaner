@@ -2,6 +2,7 @@
 import customtkinter as ctk
 import tkinter as tk
 from gui.localization import tr, on_language_change
+from controller.app_controller import get_scan_history
 
 
 def build_history_view(main_content):
@@ -41,24 +42,34 @@ def build_history_view(main_content):
     header_row = ctk.CTkFrame(table, fg_color="transparent")
     header_row.pack(fill="x", padx=10, pady=(5, 8))
 
-    ctk.CTkLabel(header_row, textvariable=col_time_var, font=("Segoe UI", 13, "bold"), anchor="w").pack(side="left", fill="x", expand=True)
-    ctk.CTkLabel(header_row, textvariable=col_items_var, font=("Segoe UI", 13, "bold"), width=80, anchor="e").pack(side="left", padx=10)
-    ctk.CTkLabel(header_row, textvariable=col_size_var, font=("Segoe UI", 13, "bold"), width=100, anchor="e").pack(side="left")
+    ctk.CTkLabel(header_row, textvariable=col_time_var, font=(
+        "Segoe UI", 13, "bold"), anchor="w").pack(side="left", fill="x", expand=True)
+    ctk.CTkLabel(header_row, textvariable=col_items_var, font=(
+        "Segoe UI", 13, "bold"), width=80, anchor="e").pack(side="left", padx=10)
+    ctk.CTkLabel(header_row, textvariable=col_size_var, font=(
+        "Segoe UI", 13, "bold"), width=100, anchor="e").pack(side="left")
 
+    # Container lưu các dòng lịch sử, để dễ làm mới
+    history_container = ctk.CTkFrame(table, fg_color="transparent")
+    history_container.pack(fill="x", padx=10, pady=5)
 
-    # Dữ liệu lịch sử mẫu (giả lập)
-    history = [
-        ("2025-05-07 14:32", "5 mục", "420 MB"),
-        ("2025-05-06 11:20", "8 mục", "932 MB"),
-        ("2025-05-01 09:02", "6 mục", "750 MB"),
-    ]
-    for time_str, items, size in history:
-        row = ctk.CTkFrame(table)
-        row.pack(fill="x", padx=10, pady=2)
+    def render_history_data():
+        # Xóa các dòng cũ
+        for widget in history_container.winfo_children():
+            widget.destroy()
 
-        ctk.CTkLabel(row, text=time_str, anchor="w").pack(side="left", fill="x", expand=True)
-        ctk.CTkLabel(row, text=items, width=80, anchor="e").pack(side="left", padx=10)
-        ctk.CTkLabel(row, text=size, width=100, anchor="e").pack(side="left")
+        # Lấy lịch sử quét từ app_controller
+        history = get_scan_history()
+        for time_str, items, size in history:
+            row = ctk.CTkFrame(history_container)
+            row.pack(fill="x", padx=10, pady=2)
+
+            ctk.CTkLabel(row, text=time_str, anchor="w").pack(
+                side="left", fill="x", expand=True)
+            ctk.CTkLabel(row, text=items, width=80,
+                         anchor="e").pack(side="left", padx=10)
+            ctk.CTkLabel(row, text=size, width=100,
+                         anchor="e").pack(side="left")
 
 
     def update_texts():
@@ -67,7 +78,10 @@ def build_history_view(main_content):
         col_time_var.set(tr("history_col_time"))
         col_items_var.set(tr("history_col_items"))
         col_size_var.set(tr("history_col_size"))
+        render_history_data()
 
     on_language_change(update_texts)
 
-    return f
+    render_history_data()
+
+    return f, render_history_data

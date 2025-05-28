@@ -27,7 +27,7 @@ def generate_fake_data():
     return data
 
 
-def build_scan_view(main_content):
+def build_scan_view(main_content, refresh_history=None):
     f = ctk.CTkFrame(main_content)
     file_vars = {}
     selected_files = []
@@ -88,34 +88,40 @@ def build_scan_view(main_content):
         progress_bar.set(0)
         time_var.set("⏱ 0.0s")
 
-        # Biến lưu thời gian bắt đầu
         start_time = time.time()
+        state["view"] = "scanning"
 
-        # Hàm cập nhật thời gian mỗi 100ms
         def update_timer():
-            if state["view"] == "scanning":
-                elapsed = time.time() - start_time
-                time_var.set(f"⏱ {elapsed:.1f}s")
-                f.after(100, update_timer)
+            if state["view"] != "scanning":
+                return
+            elapsed = time.time() - start_time
+            time_var.set(f"⏱ {elapsed:.1f}s")
 
-        def run():
-            state["view"] = "scanning"
-            progress_bar.set(0.1)
+            # Tiến trình ước lượng dựa trên thời gian scan thực tế
+            # Để tránh bị đầy quá sớm, bạn có thể dùng công thức mềm hơn:
+            estimated_max_duration = 20  # bạn có thể điều chỉnh (ví dụ 10s)
+            progress = min(elapsed / estimated_max_duration, 0.99)
+            progress_bar.set(progress)
 
-            # Gọi quét rác thật
+            f.after(100, update_timer)
+
+        def run_scan():
             summary, classified_paths, total_size, duration = scan_and_return_summary()
+            state["view"] = "main"
+            f.after(0, lambda: on_scan_complete(
+                summary, classified_paths, total_size, duration))
 
-            # Sau khi quét xong
+        def on_scan_complete(summary, classified_paths, total_size, duration):
             state["view"] = "main"
             progress_bar.set(1.0)
             progress_text.set(tr("scan_done"))
             time_var.set(f"⏱ {duration:.1f}s")
-
             show_main_view(summary, classified_paths, total_size, duration)
+            if refresh_history:
+                refresh_history()
 
-        # Bắt đầu đồng hồ đếm thời gian
-        update_timer()
-        threading.Thread(target=run, daemon=True).start()
+        threading.Thread(target=run_scan, daemon=True).start()
+        update_timer()  # ✅ gọi hàm cập nhật thời gian thật
 
     scan_btn = ctk.CTkButton(f, textvariable=scan_btn_text, command=start_scan)
     scan_btn.pack(pady=10)
@@ -265,4 +271,5 @@ def build_scan_view(main_content):
         col_size_var.set(tr("detail_col_size"))
 
     on_language_change(update_texts)
+
     return f
