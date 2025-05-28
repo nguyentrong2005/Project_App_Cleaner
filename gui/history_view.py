@@ -71,7 +71,6 @@ def build_history_view(main_content):
             ctk.CTkLabel(row, text=size, width=100,
                          anchor="e").pack(side="left")
 
-    render_history_data()
 
     def update_texts():
         title_var.set(tr("history_title"))
@@ -82,5 +81,7 @@ def build_history_view(main_content):
         render_history_data()
 
     on_language_change(update_texts)
+
+    render_history_data()
 
     return f, render_history_data

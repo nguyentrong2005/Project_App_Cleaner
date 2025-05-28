@@ -2,12 +2,14 @@ from core.system_info import get_system_info as get_real_system_info
 from core.scanner import TrashScanner
 from pathlib import Path
 
+
 def get_system_info():
     """
     Hàm trung gian gọi thông tin hệ thống từ core.
     Trả về chuỗi mô tả hệ thống thật.
     """
     return get_real_system_info()
+
 
 def scan_and_return_summary():
     """
@@ -24,8 +26,9 @@ def scan_and_return_summary():
 
     return summary, scanner.classified_paths, scanner.total_size, scanner.scan_duration
 
+
 def get_scan_history():
-    history_path = Path("docs/history_scan.txt")
+    history_path = Path("docs/history.txt")
     history = []
     if history_path.exists():
         with open(history_path, "r", encoding="utf-8") as f:

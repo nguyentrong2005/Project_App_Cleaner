@@ -27,7 +27,7 @@ def generate_fake_data():
     return data
 
 
-def build_scan_view(main_content):
+def build_scan_view(main_content, refresh_history=None):
     f = ctk.CTkFrame(main_content)
     file_vars = {}
     selected_files = []
@@ -117,8 +117,8 @@ def build_scan_view(main_content):
             progress_text.set(tr("scan_done"))
             time_var.set(f"⏱ {duration:.1f}s")
             show_main_view(summary, classified_paths, total_size, duration)
-            history = get_scan_history()
-            render_history_data()
+            if refresh_history:
+                refresh_history()
 
         threading.Thread(target=run_scan, daemon=True).start()
         update_timer()  # ✅ gọi hàm cập nhật thời gian thật

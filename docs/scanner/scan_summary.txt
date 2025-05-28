@@ -1,37 +1,17 @@
-<<<<<<< HEAD
-Thời gian hoàn tất: 2025-05-23 15:30:03
-Tổng số file rác: 8794
-Tổng dung lượng: 1249879.15 KB
-Thời gian quét: 88.67 giây
+Thời gian hoàn tất: 2025-05-28 09:40:45
+Tổng số file rác: 7361
+Tổng dung lượng: 930884.08 KB
+Thời gian quét: 48.26 giây
 
-- Internet cache: 20 mục, 0.00 KB
+- Internet cache: 12 mục, 0.00 KB
 - Cookies: 10 mục, 0.00 KB
-- Internet history: 12 mục, 0.00 KB
-- Metrics temp file: 34 mục, 8.99 KB
-- Temporary internet files: 135 mục, 99.91 KB
+- Internet history: 13 mục, 0.00 KB
+- Metrics temp file: 29 mục, 8.99 KB
+- Temporary internet files: 118 mục, 0.00 KB
 - Thumbnail cache: 0 mục, 0.00 KB
 - Empty recycle bin: 8 mục, 0.00 KB
-- Temporary files: 1178 mục, 616556.79 KB
+- Temporary files: 1074 mục, 331710.27 KB
 - Memory dumps: 60 mục, 440644.47 KB
-- Windows log files: 79 mục, 10791.56 KB
+- Windows log files: 60 mục, 10337.36 KB
 - Windows web cache: 2 mục, 16.00 KB
-- Microsoft OneDrive: 209 mục, 3029.45 KB
-=======
-Thời gian hoàn tất: 2025-05-26 12:37:34
-Tổng số file rác: 8880
-Tổng dung lượng: 1396198.15 KB
-Thời gian quét: 112.51 giây
-
-- Internet cache: 31 mục, 45.30 KB
-- Cookies: 4 mục, 0.00 KB
-- Internet history: 8 mục, 0.00 KB
-- Metrics temp file: 56 mục, 5581.96 KB
-- Temporary internet files: 258 mục, 389.91 KB
-- Thumbnail cache: 0 mục, 0.00 KB
-- Empty recycle bin: 0 mục, 0.00 KB
-- Temporary files: 450 mục, 367687.71 KB
-- Memory dumps: 23 mục, 532548.71 KB
-- Windows log files: 215 mục, 2947.50 KB
-- Windows web cache: 15 mục, 46.09 KB
-- Microsoft OneDrive: 194 mục, 770.57 KB
->>>>>>> trongdepzai
+- Microsoft OneDrive: 209 mục, 3047.04 KB
