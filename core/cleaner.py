@@ -11,7 +11,7 @@ Module xóa rác hệ thống cho CleanerApp.
 from pathlib import Path
 from typing import List, Tuple
 import os
-from core.rules import can_delete, check_permissions
+from core.rules import can_delete
 from utils import is_file_locked
 from datetime import datetime
 
