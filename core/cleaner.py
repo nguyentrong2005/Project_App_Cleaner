@@ -2,9 +2,10 @@
 """
 Module xóa rác hệ thống cho CleanerApp.
 
-- Nhận danh sách file/thư mục cần xóa
-- Kiểm tra quyền/xung đột
-- Xóa và ghi lại kết quả
+- Nhận danh sách file/thư mục cần xóa từ quá trình quét
+- Kiểm tra quyền truy cập và trạng thái khóa
+- Tiến hành xóa và ghi lại kết quả
+- Ghi lịch sử dọn dẹp vào file
 """
 
 from pathlib import Path
@@ -18,10 +19,10 @@ class TrashCleaner:
     """
     Lớp thực hiện xóa các file/thư mục rác đã được quét.
 
-    Thuộc tính:
-        paths: Danh sách path cần xóa
-        deleted: Danh sách path đã xóa thành công
-        failed: Danh sách path lỗi kèm lý do
+    Attributes:
+        paths (List[Path]): Danh sách path cần xóa
+        deleted (List[Path]): Danh sách path đã xóa thành công
+        failed (List[Tuple[Path, str]]): Danh sách path bị lỗi kèm lý do
     """
 
     def __init__(self, paths: List[Path]):
@@ -37,11 +38,10 @@ class TrashCleaner:
 
     def clean(self) -> None:
         """
-        Thực hiện xóa tất cả path trong danh sách.
+        Thực hiện xóa tất cả path trong danh sách:
 
-        - Bỏ qua nếu path không tồn tại
-        - Kiểm tra quyền và khóa trước khi xóa
-        - Ghi lại kết quả xóa/thất bại
+        - Kiểm tra quyền và trạng thái khóa
+        - Ghi lại kết quả vào danh sách `deleted` và `failed`
         """
         for path in self.paths:
             try:
@@ -59,12 +59,13 @@ class TrashCleaner:
                 elif path.is_dir():
                     os.rmdir(path)
                 self.deleted.append(path)
+
             except Exception as e:
                 self.failed.append((path, str(e)))
 
     def get_result(self) -> Tuple[List[Path], List[Tuple[Path, str]]]:
         """
-        Trả về kết quả sau khi xóa:
+        Trả về kết quả sau khi xóa.
 
         Returns:
             Tuple[List[Path], List[Tuple[Path, str]]]:
@@ -76,26 +77,27 @@ class TrashCleaner:
 
 def run_clean():
     """
-    Hàm dùng trong main.py để dọn toàn bộ rác đã được quét:
-    - Gọi TrashScanner để lấy danh sách file rác
-    - Xóa bằng TrashCleaner
-    - Lưu vào docs/history.txt
+    Hàm dùng trong main.py để thực hiện toàn bộ quy trình dọn rác:
+    - Gọi TrashScanner để quét rác
+    - Dọn bằng TrashCleaner
+    - Ghi kết quả và lịch sử dọn vào file
     - In kết quả ra console
     """
     from core.scanner import TrashScanner
-    import time
+    from time import time
     from datetime import datetime
 
+    # Quét rác
     scanner = TrashScanner()
     scanner.scan_garbage()
 
-    from core.cleaner import TrashCleaner
+    # Dọn rác
     cleaner = TrashCleaner(scanner.trash_paths)
-
     print(f"🗑 Đang tiến hành dọn {len(scanner.trash_paths)} mục...")
-    start = time.time()
+
+    start = time()
     cleaner.clean()
-    duration = time.time() - start
+    duration = time() - start
 
     deleted, failed = cleaner.get_result()
     print(f"✅ Đã xóa {len(deleted)} mục trong {duration:.2f} giây.")
@@ -104,7 +106,7 @@ def run_clean():
         for p, reason in failed:
             print(f" - {p} → {reason}")
 
-    # Ghi vào lịch sử
+    # Ghi lịch sử
     history_path = Path("docs/history_clean.txt")
     history_path.parent.mkdir(parents=True, exist_ok=True)
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
