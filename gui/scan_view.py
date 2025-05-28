@@ -7,13 +7,7 @@ import random
 from .localization import tr, on_language_change
 from controller.app_controller import scan_and_return_summary
 from controller.app_controller import delete_selected_files
-
-TRASH_TYPES = [
-    "Internet Cache", "Cookies", "Internet History", "Metrics Temp File",
-    "Temporary Internet Files", "Thumbnail Cache", "Empty Recycle Bin",
-    "Temporary Files", "Memory Dumps", "Windows Log Files",
-    "Windows Web Cache", "Microsoft OneDrive"
-]
+from core.rules import GARBAGE_TYPES
 
 
 def build_scan_view(main_content):
@@ -90,6 +84,7 @@ def build_scan_view(main_content):
         time_var.set("⏱ 0.0s")
 
         start_time = time.time()
+        state["view"] = "scanning"
 
         def update_timer():
             if state["view"] == "scanning":
@@ -98,15 +93,22 @@ def build_scan_view(main_content):
                 f.after(100, update_timer)
 
         def run():
-            state["view"] = "scanning"
+            # Chạy quét và cập nhật tiến trình dần
             progress_bar.set(0.1)
+            time.sleep(5)
+            progress_bar.set(0.3)
+            time.sleep(5)
+            progress_bar.set(0.6)
+            time.sleep(5)
+            progress_bar.set(0.75)  # Chỉ đến 75% khi chưa xong
 
             summary, classified_paths, total_size, duration = scan_and_return_summary()
 
-            state["view"] = "main"
+            # Quét xong thì set 100%
             progress_bar.set(1.0)
             progress_text.set(tr("scan_done"))
             time_var.set(f"⏱ {duration:.1f}s")
+            state["view"] = "main"
 
             show_main_view(summary, classified_paths, total_size, duration)
 
@@ -127,12 +129,30 @@ def build_scan_view(main_content):
         nonlocal all_data
         if summary is not None:
             all_data.clear()
-            for rtype, (count, size) in summary.items():
-                files = [str(p) for p in classified_paths[rtype]]
+            for rtype in GARBAGE_TYPES:
+                count, size = summary.get(rtype, (0, 0))
+                files = [str(p) for p in classified_paths.get(rtype, [])]
                 all_data[rtype] = {
                     "count": count,
                     "size": round(size / 1024 / 1024, 2),  # MB
                     "files": files
+                }
+
+            other_types = set(summary.keys()) - set(GARBAGE_TYPES)
+            if other_types:
+                all_files = []
+                total_count = 0
+                total_size = 0
+                for rtype in other_types:
+                    files = [str(p) for p in classified_paths.get(rtype, [])]
+                    all_files.extend(files)
+                    count, size = summary[rtype]
+                    total_count += count
+                    total_size += size
+                all_data["Khác"] = {
+                    "count": total_count,
+                    "size": round(total_size / 1024 / 1024, 2),
+                    "files": all_files
                 }
 
         header = ctk.CTkFrame(table_frame, fg_color="transparent")
