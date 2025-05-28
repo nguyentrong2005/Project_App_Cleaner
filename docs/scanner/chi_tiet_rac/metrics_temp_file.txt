@@ -1,2 +1,2 @@
-C:\Users\tungt\AppData\Roaming\Code\logs\20250528T132948\telemetry.log (0.00 KB)
-C:\Users\tungt\AppData\Roaming\Code\logs\20250528T132948\window1\exthost\extHostTelemetry.log (0.00 KB)
+C:\Users\huutr\AppData\Roaming\Code\logs\20250528T083232\telemetry.log (0.00 KB)
+C:\Users\huutr\AppData\Roaming\Code\logs\20250528T083232\window1\exthost\extHostTelemetry.log (0.00 KB)

@@ -1,2 +1,4 @@
-C:\Users\tungt\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store (0.00 KB)
-C:\Users\tungt\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store (0.00 KB)
+C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store (0.00 KB)
+C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Default\optimization_guide_hint_cache_store (0.00 KB)
+C:\Users\huutr\AppData\Local\Packages\SpotifyAB.SpotifyMusic_zpdnekdrzrea0\LocalCache\Spotify\chrome_debug.log (9400.52 KB)
+C:\Users\huutr\AppData\Local\Packages\SpotifyAB.SpotifyMusic_zpdnekdrzrea0\LocalCache\Spotify\Default\chrome_cart_db (0.00 KB)
