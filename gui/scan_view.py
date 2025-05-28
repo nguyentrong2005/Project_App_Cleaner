@@ -6,6 +6,7 @@ import threading
 import random
 from .localization import tr, on_language_change
 from controller.app_controller import scan_and_return_summary
+from controller.app_controller import delete_selected_files
 
 
 TRASH_TYPES = [
@@ -250,11 +251,18 @@ def build_scan_view(main_content, refresh_history=None):
         progress_text.set("🧹 " + tr("scan_clean"))
 
         def run():
+            deleted, failed = delete_selected_files(selected)
+
             for i in range(100, -1, -2):
                 progress_text.set(f"🧹 {tr('scan_clean')}: {i}%")
                 progress_bar.set(i / 100)
                 time.sleep(0.02)
-            progress_text.set(tr("scan_deleted").format(n=len(selected)))
+
+            message = tr("scan_deleted").format(n=len(deleted))
+            if failed:
+                message += f"\n⚠️ {len(failed)} mục không xóa được."
+
+            progress_text.set(message)
 
         threading.Thread(target=run, daemon=True).start()
 

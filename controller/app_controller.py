@@ -1,5 +1,6 @@
 from core.system_info import get_system_info as get_real_system_info
 from core.scanner import TrashScanner
+from core.cleaner import TrashCleaner
 from pathlib import Path
 
 
@@ -42,3 +43,22 @@ def get_scan_history():
                         size = parts[2].strip()
                         history.append((time_str, items, size))
     return history
+
+
+def delete_selected_files(file_paths):
+    """
+    Gọi TrashCleaner để xóa các file đã chọn.
+
+    Args:
+        file_paths (List[str]): Danh sách đường dẫn file (dưới dạng chuỗi)
+
+    Returns:
+        Tuple[List[str], List[Tuple[str, str]]]: (file xóa thành công, file lỗi + lý do)
+    """
+    paths = [Path(p) for p in file_paths]
+    cleaner = TrashCleaner(paths)
+    cleaner.clean()
+    deleted, failed = cleaner.get_result()
+
+    # Trả lại ở dạng str cho dễ xử lý trên giao diện
+    return [str(p) for p in deleted], [(str(p), reason) for p, reason in failed]
