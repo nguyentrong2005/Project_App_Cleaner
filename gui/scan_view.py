@@ -15,6 +15,7 @@ TRASH_TYPES = [
     "Windows Web Cache", "Microsoft OneDrive"
 ]
 
+
 def build_scan_view(main_content):
     f = ctk.CTkFrame(main_content)
     file_vars = {}
@@ -37,13 +38,17 @@ def build_scan_view(main_content):
     time_var = tk.StringVar(value="⏱ 0.0s")
 
     # Tiêu đề
-    ctk.CTkLabel(f, textvariable=title_var, font=("Segoe UI", 22, "bold")).pack(pady=(20, 10))
-    ctk.CTkLabel(f, textvariable=desc_var, font=("Segoe UI", 14)).pack(pady=(0, 20))
+    ctk.CTkLabel(f, textvariable=title_var, font=(
+        "Segoe UI", 22, "bold")).pack(pady=(20, 10))
+    ctk.CTkLabel(f, textvariable=desc_var, font=(
+        "Segoe UI", 14)).pack(pady=(0, 20))
 
     # Tiến trình và thời gian
-    progress_label = ctk.CTkLabel(f, textvariable=progress_text, font=("Segoe UI", 13))
+    progress_label = ctk.CTkLabel(
+        f, textvariable=progress_text, font=("Segoe UI", 13))
     progress_label.pack()
-    ctk.CTkLabel(f, textvariable=time_var, font=("Segoe UI", 12), text_color="#aaa").pack()
+    ctk.CTkLabel(f, textvariable=time_var, font=(
+        "Segoe UI", 12), text_color="#aaa").pack()
     progress_bar = ctk.CTkProgressBar(f, width=500)
     progress_bar.set(0)
     progress_bar.pack(pady=(10, 20))
@@ -127,9 +132,11 @@ def build_scan_view(main_content):
                 var.set(select_all_var.get())
 
         ctk.CTkCheckBox(header, textvariable=scan_select_all, variable=select_all_var,
-                command=toggle_all).pack(side="left", padx=(5, 5), fill="x", expand=True)
-        ctk.CTkLabel(header, textvariable=col_size_var, width=120, anchor="e").pack(side="left", padx=5)
-        ctk.CTkLabel(header, textvariable=col_count_var, width=100, anchor="e").pack(side="left", padx=5)
+                        command=toggle_all).pack(side="left", padx=(5, 5), fill="x", expand=True)
+        ctk.CTkLabel(header, textvariable=col_size_var, width=120,
+                     anchor="e").pack(side="left", padx=5)
+        ctk.CTkLabel(header, textvariable=col_count_var,
+                     width=100, anchor="e").pack(side="left", padx=5)
 
         for cat, data in all_data.items():
             row = ctk.CTkFrame(table_frame)
@@ -143,9 +150,12 @@ def build_scan_view(main_content):
             detail_frame = ctk.CTkFrame(row, fg_color="transparent")
             detail_frame.pack(side="left", fill="x", expand=True)
 
-            ctk.CTkLabel(detail_frame, text=cat, anchor="w").pack(side="left", padx=5, fill="x", expand=True)
-            ctk.CTkLabel(detail_frame, text=f"{data['size']} MB", width=120, anchor="e").pack(side="left", padx=5)
-            ctk.CTkLabel(detail_frame, text=f"{data['count']} files", width=100, anchor="e").pack(side="left", padx=5)
+            ctk.CTkLabel(detail_frame, text=cat, anchor="w").pack(
+                side="left", padx=5, fill="x", expand=True)
+            ctk.CTkLabel(detail_frame, text=f"{data['size']} MB", width=120, anchor="e").pack(
+                side="left", padx=5)
+            ctk.CTkLabel(detail_frame, text=f"{data['count']} files", width=100, anchor="e").pack(
+                side="left", padx=5)
 
             def open_detail(e, c=cat):
                 show_detail_popup(c, all_data[c]["files"])
@@ -160,20 +170,23 @@ def build_scan_view(main_content):
         popup.geometry("600x400")
         popup.attributes("-topmost", True)
 
-         # Căn giữa popup trên màn hình
+        # Căn giữa popup trên màn hình
         popup.update_idletasks()
         screen_width = popup.winfo_screenwidth()
         screen_height = popup.winfo_screenheight()
         x = int((screen_width - 600) / 2)
         y = int((screen_height - 400) / 2)
-        popup.geometry(f"+{x}+{y}") 
+        popup.geometry(f"+{x}+{y}")
 
-        ctk.CTkLabel(popup, text=f"📂 {category}", font=("Segoe UI", 16, "bold")).pack(pady=10)
+        ctk.CTkLabel(popup, text=f"📂 {category}", font=(
+            "Segoe UI", 16, "bold")).pack(pady=10)
 
         header = ctk.CTkFrame(popup, fg_color="transparent")
         header.pack(fill="x", padx=10, pady=(0, 5))
-        ctk.CTkLabel(header, text=tr("detail_col_path"), anchor="w").pack(side="left", fill="x", expand=True)
-        ctk.CTkLabel(header, text=tr("detail_col_size"), width=100, anchor="e").pack(side="right")
+        ctk.CTkLabel(header, text=tr("detail_col_path"), anchor="w").pack(
+            side="left", fill="x", expand=True)
+        ctk.CTkLabel(header, text=tr("detail_col_size"),
+                     width=100, anchor="e").pack(side="right")
 
         list_frame = ctk.CTkScrollableFrame(popup)
         list_frame.pack(fill="both", expand=True, padx=10, pady=5)
@@ -182,32 +195,50 @@ def build_scan_view(main_content):
             size = round(random.uniform(10, 500), 2)
             row = ctk.CTkFrame(list_frame, fg_color="transparent")
             row.pack(fill="x", pady=1)
-            ctk.CTkLabel(row, text=fpath, anchor="w").pack(side="left", fill="x", expand=True)
-            ctk.CTkLabel(row, text=f"{size} KB", width=100, anchor="e").pack(side="right")
+            ctk.CTkLabel(row, text=fpath, anchor="w").pack(
+                side="left", fill="x", expand=True)
+            ctk.CTkLabel(row, text=f"{size} KB",
+                         width=100, anchor="e").pack(side="right")
 
     def start_cleanup():
-        selected = []
+        selected = {}
         for cat, var in file_vars.items():
             if var.get():
-                selected.extend(all_data[cat]["files"])
+                selected[cat] = all_data[cat]["files"]
 
         if not selected:
             messagebox.showwarning("⚠️", tr("scan_no_selection"))
             return
 
-        confirm = messagebox.askyesno("Xác nhận", tr("scan_confirm_delete").format(n=len(selected)))
+        total_files = sum(len(v) for v in selected.values())
+        confirm = messagebox.askyesno("Xác nhận", tr(
+            "scan_confirm_delete").format(n=total_files))
         if not confirm:
             return
 
         progress_text.set("🧹 " + tr("scan_clean"))
 
         def run():
-            deleted, failed = delete_selected_files(selected)
+            # Gom tất cả file để xóa
+            all_paths = []
+            for files in selected.values():
+                all_paths.extend(files)
+
+            deleted, failed = delete_selected_files(all_paths)
+
+            # Ghi lịch sử theo loại rác
+            from core.cleaner import save_clean_type_history
+            from pathlib import Path
+            type_summary = {
+                cat: [Path(p) for p in selected[cat] if p in deleted]
+                for cat in selected
+            }
+            save_clean_type_history(type_summary)
 
             for i in range(100, -1, -2):
                 progress_text.set(f"🧹 {tr('scan_clean')}: {i}%")
                 progress_bar.set(i / 100)
-                time.sleep(0.02)
+                time.sleep(0.01)
 
             message = tr("scan_deleted").format(n=len(deleted))
             if failed:

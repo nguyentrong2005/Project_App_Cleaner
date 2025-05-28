@@ -1,5 +1,4 @@
 # main.py
-from core import run_scan
 from gui import run_main_window
 
 if __name__ == "__main__":

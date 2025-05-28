@@ -2,6 +2,7 @@ from core.system_info import get_system_info as get_real_system_info
 from core.scanner import TrashScanner
 from core.cleaner import TrashCleaner
 from pathlib import Path
+from core.cleaner import TrashCleaner, save_clean_detailed_log
 
 
 def get_system_info():
@@ -59,6 +60,9 @@ def delete_selected_files(file_paths):
     cleaner = TrashCleaner(paths)
     cleaner.clean()
     deleted, failed = cleaner.get_result()
+
+    # ✅ Ghi file log chi tiết các file đã xóa
+    save_clean_detailed_log(deleted)
 
     # Trả lại ở dạng str cho dễ xử lý trên giao diện
     return [str(p) for p in deleted], [(str(p), reason) for p, reason in failed]

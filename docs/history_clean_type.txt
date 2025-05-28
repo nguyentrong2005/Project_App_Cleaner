@@ -1,0 +1,9 @@
+
+🧹 Dọn rác lúc 28/05/2025 15:08:16:
+- Metrics temp file (xóa 55 file)
+
+🧹 Dọn rác lúc 28/05/2025 15:19:50:
+- Internet cache (xóa 30 file)
+
+🧹 Dọn rác lúc 28/05/2025 15:25:42:
+- Microsoft OneDrive (xóa 202 file)

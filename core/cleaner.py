@@ -13,6 +13,7 @@ from typing import List, Tuple
 import os
 from core.rules import can_delete, check_permissions
 from utils import is_file_locked
+from datetime import datetime
 
 
 class TrashCleaner:
@@ -75,41 +76,50 @@ class TrashCleaner:
         return self.deleted, self.failed
 
 
-def run_clean():
+def save_clean_history(deleted_paths: list[Path]) -> None:
     """
-    Hàm dùng trong main.py để thực hiện toàn bộ quy trình dọn rác:
-    - Gọi TrashScanner để quét rác
-    - Dọn bằng TrashCleaner
-    - Ghi kết quả và lịch sử dọn vào file
-    - In kết quả ra console
+    Ghi lịch sử xóa rác vào file docs/history_clean.txt
     """
-    from core.scanner import TrashScanner
-    from time import time
-    from datetime import datetime
+    if not deleted_paths:
+        return
 
-    # Quét rác
-    scanner = TrashScanner()
-    scanner.scan_garbage()
+    os.makedirs("docs", exist_ok=True)
+    with open("docs/history_clean.txt", "a", encoding="utf-8") as f:
+        timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        f.write(f"\n🧹 Dọn rác lúc {timestamp} ({len(deleted_paths)} mục):\n")
+        for p in deleted_paths:
+            f.write(f"- {str(p)}\n")
 
-    # Dọn rác
-    cleaner = TrashCleaner(scanner.trash_paths)
-    print(f"🗑 Đang tiến hành dọn {len(scanner.trash_paths)} mục...")
 
-    start = time()
-    cleaner.clean()
-    duration = time() - start
+def save_clean_type_history(type_summary: dict[str, list[Path]]) -> None:
+    """
+    Lưu lịch sử xóa rác theo từng loại vào file docs/history_clean_type.txt.
+    """
+    if not type_summary:
+        return
 
-    deleted, failed = cleaner.get_result()
-    print(f"✅ Đã xóa {len(deleted)} mục trong {duration:.2f} giây.")
-    if failed:
-        print(f"⚠️ Có {len(failed)} mục không xóa được:")
-        for p, reason in failed:
-            print(f" - {p} → {reason}")
+    os.makedirs("docs", exist_ok=True)
+    with open("docs/history_clean_type.txt", "a", encoding="utf-8") as f:
+        timestamp = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
+        f.write(f"\n🧹 Dọn rác lúc {timestamp}:\n")
+        for trash_type, paths in type_summary.items():
+            if paths:
+                f.write(f"- {trash_type} (xóa {len(paths)} file)\n")
 
-    # Ghi lịch sử
-    history_path = Path("docs/history_clean.txt")
-    history_path.parent.mkdir(parents=True, exist_ok=True)
-    now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    with open(history_path, "a", encoding="utf-8") as f:
-        f.write(
-            f"{now} | ĐÃ DỌN: {len(deleted)} mục | THẤT BẠI: {len(failed)} mục\n")
+
+def save_clean_detailed_log(deleted_paths: list[Path]) -> None:
+    """
+    Ghi danh sách các file đã xóa vào file riêng trong thư mục cleaner/.
+    Tên file là thời gian xóa (theo định dạng yyyy-mm-dd_HH-MM-SS.txt).
+    """
+    if not deleted_paths:
+        return
+
+    os.makedirs("docs/cleaner", exist_ok=True)
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    file_path = Path(f"docs/cleaner/{timestamp}.txt")
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(f"🧹 Dọn rác lúc {timestamp.replace('_', ' ')}:\n")
+        for p in deleted_paths:
+            f.write(f"- {str(p)}\n")

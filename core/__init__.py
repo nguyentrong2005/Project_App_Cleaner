@@ -16,7 +16,6 @@ Chứa các thành phần cốt lõi xử lý logic chính:
 """
 
 from .scanner import TrashScanner, run_scan
-from .cleaner import TrashCleaner, run_clean
 from .rules import (
     get_scan_directories,
     is_safe_path,
