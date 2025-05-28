@@ -38,7 +38,7 @@ def main_app():
     labels = init_sidebar_labels()
 
     try:
-        app.iconbitmap("assets/images/logo(ico).ico")
+        app.iconbitmap("assets/images/logo.ico")
     except Exception as e:
         print("[Icon Error]", e)
 
@@ -165,6 +165,7 @@ def show_splash_screen():
     splash = ctk.CTk()
     splash.geometry("300x200")
     splash.title("T3K Cleaner")
+    splash.iconbitmap("assets/images/logo.ico")
     splash.overrideredirect(True)
     splash.eval('tk::PlaceWindow . center')
 
