@@ -126,12 +126,10 @@ def main_app():
         app.current_view = name
 
     # Danh sách các view
-    history_frame, refresh_history = build_history_view(app.main_content)
-
     views = {
         "home": build_home_view(app.main_content, switch_view),
-        "scan": build_scan_view(app.main_content, refresh_history=refresh_history),
-        "history": history_frame,
+        "scan": build_scan_view(app.main_content),
+        "history": build_history_view(app.main_content),
         "settings": build_settings_view(app.main_content),
     }
 
