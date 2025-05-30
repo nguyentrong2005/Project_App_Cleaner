@@ -31,3 +31,12 @@
 🧹 Dọn rác lúc 30/05/2025 08:54:10 — Tổng: 187 mục, 0.9 MB
 - Temporary internet files: 1 mục, 0.0 MB
 - Khác: 186 mục, 0.9 MB
+🧹 Dọn rác lúc 30/05/2025 09:34:39 — Tổng: 180 mục, 4.4 MB
+- Internet cache: 16 mục, 0.0 MB
+- Metrics temp file: 1 mục, 0.0 MB
+- Temporary internet files: 9 mục, 0.0 MB
+- Temporary files: 3 mục, 0.3 MB
+- Windows log files: 3 mục, 1.0 MB
+- Windows web cache: 2 mục, 0.0 MB
+- Microsoft OneDrive: 8 mục, 0.0 MB
+- Khác: 138 mục, 3.0 MB
