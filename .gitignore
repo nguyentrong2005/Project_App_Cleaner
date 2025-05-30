@@ -1,0 +1,25 @@
+# Bỏ các file biên dịch Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Bỏ file môi trường ảo (nếu bạn dùng venv/.venv)
+venv/
+.venv/
+
+# Bỏ các file log/debug tạm
+*.log
+*.tmp
+
+# Bỏ file build của PyInstaller
+build/
+dist/
+*.spec
+docs/
+
+# Bỏ VSCode settings (nếu bạn dùng VSCode)
+.vscode/
+
+# Đóng gói .exe
+*.bat
+

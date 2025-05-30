@@ -1,0 +1,5 @@
+tk
+customtkinter
+psutil
+pillow
+pyinstaller
