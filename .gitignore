@@ -15,6 +15,11 @@ venv/
 build/
 dist/
 *.spec
+docs/
 
 # Bỏ VSCode settings (nếu bạn dùng VSCode)
 .vscode/
+
+# Đóng gói .exe
+*.bat
+

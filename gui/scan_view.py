@@ -112,11 +112,11 @@ def build_scan_view(main_content):
         def run():
             # Chạy quét và cập nhật tiến trình dần
             progress_bar.set(0.1)
-            time.sleep(10)
+            time.sleep(0.1)
             progress_bar.set(0.3)
-            time.sleep(10)
+            time.sleep(0.1)
             progress_bar.set(0.6)
-            time.sleep(10)
+            time.sleep(0.1)
             progress_bar.set(0.75)  # Chỉ đến 75% khi chưa xong
 
             summary, classified_paths, total_size, duration = scan_and_return_summary()
@@ -231,7 +231,7 @@ def build_scan_view(main_content):
         if not confirm:
             return
 
-        progress_text.set("🧹 " + tr("scan_clean"))
+        progress_text.set("🧹" + tr("scan_clean"))
 
         def run():
             # Gom tất cả file để xóa
