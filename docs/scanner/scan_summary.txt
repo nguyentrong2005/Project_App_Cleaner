@@ -1,17 +1,17 @@
-Thời gian hoàn tất: 2025-05-28 23:02:56
-Tổng số file rác: 8404
-Tổng dung lượng: 447907.36 KB
-Thời gian quét: 31.39 giây
+Thời gian hoàn tất: 2025-05-29 16:51:59
+Tổng số file rác: 8653
+Tổng dung lượng: 493673.60 KB
+Thời gian quét: 64.71 giây
 
-- Internet cache: 2 mục, 0.00 KB
+- Internet cache: 10 mục, 3.56 KB
 - Cookies: 4 mục, 0.00 KB
 - Internet history: 8 mục, 0.00 KB
-- Metrics temp file: 4 mục, 0.00 KB
-- Temporary internet files: 3 mục, 0.00 KB
+- Metrics temp file: 8 mục, 0.00 KB
+- Temporary internet files: 45 mục, 99.91 KB
 - Thumbnail cache: 0 mục, 0.00 KB
 - Empty recycle bin: 0 mục, 0.00 KB
-- Temporary files: 40 mục, 0.00 KB
-- Memory dumps: 0 mục, 0.00 KB
-- Windows log files: 9 mục, 247.43 KB
-- Windows web cache: 3 mục, 16.00 KB
-- Microsoft OneDrive: 29 mục, 58.41 KB
+- Temporary files: 103 mục, 71910.92 KB
+- Memory dumps: 1 mục, 33288.92 KB
+- Windows log files: 26 mục, 1289.18 KB
+- Windows web cache: 4 mục, 16.00 KB
+- Microsoft OneDrive: 31 mục, 131.87 KB
