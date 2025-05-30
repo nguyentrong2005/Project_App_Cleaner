@@ -11,3 +11,21 @@
 - Temporary internet files: 38 mục, 0.1 MB
 🧹 Dọn rác lúc 28/05/2025 23:03:11 — Tổng: 23 mục, 0.1 MB
 - Microsoft OneDrive: 23 mục, 0.1 MB
+🧹 Dọn rác lúc 30/05/2025 10:17:19 — Tổng: 2 mục, 0.0 MB
+- Windows web cache: 2 mục, 0.0 MB
+🧹 Dọn rác lúc 30/05/2025 10:25:22 — Tổng: 0 mục, 0.0 MB
+🧹 Dọn rác lúc 30/05/2025 10:26:25 — Tổng: 15 mục, 322.7 MB
+- Memory dumps: 15 mục, 322.7 MB
+🧹 Dọn rác lúc 30/05/2025 10:27:45 — Tổng: 11 mục, 0.0 MB
+- Internet history: 11 mục, 0.0 MB
+🧹 Dọn rác lúc 30/05/2025 11:00:23 — Tổng: 2 mục, 0.0 MB
+- Windows web cache: 2 mục, 0.0 MB
+🧹 Dọn rác lúc 30/05/2025 12:47:33 — Tổng: 2 mục, 0.0 MB
+- Internet history: 2 mục, 0.0 MB
+🧹 Dọn rác lúc 30/05/2025 12:48:32 — Tổng: 22 mục, 0.0 MB
+- Cookies: 22 mục, 0.0 MB
+🧹 Dọn rác lúc 30/05/2025 13:07:24 — Tổng: 2 mục, 0.0 MB
+- Windows web cache: 2 mục, 0.0 MB
+🧹 Dọn rác lúc 30/05/2025 13:40:12 — Tổng: 2 mục, 0.0 MB
+- Windows web cache: 2 mục, 0.0 MB
+🧹 Dọn rác lúc 30/05/2025 13:41:29 — Tổng: 0 mục, 0.0 MB

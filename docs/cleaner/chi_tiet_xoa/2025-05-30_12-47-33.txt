@@ -1,0 +1,6 @@
+🧹 Dọn rác lúc 2025-05-30 12-47-33
+
+📂 Internet history (2 mục):
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Profile 3/History-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Profile 3/History-journal'), 0)
+

@@ -87,10 +87,12 @@ def build_scan_view(main_content):
         progress_text.set(tr("scan_progress"))
         progress_bar.set(0)
         time_var.set("⏱ 0.0s")
-
         start_time = time.time()
         state["view"] = "scanning"
+        spinner_frames = ["⏳", "🔄", "↻", "⟳"]
+        dot_state = [0]
 
+        
         def update_timer():
             try:
                 if state["view"] == "scanning" and f.winfo_exists():
@@ -99,7 +101,14 @@ def build_scan_view(main_content):
                     safe_after(f, 100, update_timer)
             except Exception as e:
                 print("Timer error:", e)
-
+        def animate_dots():
+            if state["view"] != "scanning":
+                return
+            icon = spinner_frames[dot_state[0] % len(spinner_frames)]
+            progress_text.set(f"{icon} {tr('scan_progress')}")
+            dot_state[0] += 1
+            safe_after(f, 300, animate_dots)
+        
         def run():
             # Chạy quét và cập nhật tiến trình dần
             progress_bar.set(0.1)
@@ -114,14 +123,15 @@ def build_scan_view(main_content):
 
             # Quét xong thì set 100%
             progress_bar.set(1.0)
-            progress_text.set(tr("scan_done"))
+            state["view"] = "main"  # ĐẶT TRƯỚC
             elapsed = time.time() - start_time
+            progress_text.set(tr("scan_done"))  # Gán SAU
             time_var.set(f"⏱ {elapsed:.1f}s")
-            state["view"] = "main"
 
             show_main_view(summary, classified_paths, total_size, duration)
 
         update_timer()
+        animate_dots()  
         threading.Thread(target=run, daemon=True).start()
 
     scan_btn = ctk.CTkButton(f, textvariable=scan_btn_text, command=start_scan)
@@ -266,6 +276,9 @@ def build_scan_view(main_content):
                 message += f"\n⚠️ {len(failed)} mục không xóa được."
 
             progress_text.set(message)
+            # Xóa bảng hiển thị sau khi dọn
+            safe_after(f, 100, lambda: [w.destroy() for w in table_frame.winfo_children()])
+
 
             # 🚀 Quét lại sau khi dọn
             time.sleep(1)

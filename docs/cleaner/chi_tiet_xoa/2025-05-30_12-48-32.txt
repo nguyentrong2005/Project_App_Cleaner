@@ -1,0 +1,26 @@
+🧹 Dọn rác lúc 2025-05-30 12-48-32
+
+📂 Cookies (22 mục):
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Default/Extension Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Microsoft/Edge/User Data/Default/Network/Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Microsoft/Edge/User Data/Default/Safe Browsing Network/Safe Browsing Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Default/Extension Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Default/Network/Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Default/Safe Browsing Network/Safe Browsing Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Default/Network/Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Default/Safe Browsing Network/Safe Browsing Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Profile 2/Network/Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Profile 2/Safe Browsing Network/Safe Browsing Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Roaming/Opera Software/Opera GX Stable/Network/Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Roaming/Opera Software/Opera GX Stable/Safe Browsing Network/Safe Browsing Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Profile 3/Network/Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Profile 3/Safe Browsing Network/Safe Browsing Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Microsoft/Edge/User Data/Default/Network/Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Microsoft/Edge/User Data/Default/Safe Browsing Network/Safe Browsing Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Profile 2/Network/Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Profile 2/Safe Browsing Network/Safe Browsing Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Profile 3/Network/Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Google/Chrome/User Data/Profile 3/Safe Browsing Network/Safe Browsing Cookies-journal'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Packages/Microsoft.MicrosoftEdge.Stable_8wekyb3d8bbwe/AC/INetCookies'), 0)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Packages/Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe/AC/INetCookies'), 0)
+
