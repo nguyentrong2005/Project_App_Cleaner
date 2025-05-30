@@ -3,6 +3,7 @@ import tkinter as tk
 from datetime import datetime
 from gui.localization import tr, on_language_change
 from controller.app_controller import get_system_info
+from utils.safe_after import safe_after
 
 
 PRIMARY_COLOR = "#3b82f6"
@@ -39,9 +40,12 @@ def build_home_view(main_content, on_switch_view):
     clock_var = tk.StringVar()
 
     def update_clock():
+        if not home.winfo_exists():
+            return
         now = datetime.now()
         clock_var.set(now.strftime(" %d/%m/%Y -  %H:%M:%S"))
-        home.after(1000, update_clock)
+        safe_after(home, 1000, update_clock)
+
 
     clock_label = ctk.CTkLabel(home, textvariable=clock_var, font=(
         "Segoe UI", 12), text_color="#aaa")

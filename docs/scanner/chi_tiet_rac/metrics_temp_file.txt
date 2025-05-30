@@ -1,2 +1,9 @@
+<<<<<<< HEAD
 C:\Users\huutr\AppData\Roaming\Code\logs\20250528T083232\telemetry.log (0.00 KB)
 C:\Users\huutr\AppData\Roaming\Code\logs\20250528T083232\window1\exthost\extHostTelemetry.log (0.00 KB)
+=======
+C:\Users\huutr\AppData\Roaming\Code\logs\20250530T082914\telemetry.log (0.00 KB)
+C:\Users\huutr\AppData\Roaming\Code\logs\20250530T082914\window1\exthost\extHostTelemetry.log (0.00 KB)
+C:\Users\huutr\AppData\Roaming\Code\logs\20250530T091822\telemetry.log (0.00 KB)
+C:\Users\huutr\AppData\Roaming\Code\logs\20250530T091822\window1\exthost\extHostTelemetry.log (0.00 KB)
+>>>>>>> trongdepzai

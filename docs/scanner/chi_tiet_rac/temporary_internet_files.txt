@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\huutr\AppData\Local\Microsoft\Windows\INetCache\Content.MSO (0.00 KB)
 C:\Users\huutr\AppData\Local\Microsoft\Windows\INetCache\Virtualized (0.00 KB)
 C:\Users\huutr\AppData\Local\Microsoft\Windows\INetCache\Content.Word\~WRF{A5E3C318-2229-466C-9C49-06C8D2EAC89E}.tmp (16.00 KB)
@@ -255,3 +256,14 @@ C:\Users\huutr\AppData\Local\Packages\Windows.CBSPreview_cw5n1h2txyewy\AC\INetCa
 C:\Users\huutr\AppData\Local\Packages\windows.immersivecontrolpanel_cw5n1h2txyewy\AC\INetCache (0.00 KB)
 C:\Users\huutr\AppData\Local\Packages\Windows.PrintDialog_cw5n1h2txyewy\AC\INetCache (0.00 KB)
 C:\Users\huutr\AppData\Local\Packages\windows_ie_ac_001\AC\INetCache (0.00 KB)
+=======
+C:\Users\huutr\AppData\Local\Microsoft\Windows\INetCache\Low (0.00 KB)
+C:\Users\huutr\AppData\Local\Microsoft\Windows\INetCache\IE\container.dat (0.00 KB)
+C:\Users\huutr\AppData\Local\Microsoft\Windows\INetCache\IE\RPYRX6UU (0.00 KB)
+C:\Users\huutr\AppData\Local\Microsoft\Windows\INetCache\Low (0.00 KB)
+C:\Users\huutr\AppData\Local\Microsoft\Windows\INetCache\IE\container.dat (0.00 KB)
+C:\Users\huutr\AppData\Local\Microsoft\Windows\INetCache\IE\RPYRX6UU (0.00 KB)
+C:\Users\huutr\AppData\Local\Packages\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\AC\INetCache\container.dat (0.00 KB)
+C:\Users\huutr\AppData\Local\Packages\MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy\AC\INetCache\container.dat (0.00 KB)
+C:\Users\huutr\AppData\Local\Packages\MSTeams_8wekyb3d8bbwe\AC\INetCache\container.dat (0.00 KB)
+>>>>>>> trongdepzai

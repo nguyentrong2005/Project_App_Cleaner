@@ -2,8 +2,11 @@
 import customtkinter as ctk
 import tkinter as tk
 from gui.localization import tr, on_language_change
-from controller.app_controller import get_scan_history
+from controller.app_controller import get_clean_history
+from utils.gui_helpers import show_detail_popup
 
+_current_table_frame = None
+_main_container = None
 
 def build_history_view(main_content):
     """
@@ -21,7 +24,14 @@ def build_history_view(main_content):
     Returns:
         CTkFrame: Giao diện đã dựng sẵn cho tab 'History'
     """
+    global _current_table_frame, _main_container
+    _main_container = main_content
+
+    if _current_table_frame:
+        _current_table_frame.destroy()
+    
     f = ctk.CTkFrame(main_content)
+    _current_table_frame = f
 
     title_var = tk.StringVar(value=tr("history_title"))
     desc_var = tk.StringVar(value=tr("history_desc"))
@@ -49,28 +59,30 @@ def build_history_view(main_content):
     ctk.CTkLabel(header_row, textvariable=col_size_var, font=(
         "Segoe UI", 13, "bold"), width=100, anchor="e").pack(side="left")
 
-    # Container lưu các dòng lịch sử, để dễ làm mới
-    history_container = ctk.CTkFrame(table, fg_color="transparent")
-    history_container.pack(fill="x", padx=10, pady=5)
+    history = get_clean_history()
+    for time_str, summary_lines in history:
+        if not summary_lines:
+            continue
 
-    def render_history_data():
-        # Xóa các dòng cũ
-        for widget in history_container.winfo_children():
-            widget.destroy()
+        main_info = summary_lines[0]
+        count_text, size_text = main_info.split(", ")
 
-        # Lấy lịch sử quét từ app_controller
-        history = get_scan_history()
-        for time_str, items, size in history:
-            row = ctk.CTkFrame(history_container)
-            row.pack(fill="x", padx=10, pady=2)
+        row = ctk.CTkFrame(table)
+        row.pack(fill="x", padx=10, pady=2)
 
-            ctk.CTkLabel(row, text=time_str, anchor="w").pack(
-                side="left", fill="x", expand=True)
-            ctk.CTkLabel(row, text=items, width=80,
-                         anchor="e").pack(side="left", padx=10)
-            ctk.CTkLabel(row, text=size, width=100,
-                         anchor="e").pack(side="left")
+        ctk.CTkLabel(row, text=time_str, anchor="w").pack(
+            side="left", fill="x", expand=True)
+        ctk.CTkLabel(row, text=count_text, width=80,
+                     anchor="e").pack(side="left", padx=10)
+        ctk.CTkLabel(row, text=size_text, width=100,
+                     anchor="e").pack(side="left")
 
+        def open_detail(e, t=time_str, f=summary_lines):
+            show_detail_popup(f"🧹 Đã xóa lúc {t}", f)
+
+        row.bind("<Double-Button-1>", open_detail)
+        for w in row.winfo_children():
+            w.bind("<Double-Button-1>", open_detail)
 
     def update_texts():
         title_var.set(tr("history_title"))
@@ -78,10 +90,12 @@ def build_history_view(main_content):
         col_time_var.set(tr("history_col_time"))
         col_items_var.set(tr("history_col_items"))
         col_size_var.set(tr("history_col_size"))
-        render_history_data()
 
     on_language_change(update_texts)
 
-    render_history_data()
+    return f
 
-    return f, render_history_data
+def refresh_history_view():
+    if _main_container:
+        build_history_view(_main_container).pack(fill="both", expand=True)
+

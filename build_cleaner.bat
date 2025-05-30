@@ -1,14 +1,11 @@
 @echo off
-echo 🔧 Đang đóng gói CleanerApp thành .exe...
-
+echo Building CleanerApp...
 pyinstaller ^
-  --noconfirm ^
-  --onefile ^
-  --windowed ^
-  --name CleanerApp ^
-  --add-data "docs;docs" ^
-  --add-data "assets;assets" ^
-  main.py
-
-echo ✅ Đã hoàn tất! File .exe nằm trong thư mục dist\
+--noconfirm ^
+--onefile ^
+--windowed ^
+--icon=assets/images/logo.ico ^
+--name CleanerApp ^
+main.py
+echo Done. File created: dist\CleanerApp.exe
 pause

@@ -2,10 +2,12 @@
 """
 Module chứa các quy tắc xử lý rác cho CleanerApp.
 
+Chức năng chính:
 - Xác định các loại file/thư mục rác
-- Xác định quyền xóa, an toàn hệ thống
-- Phân loại rác theo 12 nhóm
-- Xác định trình duyệt đã cài để phân tích cache
+- Kiểm tra quyền truy cập và xóa file
+- Gom nhóm rác theo thư mục gốc
+- Phân loại rác thành 12 nhóm
+- Phát hiện trình duyệt đã cài để hỗ trợ phân tích cache
 """
 
 import os
@@ -13,6 +15,8 @@ from pathlib import Path
 import tempfile
 from utils import check_permissions
 
+
+# Danh sách 12 loại rác chuẩn được phân loại
 GARBAGE_TYPES = [
     "Internet cache",
     "Cookies",
@@ -28,18 +32,18 @@ GARBAGE_TYPES = [
     "Microsoft OneDrive"
 ]
 
-GARBAGE_EXTENSIONS = ['.tmp', '.log', '.bak',
-                      '.old', '.temp', '.chk', '.~', '.dmp', '.cache']
+# Định nghĩa các đuôi mở rộng thường gặp của file rác
+GARBAGE_EXTENSIONS = [
+    '.tmp', '.log', '.bak', '.old', '.temp', '.chk', '.~', '.dmp', '.cache'
+]
 
 
 def get_scan_directories() -> list[Path]:
     """
-    Trả về danh sách thư mục cần quét rác, bao gồm các vị trí phổ biến trong hệ thống:
-    - Temp
-    - AppData
-    - Logs
-    - Trình duyệt
-    - OneDrive
+    Trả về danh sách các thư mục thường chứa rác cần quét trong hệ thống.
+
+    Returns:
+        list[Path]: Danh sách thư mục cần quét.
     """
     home = Path.home()
     return [
@@ -48,34 +52,44 @@ def get_scan_directories() -> list[Path]:
         Path("C:/Windows/Logs"),
         Path("C:/$Recycle.Bin"),
         home / "Downloads",
-        home / "AppData" / "Local" / "Temp",
-        home / "AppData" / "Local",
-        home / "AppData" / "Roaming",
-        home / "AppData" / "Local" / "Microsoft" / "Windows" / "WebCache",
-        home / "AppData" / "Local" / "Microsoft" / "Windows" / "INetCache",
-        home / "AppData" / "Local" / "Microsoft" / "Windows" / "Explorer",
-        home / "AppData" / "Local" / "Google" / "Chrome" / "User Data",
-        home / "AppData" / "Local" / "Microsoft" / "Edge" / "User Data",
-        home / "AppData" / "Roaming" / "Mozilla" / "Firefox" / "Profiles",
-        home / "AppData" / "Local" / "Microsoft" / "OneDrive"
+        home / "AppData/Local/Temp",
+        home / "AppData/Local",
+        home / "AppData/Roaming",
+        home / "AppData/Local/Microsoft/Windows/WebCache",
+        home / "AppData/Local/Microsoft/Windows/INetCache",
+        home / "AppData/Local/Microsoft/Windows/Explorer",
+        home / "AppData/Local/Google/Chrome/User Data",
+        home / "AppData/Local/Microsoft/Edge/User Data",
+        home / "AppData/Roaming/Mozilla/Firefox/Profiles",
+        home / "AppData/Local/Microsoft/OneDrive"
     ]
 
 
 def is_safe_path(path: Path) -> bool:
     """
-    Kiểm tra đường dẫn có nằm ngoài vùng nguy hiểm hay không (Windows, Program Files, Documents).
-    Dùng để đảm bảo an toàn khi quét và xóa.
+    Kiểm tra xem đường dẫn có nằm ngoài các khu vực hệ thống nguy hiểm không.
+
+    Returns:
+        bool: True nếu an toàn để thao tác xóa.
     """
-    dangerous = [Path("C:/Windows"), Path("C:/Program Files"),
-                 Path.home() / "Documents"]
+    dangerous = [
+        Path("C:/Windows"),
+        Path("C:/Program Files"),
+        Path.home() / "Documents"
+    ]
     return not any(str(path).lower().startswith(str(d).lower()) for d in dangerous)
 
 
 def is_garbage_file(file_path: Path) -> bool:
     """
-    Xác định một file có phải rác hay không dựa trên:
-    - Đuôi mở rộng nằm trong danh sách GARBAGE_EXTENSIONS
-    - File có dung lượng bằng 0 byte
+    Kiểm tra một file có phải file rác hay không.
+
+    Dựa trên:
+    - Đuôi mở rộng có trong danh sách GARBAGE_EXTENSIONS
+    - File có kích thước bằng 0
+
+    Returns:
+        bool: True nếu là file rác.
     """
     try:
         if not file_path.exists() or not file_path.is_file():
@@ -91,7 +105,10 @@ def is_garbage_file(file_path: Path) -> bool:
 
 def is_empty_directory(dir_path: Path) -> bool:
     """
-    Trả về True nếu thư mục tồn tại và hoàn toàn rỗng.
+    Kiểm tra thư mục có hoàn toàn rỗng không.
+
+    Returns:
+        bool: True nếu là thư mục rỗng.
     """
     try:
         return dir_path.exists() and dir_path.is_dir() and not any(dir_path.iterdir())
@@ -101,9 +118,10 @@ def is_empty_directory(dir_path: Path) -> bool:
 
 def can_delete(path: Path) -> bool:
     """
-    Kiểm tra xem có thể xóa path hay không dựa trên:
-    - Quyền ghi
-    - Quyền xóa thư mục cha
+    Kiểm tra xem có thể xóa path hay không, dựa vào quyền ghi và quyền xóa.
+
+    Returns:
+        bool: True nếu có thể xóa.
     """
     perms = check_permissions(path)
     return perms["delete"] and perms["write"]
@@ -111,8 +129,10 @@ def can_delete(path: Path) -> bool:
 
 def get_grouping_root(path: Path) -> Path:
     """
-    Tìm thư mục gốc cấp cao nhất của path nằm trong vùng quét được cấu hình.
-    Dùng để gom nhóm rác theo thư mục cha cấp cao.
+    Tìm thư mục gốc cao nhất tương ứng với path để gom nhóm rác.
+
+    Returns:
+        Path: Thư mục cha cấp cao nhất có trong danh sách quét.
     """
     for root in get_scan_directories():
         try:
@@ -125,8 +145,10 @@ def get_grouping_root(path: Path) -> Path:
 
 def detect_installed_browsers() -> list[str]:
     """
-    Xác định các trình duyệt phổ biến đang được cài đặt trên máy người dùng.
-    Trả về danh sách như: ['chrome', 'edge', 'firefox', ...]
+    Phát hiện các trình duyệt phổ biến đã cài đặt trên máy.
+
+    Returns:
+        list[str]: Danh sách tên trình duyệt ('chrome', 'edge', 'firefox', ...)
     """
     home = Path.home()
     browsers = []
@@ -145,12 +167,14 @@ def detect_installed_browsers() -> list[str]:
 
 def get_garbage_type(path: Path, installed_browsers: list[str] = None) -> str:
     """
-    Phân loại một path thành một trong 12 loại rác hệ thống:
-    - Dựa trên tên thư mục, đường dẫn, phần mở rộng
-    - Có thể truyền danh sách trình duyệt để phân tích đúng Internet cache, cookies, v.v.
+    Phân loại path vào 1 trong 12 loại rác hệ thống.
+
+    Args:
+        path (Path): Đường dẫn cần phân loại.
+        installed_browsers (list[str], optional): Danh sách trình duyệt để hỗ trợ nhận diện loại rác.
 
     Returns:
-        str: Tên loại rác, hoặc 'Khác' nếu không phân loại được
+        str: Tên loại rác. Trả về 'Khác' nếu không khớp loại nào.
     """
     p_str = str(path).lower()
     name = path.name.lower()
@@ -179,4 +203,5 @@ def get_garbage_type(path: Path, installed_browsers: list[str] = None) -> str:
         return "Windows web cache"
     if "onedrive" in p_str:
         return "Microsoft OneDrive"
+
     return "Khác"

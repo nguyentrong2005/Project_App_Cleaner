@@ -1,11 +1,26 @@
 """
-Module `utils` của CleanerApp.
+Package `utils` của CleanerApp.
 
-Chứa các hàm tiện ích liên quan đến thao tác hệ thống:
-- is_file_locked(path): Kiểm tra xem một file có đang bị chương trình khác sử dụng không
-- check_permissions(path): Trả về từ điển mô tả các quyền hệ thống (read, write, execute, delete) trên path
+Chức năng:
+- Các hàm kiểm tra trạng thái file: quyền truy cập, khóa sử dụng
+- Hàm hỗ trợ gọi .after() an toàn trong Tkinter
+- Popup helper: Hiển thị danh sách file chi tiết với khả năng phân trang
 
-Các hàm này được sử dụng trong quá trình xác định khả năng xóa file/thư mục rác.
+Modules:
+- file_utils: is_file_locked, check_permissions
+- safe_after: safe_after, safe_run
+- gui_helpers: show_detail_popup
 """
 
 from .file_utils import is_file_locked, check_permissions
+from .safe_after import safe_after, safe_run
+from .gui_helpers import show_detail_popup
+
+__all__ = [
+    # file_utils
+    "is_file_locked", "check_permissions",
+    # safe_after
+    "safe_after", "safe_run",
+    # gui_helpers
+    "show_detail_popup"
+]

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Default\History-journal (0.00 KB)
 C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Default\Nurturing\campaign_history-journal (0.00 KB)
 C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Nurturing\campaign_history-journal (0.00 KB)
@@ -6,3 +7,5 @@ C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Default\Nurturing\campaign
 C:\Users\huutr\AppData\Local\Microsoft\Edge\User Data\Nurturing\campaign_history-journal (0.00 KB)
 C:\Users\huutr\AppData\Local\Packages\Microsoft.MicrosoftEdge.Stable_8wekyb3d8bbwe\AC\INetHistory (0.00 KB)
 C:\Users\huutr\AppData\Local\Packages\Microsoft.MicrosoftEdgeDevToolsClient_8wekyb3d8bbwe\AC\INetHistory (0.00 KB)
+=======
+>>>>>>> trongdepzai
