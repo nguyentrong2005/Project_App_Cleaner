@@ -1,0 +1,26 @@
+THỎA THUẬN SỬ DỤNG PHẦN MỀM – APP CLEANER
+
+Vui lòng đọc kỹ trước khi sử dụng.
+
+1. GIỚI THIỆU
+App Cleaner là phần mềm được phát triển bởi nhóm sinh viên nhằm hỗ trợ người dùng dọn dẹp các tập tin rác, tập tin tạm thời, cache hệ thống để cải thiện hiệu suất máy tính cá nhân.
+
+2. ĐIỀU KHOẢN SỬ DỤNG
+- Bạn được phép sử dụng App Cleaner miễn phí cho mục đích cá nhân, học tập hoặc nội bộ.
+- Bạn không được sao chép, phân phối lại hoặc sử dụng cho mục đích thương mại nếu không có sự cho phép bằng văn bản của nhóm phát triển.
+
+3. QUYỀN CỦA NGƯỜI DÙNG
+- Bạn có thể dừng việc sử dụng phần mềm bất kỳ lúc nào.
+- Bạn có thể gỡ bỏ phần mềm khỏi máy tính nếu không còn nhu cầu sử dụng.
+
+4. TRÁCH NHIỆM CỦA NGƯỜI DÙNG
+- Bạn chịu trách nhiệm với tất cả hành động thực hiện qua phần mềm, bao gồm việc lựa chọn và xóa các tập tin.
+- Nhóm phát triển **không chịu trách nhiệm** nếu bạn xóa nhầm tập tin quan trọng hoặc gây hư hại cho hệ thống.
+
+5. QUYỀN TRUY CẬP HỆ THỐNG
+- App Cleaner yêu cầu truy cập vào hệ thống tệp và thư mục để thực hiện chức năng quét và dọn dẹp.
+- Một số thao tác như xóa tập tin hệ thống có thể yêu cầu bạn **chạy ứng dụng bằng quyền Administrator** (Quản trị viên).
+
+6. CHẤM DỨT SỬ DỤNG
+- Bạn sẽ không còn được phép sử dụng phần mềm nếu vi phạm các điều khoản nêu trên.
+- Nhóm phát triển có quyền cập nhật, thay đổi hoặc ngừng hỗ trợ phần mềm mà không cần thông báo trước.

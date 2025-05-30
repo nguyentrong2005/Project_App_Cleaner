@@ -1,0 +1,22 @@
+CHÍNH SÁCH BẢO MẬT – APP CLEANER
+
+1. CAM KẾT BẢO MẬT
+Chúng tôi tôn trọng quyền riêng tư và cam kết không thu thập bất kỳ thông tin cá nhân nào của người dùng.
+
+2. DỮ LIỆU NGƯỜI DÙNG
+- App Cleaner **không yêu cầu bạn cung cấp** thông tin cá nhân như họ tên, địa chỉ email, số điện thoại, v.v.
+- Ứng dụng không lưu trữ, gửi, chia sẻ hoặc phân tích dữ liệu cá nhân của bạn.
+
+3. TRUY CẬP HỆ THỐNG
+- App Cleaner truy cập vào hệ thống tệp của bạn **chỉ để quét, xác định và xóa các tập tin rác**.
+- Mọi thao tác đều thực hiện **trong máy của bạn**, hoàn toàn **không có kết nối mạng** hay gửi dữ liệu ra ngoài.
+
+4. AN TOÀN & MINH BẠCH
+- Danh sách file rác sẽ được hiển thị để bạn xác nhận trước khi xóa.
+- App sẽ thông báo nếu có tập tin không thể xử lý vì thiếu quyền hoặc đang bị khóa.
+
+5. THAY ĐỔI CHÍNH SÁCH
+Chính sách này có thể được cập nhật trong các phiên bản mới. Bạn nên kiểm tra chính sách trước khi cập nhật phần mềm.
+
+6. LIÊN HỆ
+Nếu có thắc mắc liên quan đến bảo mật, bạn có thể liên hệ trực tiếp với nhóm phát triển thông qua thông tin được cung cấp trong phần Giới thiệu của ứng dụng.
