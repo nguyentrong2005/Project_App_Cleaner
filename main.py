@@ -1,5 +1,4 @@
 # main.py
-from core import run_scan
 from gui import run_main_window
 from LicenseScreen.license_agreement import show_license_screen
 

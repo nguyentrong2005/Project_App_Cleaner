@@ -2,6 +2,7 @@ import customtkinter as ctk
 import tkinter as tk
 from PIL import Image
 import os
+from utils.safe_after import safe_after
 
 from gui import (
     build_home_view,
@@ -38,13 +39,13 @@ def main_app():
     labels = init_sidebar_labels()
 
     try:
-        app.iconbitmap("resources/images/logo(ico).ico")
+        app.iconbitmap("assets/images/logo.ico")
     except Exception as e:
         print("[Icon Error]", e)
 
     logo_img = None
     try:
-        logo_path = "resources/images/logo.png"
+        logo_path = "assets/images/logo.png"
         if os.path.exists(logo_path):
             logo_img = ctk.CTkImage(Image.open(logo_path), size=(32, 32))
     except Exception as e:
@@ -55,7 +56,7 @@ def main_app():
 
     # Sidebar trái
     app.sidebar = ctk.CTkFrame(
-        app, width=220, corner_radius=0, fg_color=get_sidebar_color())
+        app, width=220, corner_radius=0)
     app.sidebar.pack(side="left", fill="y")
 
     # Logo và tên app
@@ -119,19 +120,25 @@ def main_app():
         """
         Chuyển đổi hiển thị giữa các view trong giao diện chính.
         """
+        # Ẩn tất cả frame hiện tại
         for frame in views.values():
             frame.pack_forget()
-        views[name].pack(fill="both", expand=True)
+
+        if name == "history":
+            from gui.history_view import build_history_view
+            views["history"] = build_history_view(app.main_content)  # tạo lại frame mới
+            views["history"].pack(fill="both", expand=True)
+        else:
+            views[name].pack(fill="both", expand=True)
+
         set_active(app.button_refs[name])
         app.current_view = name
 
     # Danh sách các view
-    history_frame, refresh_history = build_history_view(app.main_content)
-
     views = {
         "home": build_home_view(app.main_content, switch_view),
-        "scan": build_scan_view(app.main_content, refresh_history=refresh_history),
-        "history": history_frame,
+        "scan": build_scan_view(app.main_content),
+        # "history": build_history_view(app.main_content),
         "settings": build_settings_view(app.main_content),
     }
 
@@ -142,15 +149,20 @@ def main_app():
         """
         Cập nhật màu sidebar khi thay đổi giao diện sáng/tối.
         """
-        color = "#1f2937" if ctk.get_appearance_mode() == "Dark" else "transparent"
-        app.sidebar.configure(fg_color=color)
+        is_dark = ctk.get_appearance_mode() == "Dark"
+        sidebar_color = "#1f2937" if is_dark else "#ffffff"
+        text_color = "#ffffff" if is_dark else "#000000"
+        section_color = "#aaaaaa" if is_dark else "#555555"
+
+        app.sidebar.configure(fg_color=sidebar_color)
+
+        for btn in app.button_refs.values():
+            btn.configure(text_color=text_color)
 
     app.update_theme_colors = update_theme_colors
     on_language_change(update_sidebar_texts)
-
     switch_view("home")
     set_active(app.button_refs["home"])
-
     app.mainloop()
 
 
@@ -162,6 +174,7 @@ def show_splash_screen():
     splash = ctk.CTk()
     splash.geometry("300x200")
     splash.title("T3K Cleaner")
+    splash.iconbitmap("assets/images/logo.ico")
     splash.overrideredirect(True)
     splash.eval('tk::PlaceWindow . center')
 
@@ -170,7 +183,7 @@ def show_splash_screen():
 
     try:
         logo = ctk.CTkImage(Image.open(
-            "resources/images/logo.png"), size=(80, 80))
+            "assets/images/logo.png"), size=(80, 80))
         ctk.CTkLabel(frame, image=logo, text="").pack(pady=(15, 10))
     except:
         pass
@@ -180,12 +193,17 @@ def show_splash_screen():
     loading_label.pack(pady=(10, 5))
 
     def animate_dots(i=0):
+        if not splash.winfo_exists():
+            return
+
         dots = ["", ".", "..", "..."]
         loading_label.configure(text=f"Đang khởi động{dots[i % 4]}")
+
         if i < 6:
-            splash.after(500, animate_dots, i + 1)
+            safe_after(splash, 500, animate_dots, i + 1)
         else:
-            splash.destroy()
+            if splash.winfo_exists():
+                splash.destroy()
             main_app()
 
     animate_dots()
