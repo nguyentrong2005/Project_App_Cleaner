@@ -1,5 +1,1 @@
-C:\Users\huutr\AppData\Local\Packages\Microsoft.Windows.ContentDeliveryManager_cw5n1h2txyewy\AC\INetCache (0.00 KB)
-C:\Users\huutr\AppData\Local\Packages\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\AC\INetCache (0.00 KB)
-C:\Users\huutr\AppData\Local\Packages\microsoft.windowscommunicationsapps_8wekyb3d8bbwe\AC\INetCache (0.00 KB)
-C:\Users\huutr\AppData\Local\Packages\Microsoft.WindowsStore_8wekyb3d8bbwe\AC\INetCache (0.00 KB)
-C:\Users\huutr\AppData\Local\Packages\SpotifyAB.SpotifyMusic_zpdnekdrzrea0\AC\INetCache (0.00 KB)
+C:\Users\huutr\AppData\Local\Packages\Microsoft.Windows.ShellExperienceHost_cw5n1h2txyewy\AC\INetCache (0.00 KB)
