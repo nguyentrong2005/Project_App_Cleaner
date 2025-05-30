@@ -11,3 +11,20 @@
 - Temporary internet files: 38 mục, 0.1 MB
 🧹 Dọn rác lúc 28/05/2025 23:03:11 — Tổng: 23 mục, 0.1 MB
 - Microsoft OneDrive: 23 mục, 0.1 MB
+🧹 Dọn rác lúc 30/05/2025 08:46:29 — Tổng: 8626 mục, 482.8 MB
+- Internet cache: 13 mục, 0.0 MB
+- Cookies: 5 mục, 0.0 MB
+- Internet history: 9 mục, 0.0 MB
+- Metrics temp file: 10 mục, 0.0 MB
+- Temporary internet files: 48 mục, 0.1 MB
+- Temporary files: 134 mục, 75.0 MB
+- Memory dumps: 1 mục, 32.5 MB
+- Windows log files: 30 mục, 2.0 MB
+- Windows web cache: 3 mục, 0.0 MB
+- Microsoft OneDrive: 31 mục, 0.2 MB
+- Khác: 8342 mục, 372.9 MB
+🧹 Dọn rác lúc 30/05/2025 08:48:49 — Tổng: 1222 mục, 1.6 MB
+- Internet cache: 3 mục, 0.0 MB
+- Temporary internet files: 5 mục, 0.0 MB
+- Microsoft OneDrive: 2 mục, 0.0 MB
+- Khác: 1212 mục, 1.6 MB
