@@ -37,21 +37,32 @@ def build_scan_view(main_content):
     time_var = tk.StringVar(value="⏱ 0.0s")
     show_more_text = tk.StringVar(value=tr("show_more"))
 
-    # Tiêu đề
-    ctk.CTkLabel(f, textvariable=title_var, font=(
-        "Segoe UI", 22, "bold")).pack(pady=(20, 10))
-    ctk.CTkLabel(f, textvariable=desc_var, font=(
-        "Segoe UI", 14)).pack(pady=(0, 20))
+    # Frame cha chứa phần tiêu đề + mô tả + tiến trình
+    header_frame = ctk.CTkFrame(f, fg_color="transparent")
+    header_frame.pack(pady=(20, 10))
 
-    # Tiến trình và thời gian
+    ctk.CTkLabel(header_frame, textvariable=title_var, font=(
+        "Segoe UI", 22, "bold")).pack()
+    ctk.CTkLabel(header_frame, textvariable=desc_var, font=(
+        "Segoe UI", 14)).pack(pady=(0, 10))
+
     progress_label = ctk.CTkLabel(
-        f, textvariable=progress_text, font=("Segoe UI", 13))
+        header_frame, textvariable=progress_text, font=("Segoe UI", 13), text_color="#ccc")
     progress_label.pack()
-    ctk.CTkLabel(f, textvariable=time_var, font=(
-        "Segoe UI", 12), text_color="#aaa").pack()
-    progress_bar = ctk.CTkProgressBar(f, width=500)
+    progress_label.pack_forget()  # Ẩn ban đầu
+
+    # Thời gian (ẩn ban đầu)
+    time_label = ctk.CTkLabel(header_frame, textvariable=time_var,
+                          font=("Segoe UI", 12), text_color="#aaa")
+    time_label.pack()
+    time_label.pack_forget()
+
+    # Thanh tiến trình (ẩn ban đầu)
+    progress_bar = ctk.CTkProgressBar(header_frame, width=500)
     progress_bar.set(0)
-    progress_bar.pack(pady=(10, 20))
+    progress_bar.pack(pady=(10, 10))
+    progress_bar.pack_forget()
+
 
     # Bảng chính
     # Container có viền, bo góc và màu nền
@@ -82,6 +93,10 @@ def build_scan_view(main_content):
         scan_btn.configure(state="disabled")
         clean_btn.pack_forget()
         back_btn.pack_forget()
+        progress_label.pack()
+        time_label.pack()
+        progress_bar.pack(pady=(10, 10))
+
         for widget in table_frame.winfo_children():
             widget.destroy()
         progress_text.set(tr("scan_progress"))
@@ -231,7 +246,9 @@ def build_scan_view(main_content):
         if not confirm:
             return
 
-        progress_text.set("🧹" + tr("scan_clean"))
+        progress_text.set("" + tr("scan_clean"))
+        time_label.pack_forget()  # 👉 Ẩn đồng hồ thời gian
+
 
         def run():
             # Gom tất cả file để xóa
@@ -267,7 +284,7 @@ def build_scan_view(main_content):
 
             # Tiến trình hiển thị ngược lại
             for i in range(100, -1, -2):
-                progress_text.set(f"🧹 {tr('scan_clean')}: {i}%")
+                progress_text.set(f" {tr('scan_clean')}: {i}%")
                 progress_bar.set(i / 100)
                 time.sleep(0.01)
 
