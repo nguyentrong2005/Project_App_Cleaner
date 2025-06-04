@@ -77,3 +77,27 @@
 🧹 Dọn rác lúc 04/06/2025 10:41:29 — Tổng: 0 mục, 0.0 MB
 🧹 Dọn rác lúc 04/06/2025 10:43:07 — Tổng: 2 mục, 0.0 MB
 - Cookies: 2 mục, 0.0 MB
+🧹 Dọn rác lúc 04/06/2025 21:01:40 — Tổng: 3443 mục, 557.9 MB
+- Internet cache: 15 mục, 0.1 MB
+- Cookies: 3 mục, 0.0 MB
+- Internet history: 5 mục, 0.0 MB
+- Metrics temp file: 24 mục, 6.5 MB
+- Temporary internet files: 30 mục, 0.1 MB
+- Empty recycle bin: 1 mục, 0.0 MB
+- Temporary files: 376 mục, 367.8 MB
+- Memory dumps: 5 mục, 54.7 MB
+- Windows log files: 52 mục, 1.0 MB
+- Windows web cache: 3 mục, 0.0 MB
+- Microsoft OneDrive: 57 mục, 0.8 MB
+- Khác: 2872 mục, 126.8 MB
+🧹 Dọn rác lúc 04/06/2025 21:02:30 — Tổng: 525 mục, 1.0 MB
+- Internet cache: 3 mục, 0.0 MB
+- Temporary files: 3 mục, 0.0 MB
+- Windows web cache: 2 mục, 0.0 MB
+- Microsoft OneDrive: 3 mục, 0.0 MB
+- Khác: 514 mục, 1.0 MB
+🧹 Dọn rác lúc 04/06/2025 21:02:45 — Tổng: 1 mục, 0.0 MB
+- Khác: 1 mục, 0.0 MB
+🧹 Dọn rác lúc 04/06/2025 21:03:36 — Tổng: 53 mục, 0.8 MB
+- Temporary files: 3 mục, 0.0 MB
+- Khác: 50 mục, 0.8 MB
