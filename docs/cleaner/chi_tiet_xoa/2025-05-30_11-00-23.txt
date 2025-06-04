@@ -1,0 +1,6 @@
+🧹 Dọn rác lúc 2025-05-30 11-00-23
+
+📂 Windows web cache (2 mục):
+- (WindowsPath('C:/Users/khoi/AppData/Local/Microsoft/Windows/WebCache/V01.chk'), 8192)
+- (WindowsPath('C:/Users/khoi/AppData/Local/Microsoft/Windows/WebCache/V01.chk'), 8192)
+

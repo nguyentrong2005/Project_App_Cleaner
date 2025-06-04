@@ -37,21 +37,32 @@ def build_scan_view(main_content):
     time_var = tk.StringVar(value="⏱ 0.0s")
     show_more_text = tk.StringVar(value=tr("show_more"))
 
-    # Tiêu đề
-    ctk.CTkLabel(f, textvariable=title_var, font=(
-        "Segoe UI", 22, "bold")).pack(pady=(20, 10))
-    ctk.CTkLabel(f, textvariable=desc_var, font=(
-        "Segoe UI", 14)).pack(pady=(0, 20))
+    # Frame cha chứa phần tiêu đề + mô tả + tiến trình
+    header_frame = ctk.CTkFrame(f, fg_color="transparent")
+    header_frame.pack(pady=(20, 10))
 
-    # Tiến trình và thời gian
+    ctk.CTkLabel(header_frame, textvariable=title_var, font=(
+        "Segoe UI", 22, "bold")).pack()
+    ctk.CTkLabel(header_frame, textvariable=desc_var, font=(
+        "Segoe UI", 14)).pack(pady=(0, 10))
+
     progress_label = ctk.CTkLabel(
-        f, textvariable=progress_text, font=("Segoe UI", 13))
+        header_frame, textvariable=progress_text, font=("Segoe UI", 13), text_color="#ccc")
     progress_label.pack()
-    ctk.CTkLabel(f, textvariable=time_var, font=(
-        "Segoe UI", 12), text_color="#aaa").pack()
-    progress_bar = ctk.CTkProgressBar(f, width=500)
+    progress_label.pack_forget()  # Ẩn ban đầu
+
+    # Thời gian (ẩn ban đầu)
+    time_label = ctk.CTkLabel(header_frame, textvariable=time_var,
+                          font=("Segoe UI", 12), text_color="#aaa")
+    time_label.pack()
+    time_label.pack_forget()
+
+    # Thanh tiến trình (ẩn ban đầu)
+    progress_bar = ctk.CTkProgressBar(header_frame, width=500)
     progress_bar.set(0)
-    progress_bar.pack(pady=(10, 20))
+    progress_bar.pack(pady=(10, 10))
+    progress_bar.pack_forget()
+
 
     # Bảng chính
     # Container có viền, bo góc và màu nền
@@ -82,15 +93,21 @@ def build_scan_view(main_content):
         scan_btn.configure(state="disabled")
         clean_btn.pack_forget()
         back_btn.pack_forget()
+        progress_label.pack()
+        time_label.pack()
+        progress_bar.pack(pady=(10, 10))
+
         for widget in table_frame.winfo_children():
             widget.destroy()
         progress_text.set(tr("scan_progress"))
         progress_bar.set(0)
         time_var.set("⏱ 0.0s")
-
         start_time = time.time()
         state["view"] = "scanning"
+        spinner_frames = ["⏳", "🔄", "↻", "⟳"]
+        dot_state = [0]
 
+        
         def update_timer():
             try:
                 if state["view"] == "scanning" and f.winfo_exists():
@@ -99,7 +116,14 @@ def build_scan_view(main_content):
                     safe_after(f, 100, update_timer)
             except Exception as e:
                 print("Timer error:", e)
-
+        def animate_dots():
+            if state["view"] != "scanning":
+                return
+            icon = spinner_frames[dot_state[0] % len(spinner_frames)]
+            progress_text.set(f"{icon} {tr('scan_progress')}")
+            dot_state[0] += 1
+            safe_after(f, 300, animate_dots)
+        
         def run():
             # Chạy quét và cập nhật tiến trình dần
             progress_bar.set(0.1)
@@ -114,14 +138,15 @@ def build_scan_view(main_content):
 
             # Quét xong thì set 100%
             progress_bar.set(1.0)
-            progress_text.set(tr("scan_done"))
+            state["view"] = "main"  # ĐẶT TRƯỚC
             elapsed = time.time() - start_time
+            progress_text.set(tr("scan_done"))  # Gán SAU
             time_var.set(f"⏱ {elapsed:.1f}s")
-            state["view"] = "main"
 
             show_main_view(summary, classified_paths, total_size, duration)
 
         update_timer()
+        animate_dots()  
         threading.Thread(target=run, daemon=True).start()
 
     scan_btn = ctk.CTkButton(f, textvariable=scan_btn_text, command=start_scan)
@@ -221,7 +246,9 @@ def build_scan_view(main_content):
         if not confirm:
             return
 
-        progress_text.set("🧹" + tr("scan_clean"))
+        progress_text.set("" + tr("scan_clean"))
+        time_label.pack_forget()  # 👉 Ẩn đồng hồ thời gian
+
 
         def run():
             # Gom tất cả file để xóa
@@ -257,7 +284,7 @@ def build_scan_view(main_content):
 
             # Tiến trình hiển thị ngược lại
             for i in range(100, -1, -2):
-                progress_text.set(f"🧹 {tr('scan_clean')}: {i}%")
+                progress_text.set(f" {tr('scan_clean')}: {i}%")
                 progress_bar.set(i / 100)
                 time.sleep(0.01)
 
@@ -266,6 +293,9 @@ def build_scan_view(main_content):
                 message += f"\n⚠️ {len(failed)} mục không xóa được."
 
             progress_text.set(message)
+            # Xóa bảng hiển thị sau khi dọn
+            safe_after(f, 100, lambda: [w.destroy() for w in table_frame.winfo_children()])
+
 
             # 🚀 Quét lại sau khi dọn
             time.sleep(1)
