@@ -143,3 +143,9 @@
 - Windows web cache: 2 mục, 0.0 MB
 - Microsoft OneDrive: 21 mục, 0.2 MB
 - Khác: 1965 mục, 52.5 MB
+🧹 Dọn rác lúc 11/06/2025 09:01:50 — Tổng: 76 mục, 3.0 MB
+- Internet cache: 12 mục, 0.1 MB
+- Metrics temp file: 2 mục, 0.0 MB
+- Temporary internet files: 16 mục, 0.0 MB
+- Temporary files: 34 mục, 0.9 MB
+- Windows log files: 12 mục, 2.0 MB

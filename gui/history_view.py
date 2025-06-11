@@ -97,5 +97,5 @@ def build_history_view(main_content):
 
 def refresh_history_view():
     if _main_container:
-        build_history_view(_main_container).pack(fill="both", expand=True)
+        build_history_view(_main_container)
 

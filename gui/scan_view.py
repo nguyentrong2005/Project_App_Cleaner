@@ -300,7 +300,6 @@ def build_scan_view(main_content):
             # 🚀 Quét lại sau khi dọn
             time.sleep(1)
             # safe_after(f, 100, start_scan)
-            safe_after(f, 100, history_view.refresh_history_view)
 
         threading.Thread(target=run, daemon=True).start()
 

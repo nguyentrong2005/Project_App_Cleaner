@@ -129,7 +129,8 @@ def main_app():
             frame.pack_forget()
 
         if name == "history":
-            from gui.history_view import build_history_view
+            from gui.history_view import build_history_view, refresh_history_view
+            refresh_history_view()
             views["history"] = build_history_view(
                 app.main_content)  # tạo lại frame mới
             views["history"].pack(fill="both", expand=True)
