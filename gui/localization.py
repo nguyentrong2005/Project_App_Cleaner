@@ -63,8 +63,8 @@ TEXTS = {
         "home_os": "💻 Operating System",
         "home_disk": "📂 Disk",
         "home_battery": "🔋 Battery",
-        "home_cpu": "CPU",
-        "home_ram": "Ram",
+        "home_cpu": "🧠 CPU",
+        "home_ram": "📶 Ram",
         # SCAN
         "scan_label": "Scan",
         "scan_title": "🔍 System Scan",

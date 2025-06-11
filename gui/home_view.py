@@ -11,23 +11,6 @@ HOVER_BG = "#2a2e35"
 
 
 def build_home_view(main_content, on_switch_view):
-    """
-    Xây dựng và trả về giao diện chính của màn hình Home trong ứng dụng.
-
-    Giao diện bao gồm:
-    - Tiêu đề và mô tả (theo ngôn ngữ hiện tại)
-    - Đồng hồ thời gian thực góc trên phải
-    - Một thẻ chức năng chính để chuyển sang màn hình quét rác
-    - Nút "🖥 Xem hệ thống" để hiển thị thông tin thật của máy (CPU, RAM, ổ đĩa,...)
-    - Mẹo nhỏ và khả năng cập nhật lại nội dung khi thay đổi ngôn ngữ
-
-    Args:
-        main_content: Widget cha (Frame) nơi chứa giao diện này
-        on_switch_view: Hàm callback để chuyển đổi sang các màn hình khác
-
-    Returns:
-        CTkFrame: Giao diện trang Home hoàn chỉnh (CustomTkinter Frame)
-    """
     home = ctk.CTkFrame(main_content)
 
     title_var = tk.StringVar(value=tr("home_title"))
@@ -35,10 +18,15 @@ def build_home_view(main_content, on_switch_view):
     tip_var = tk.StringVar(value=tr("home_tip"))
     clean_text_var = tk.StringVar(value=tr("clean_title"))
     btn_sysinfo_text = tk.StringVar(value=tr("home_system"))
-
-    # Đồng hồ (hiển thị ở góc trên phải)
     clock_var = tk.StringVar()
 
+    # ====== HÀM MÀU THEO GIAO DIỆN ======
+    
+    def get_hover_bg():
+        return "black" if ctk.get_appearance_mode().lower() == "dark" else "white"
+
+
+    # ====== ĐỒNG HỒ GÓC PHẢI ======
     def update_clock():
         if not home.winfo_exists():
             return
@@ -46,19 +34,18 @@ def build_home_view(main_content, on_switch_view):
         clock_var.set(now.strftime(" %d/%m/%Y -  %H:%M:%S"))
         safe_after(home, 1000, update_clock)
 
-
-    clock_label = ctk.CTkLabel(home, textvariable=clock_var, font=(
-        "Segoe UI", 12), text_color="#aaa")
+    clock_label = ctk.CTkLabel(home, textvariable=clock_var, font=("Segoe UI", 12),
+                               )
     clock_label.pack(anchor="ne", padx=20, pady=(10, 0))
     update_clock()
 
-    # Tiêu đề và mô tả
-    ctk.CTkLabel(home, textvariable=title_var, font=(
-        "Segoe UI", 24, "bold"), anchor="center").pack(pady=(30, 10))
-    ctk.CTkLabel(home, textvariable=desc_var, font=(
-        "Segoe UI", 14), justify="center").pack(pady=(0, 30))
+    # ====== TIÊU ĐỀ & MÔ TẢ ======
+    ctk.CTkLabel(home, textvariable=title_var, font=("Segoe UI", 24, "bold"),
+                 anchor="center").pack(pady=(30, 10))
+    ctk.CTkLabel(home, textvariable=desc_var, font=("Segoe UI", 14),
+                 justify="center").pack(pady=(0, 30))
 
-    # Thẻ chức năng chính
+    # ====== THẺ CHỨC NĂNG CHÍNH (QUÉT RÁC) ======
     card = ctk.CTkFrame(home, corner_radius=12, border_width=2,
                         border_color=PRIMARY_COLOR, height=150)
     card.pack(padx=80, pady=10, fill="x")
@@ -69,15 +56,15 @@ def build_home_view(main_content, on_switch_view):
     icon_label = ctk.CTkLabel(row, text="🧹", font=("Segoe UI", 48), width=80)
     icon_label.pack(side="left")
 
-    text_label = ctk.CTkLabel(
-        row, textvariable=clean_text_var, font=("Segoe UI", 20, "bold"))
+    text_label = ctk.CTkLabel(row, textvariable=clean_text_var,
+                              font=("Segoe UI", 20, "bold"))
     text_label.pack(side="left", padx=20)
 
     def on_enter(e):
-        card.configure(border_color="#60a5fa", fg_color=HOVER_BG)
+        card.configure(fg_color=get_hover_bg())
 
     def on_leave(e):
-        card.configure(border_color=PRIMARY_COLOR, fg_color="transparent")
+        card.configure(fg_color="transparent")
 
     def open_scan_view(event=None):
         on_switch_view("scan")
@@ -87,14 +74,14 @@ def build_home_view(main_content, on_switch_view):
         widget.bind("<Leave>", on_leave)
         widget.bind("<Button-1>", open_scan_view)
 
-    # Mẹo nhỏ
-    ctk.CTkLabel(home, textvariable=tip_var, font=(
-        "Segoe UI", 12), text_color="#aaa").pack(pady=(30, 10))
+    # ====== MẸO NHỎ ======
+    tip_label = ctk.CTkLabel(home, textvariable=tip_var, font=("Segoe UI", 12),
+                             )
+    tip_label.pack(pady=(30, 10))
 
-    # Khối thông tin hệ thống (ẩn/hiện)
-    sysinfo_frame = ctk.CTkFrame(home, fg_color="transparent")
-    sysinfo_label = ctk.CTkLabel(
-        sysinfo_frame, font=("Segoe UI", 14), justify="left")
+    # ====== THÔNG TIN HỆ THỐNG ======
+    sysinfo_frame = ctk.CTkFrame(home)
+    sysinfo_label = ctk.CTkLabel(sysinfo_frame, font=("Segoe UI", 14), justify="left")
     sysinfo_label.pack()
     sysinfo_frame.pack_forget()
 
@@ -102,16 +89,14 @@ def build_home_view(main_content, on_switch_view):
         if sysinfo_frame.winfo_ismapped():
             sysinfo_frame.pack_forget()
         else:
-            info = get_system_info()  # ⬅️ Gọi qua controller
+            info = get_system_info()
             sysinfo_label.configure(text=info)
-            sysinfo_frame.pack(pady=(10, 30))
-
             sysinfo_frame.pack(pady=(10, 30))
 
     ctk.CTkButton(home, textvariable=btn_sysinfo_text,
                   command=toggle_sysinfo).pack(pady=(0, 10))
 
-    # Cập nhật khi đổi ngôn ngữ
+    # ====== CẬP NHẬT KHI ĐỔI NGÔN NGỮ ======
     def update_texts():
         title_var.set(tr("home_title"))
         desc_var.set(tr("home_desc"))
@@ -120,5 +105,7 @@ def build_home_view(main_content, on_switch_view):
         btn_sysinfo_text.set(tr("home_system"))
 
     on_language_change(update_texts)
+
+    
 
     return home

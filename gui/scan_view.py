@@ -21,6 +21,10 @@ def build_scan_view(main_content):
     selected_files = []
     state = {"view": "main"}
     all_data = {}
+    def get_table_fg_color():
+        return "#2c2f36" if ctk.get_appearance_mode().lower() == "dark" else "white"
+    def get_table_border_color():
+        return "white" if ctk.get_appearance_mode().lower() == "dark" else "black"
 
     # Ngôn ngữ động
     clean_btn_text = tk.StringVar(value=tr("scan_clean"))
@@ -47,13 +51,13 @@ def build_scan_view(main_content):
         "Segoe UI", 14)).pack(pady=(0, 10))
 
     progress_label = ctk.CTkLabel(
-        header_frame, textvariable=progress_text, font=("Segoe UI", 13), text_color="#ccc")
+        header_frame, textvariable=progress_text, font=("Segoe UI", 13),)
     progress_label.pack()
     progress_label.pack_forget()  # Ẩn ban đầu
 
     # Thời gian (ẩn ban đầu)
     time_label = ctk.CTkLabel(header_frame, textvariable=time_var,
-                          font=("Segoe UI", 12), text_color="#aaa")
+                          font=("Segoe UI", 12),)
     time_label.pack()
     time_label.pack_forget()
 
@@ -68,8 +72,8 @@ def build_scan_view(main_content):
     # Container có viền, bo góc và màu nền
     table_wrapper = ctk.CTkFrame(
         f,
-        fg_color="#2c2f36",          # nền đậm cho dark mode, có thể thay đổi theo theme
-        border_color="#3b82f6",      # màu viền (xanh như PRIMARY_COLOR)
+        fg_color=get_table_fg_color(),          # nền đậm cho dark mode, có thể thay đổi theo theme
+        border_color=get_table_fg_color(),      # màu viền (xanh như PRIMARY_COLOR)
         border_width=2,
         corner_radius=12
     )
@@ -318,4 +322,11 @@ def build_scan_view(main_content):
         show_more_text.set(tr("show_more"))
 
     on_language_change(update_texts)
+    top = f.winfo_toplevel()
+
+    def update_theme_colors():
+        table_wrapper.configure(border_color=get_table_fg_color())
+        table_wrapper.configure(border_color=get_table_border_color())
+    top.update_theme_colors_scan_view = update_theme_colors
+
     return f
