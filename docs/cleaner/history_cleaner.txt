@@ -143,3 +143,6 @@
 - Windows web cache: 2 mục, 0.0 MB
 - Microsoft OneDrive: 21 mục, 0.2 MB
 - Khác: 1965 mục, 52.5 MB
+🧹 Dọn rác lúc 11/06/2025 09:26:22 — Tổng: 3 mục, 0.0 MB
+- Internet history: 3 mục, 0.0 MB
+🧹 Dọn rác lúc 11/06/2025 09:37:59 — Tổng: 0 mục, 0.0 MB
