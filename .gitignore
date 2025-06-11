@@ -3,7 +3,7 @@ __pycache__/
 *.pyc
 *.pyo
 
-# Bỏ file môi trường ảo (nếu bạn dùng venv/.venv)
+# Bỏ file môi trường ảo
 venv/
 .venv/
 
@@ -22,4 +22,7 @@ docs/
 
 # Đóng gói .exe
 *.bat
+
+# Loại trừ file installer_script.iss (KHÔNG đẩy lên git)
+installer_script.iss
 

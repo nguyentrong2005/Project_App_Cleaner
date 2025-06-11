@@ -1,11 +1,15 @@
 @echo off
-echo Building CleanerApp...
+echo [*] Building CleanerApp...
+
+REM Build the executable using PyInstaller
 pyinstaller ^
 --noconfirm ^
 --onefile ^
 --windowed ^
---icon=assets/images/logo.ico ^
 --name CleanerApp ^
+--icon=assets/images/logo.ico ^
+--add-data "assets/images;assets/images" ^
 main.py
-echo Done. File created: dist\CleanerApp.exe
+
+echo [✔] Done. File created at: dist\CleanerApp.exe
 pause

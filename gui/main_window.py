@@ -3,6 +3,7 @@ import tkinter as tk
 from PIL import Image
 import os
 from utils.safe_after import safe_after
+import sys
 
 from gui import (
     build_home_view,
@@ -39,15 +40,18 @@ def main_app():
     labels = init_sidebar_labels()
 
     try:
-        app.iconbitmap("assets/images/logo.ico")
+        app.iconbitmap(os.path.join(sys._MEIPASS, "assets", "images", "logo.ico") if hasattr(
+            sys, "_MEIPASS") else "assets/images/logo.ico")
     except Exception as e:
         print("[Icon Error]", e)
 
     logo_img = None
     try:
-        logo_path = "assets/images/logo.png"
+        logo_path = os.path.join(sys._MEIPASS, "assets", "images", "logo.png") if hasattr(
+            sys, "_MEIPASS") else "assets/images/logo.png"
         if os.path.exists(logo_path):
             logo_img = ctk.CTkImage(Image.open(logo_path), size=(32, 32))
+
     except Exception as e:
         print("[Logo Error]", e)
 
@@ -125,8 +129,10 @@ def main_app():
             frame.pack_forget()
 
         if name == "history":
-            from gui.history_view import build_history_view
-            views["history"] = build_history_view(app.main_content)  # tạo lại frame mới
+            from gui.history_view import build_history_view, refresh_history_view
+            refresh_history_view()
+            views["history"] = build_history_view(
+                app.main_content)  # tạo lại frame mới
             views["history"].pack(fill="both", expand=True)
         else:
             views[name].pack(fill="both", expand=True)
@@ -174,7 +180,9 @@ def show_splash_screen():
     splash = ctk.CTk()
     splash.geometry("300x200")
     splash.title("T3K Cleaner")
-    splash.iconbitmap("assets/images/logo.ico")
+    icon_path = os.path.join(sys._MEIPASS, "assets", "images", "logo.ico") if hasattr(
+        sys, "_MEIPASS") else "assets/images/logo.ico"
+    splash.iconbitmap(icon_path)
     splash.overrideredirect(True)
     splash.eval('tk::PlaceWindow . center')
 
@@ -182,8 +190,9 @@ def show_splash_screen():
     frame.pack(expand=True, fill="both", padx=20, pady=20)
 
     try:
-        logo = ctk.CTkImage(Image.open(
-            "assets/images/logo.png"), size=(80, 80))
+        logo_path = os.path.join(sys._MEIPASS, "assets", "images", "logo.png") if hasattr(
+            sys, "_MEIPASS") else "assets/images/logo.png"
+        logo = ctk.CTkImage(Image.open(logo_path), size=(80, 80))
         ctk.CTkLabel(frame, image=logo, text="").pack(pady=(15, 10))
     except:
         pass

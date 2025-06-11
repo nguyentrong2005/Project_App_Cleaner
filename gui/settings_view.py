@@ -117,5 +117,8 @@ def build_settings_view(main_content):
 
 
     on_language_change(update_texts)
+    top = main_content.winfo_toplevel()
+    if hasattr(top, "update_theme_colors_scan_view"):
+        top.update_theme_colors_scan_view()
 
     return f

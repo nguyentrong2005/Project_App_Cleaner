@@ -1,8 +1,0 @@
-C:\Users\huutr\AppData\Local\Microsoft\OneDrive\settings\FileSyncFSCache.db-wal (0.00 KB)
-C:\Users\huutr\AppData\Local\Microsoft\OneDrive\settings\Personal\downloads3.txt (0.00 KB)
-C:\Users\huutr\AppData\Local\Microsoft\OneDrive\settings\Personal\SafeDelete.db-wal (0.00 KB)
-C:\Users\huutr\AppData\Local\Microsoft\OneDrive\setup\logs (0.00 KB)
-C:\Users\huutr\AppData\Local\Microsoft\OneDrive\settings\FileSyncFSCache.db-wal (0.00 KB)
-C:\Users\huutr\AppData\Local\Microsoft\OneDrive\settings\Personal\downloads3.txt (0.00 KB)
-C:\Users\huutr\AppData\Local\Microsoft\OneDrive\settings\Personal\SafeDelete.db-wal (0.00 KB)
-C:\Users\huutr\AppData\Local\Microsoft\OneDrive\setup\logs (0.00 KB)
